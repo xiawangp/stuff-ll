@@ -21,44 +21,46 @@
 package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Yig;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLevitation;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.watabou.utils.Point;
-
-//import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.SacrificialFire;
+import com.watabou.utils.Random;
 
 public class AltarPainter extends Painter {
 
-	public static void paint( Level level, Room room ) {
+	public static void paint(Level level, Room room ) {
 
 		fill( level, room, Terrain.WALL );
 		fill( level, room, 1, Dungeon.bossLevel( Dungeon.depth + 1 ) ? Terrain.HIGH_GRASS : Terrain.CHASM );
 
 		Point c = room.center();
 		Room.Door door = room.entrance();
-		if (door.x == room.left || door.x == room.right) {
-			Point p = drawInside( level, room, door, Math.abs( door.x - c.x ) - 2, Terrain.EMPTY_SP );
-			for (; p.y != c.y; p.y += p.y < c.y ? +1 : -1) {
-				set( level, p, Terrain.EMPTY_SP );
-			}
-		} else {
-			Point p = drawInside( level, room, door, Math.abs( door.y - c.y ) - 2, Terrain.EMPTY_SP );
-			for (; p.x != c.x; p.x += p.x < c.x ? +1 : -1) {
-				set( level, p, Terrain.EMPTY_SP );
-			}
-		}
+		door.set(Room.Door.Type.EMPTY);
 
 		fill( level, c.x - 1, c.y - 1, 3, 3, Terrain.EMBERS );
-		set( level, c, Terrain.PEDESTAL );
+		int pos = c.x + c.y * level.width();
+		if(Randomer.randomBoolean() == true){
+			level.drop(new PotionOfLevitation(), pos);
+			level.drop(Generator.randomWeapon().enchant().upgrade(Random.IntRange(Dungeon.depth/2, Dungeon.depth)).identify(), pos );
+			set( level, c, Terrain.PEDESTAL );
 
-		//TODO: find some use for sacrificial fire... but not the vanilla one. scroll of wipe out is too strong.
-		/*SacrificialFire fire = (SacrificialFire)level.blobs.get( SacrificialFire.class );
-		if (fire == null) {
-			fire = new SacrificialFire();
+		} else {
+			set( level, c, Terrain.ENCHANTING);
+			level.drop(new PotionOfLevitation(), pos+1);
 		}
-		fire.seed( c.x + c.y * Level.WIDTH, 5 + Dungeon.depth * 5 );
-		level.blobs.put( SacrificialFire.class, fire );*/
+		Yig yig = new Yig();
+		yig.pos = pos-1;
+		yig.SLEEPING.status();
+		level.mobs.add( yig );
+
+		level.addItemToSpawn( new PotionOfLevitation() );
+
+
 
 		door.set( Room.Door.Type.EMPTY );
 	}

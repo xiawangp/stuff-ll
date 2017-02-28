@@ -18,18 +18,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.shatteredpixel.lovecraftpixeldungeon.items.quest;
+package com.shatteredpixel.lovecraftpixeldungeon.items.ores;
 
-import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
 
-public class DarkGold extends Item {
+public class Adamantium extends Ores {
 	
 	{
-		image = ItemSpriteSheet.ORE;
-		
-		stackable = true;
-		unique = true;
+		image = ItemSpriteSheet.ADAMANTORE;
+		weight = 20;
 	}
 	
 	@Override
@@ -40,5 +37,10 @@ public class DarkGold extends Item {
 	@Override
 	public boolean isIdentified() {
 		return true;
+	}
+
+	@Override
+	public int price() {
+		return 1800*quantity;
 	}
 }

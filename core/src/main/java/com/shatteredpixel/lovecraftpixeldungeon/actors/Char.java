@@ -285,11 +285,6 @@ public abstract class Char extends Actor {
 				Integer.toString( dmg ) );
 		}
 
-		if(!isSane()){
-			HP--;
-			Buff.affect(this, Vertigo.class);
-		}
-
 		if (HP < 0) HP = 0;
 
 		if (!isAlive()) {
@@ -309,10 +304,6 @@ public abstract class Char extends Actor {
 	
 	public boolean isAlive() {
 		return HP > 0;
-	}
-
-	public boolean isSane() {
-		return MH > 0;
 	}
 
 	

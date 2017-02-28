@@ -37,6 +37,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Drowsy;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Fury;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Hunger;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Invisibility;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Light;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Paralysis;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Regeneration;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.SnipersMark;
@@ -89,6 +90,8 @@ import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.features.AlchemyPot;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.features.Chasm;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.features.CraftingBench;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.features.EnchantingTable;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.features.Sign;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.plants.Earthroot;
@@ -190,6 +193,10 @@ public class Hero extends Char {
 		STR += RingOfMight.getBonus(this, RingOfMight.Might.class);
 
 		return weakened ? STR - 2 : STR;
+	}
+
+	public boolean isSane() {
+		return MH > 0;
 	}
 
 	private static final String ATTACK		= "attackSkill";
@@ -540,7 +547,17 @@ public class Hero extends Char {
 
 				return actCook( (HeroAction.Cook)curAction );
 				
-			}
+			} else
+				if(curAction instanceof HeroAction.Craft){
+
+					return actCraft((HeroAction.Craft)curAction);
+
+				} else
+				if(curAction instanceof HeroAction.Enchant){
+
+					return actEnchant((HeroAction.Enchant)curAction);
+
+				}
 		}
 		
 		return false;
@@ -614,13 +631,51 @@ public class Hero extends Char {
 			
 		}
 	}
-	
+
+	private boolean actCraft( HeroAction.Craft action ) {
+		int dst = action.dst;
+		if (Dungeon.visible[dst]) {
+
+			ready();
+			CraftingBench.operate( this, dst );
+			return false;
+
+		} else if (getCloser( dst )) {
+
+			return true;
+
+		} else {
+			ready();
+			return false;
+		}
+	}
+
+	private boolean actEnchant( HeroAction.Enchant action ) {
+		int dst = action.dst;
+		if (Dungeon.visible[dst]) {
+
+			ready();
+			EnchantingTable.operate( this, dst );
+			return false;
+
+		} else if (getCloser( dst )) {
+
+			return true;
+
+		} else {
+			ready();
+			return false;
+		}
+	}
+
+
+
 	private boolean actBuy( HeroAction.Buy action ) {
 		int dst = action.dst;
 		if (pos == dst || Dungeon.level.adjacent( pos, dst )) {
 
 			ready();
-			
+
 			Heap heap = Dungeon.level.heaps.get( dst );
 			if (heap != null && heap.type == Type.FOR_SALE && heap.size() == 1) {
 				GameScene.show( new WndTradeItem( heap, true ) );
@@ -949,6 +1004,12 @@ public class Hero extends Char {
 	
 	@Override
 	public void damage( int dmg, Object src ) {
+		if(!isSane()){
+			GLog.i(Messages.get(this, "insane"));
+			Buff.affect(this, Vertigo.class, Light.DURATION/3);
+			HP--;
+		}
+
 		if (buff(TimekeepersHourglass.timeStasis.class) != null)
 			return;
 
@@ -1179,7 +1240,15 @@ public class Hero extends Char {
 			
 			curAction = new HeroAction.Ascend( cell );
 			
-		} else  {
+		} else if (Dungeon.level.map[cell] == Terrain.CRAFTING && cell != pos){
+
+			curAction = new HeroAction.Craft(cell);
+
+		}  else if (Dungeon.level.map[cell] == Terrain.ENCHANTING && cell != pos){
+
+			curAction = new HeroAction.Enchant(cell);
+
+		} else {
 			
 			curAction = new HeroAction.Move( cell );
 			lastAction = null;
@@ -1425,6 +1494,10 @@ public class Hero extends Char {
 	@Override
 	public void move( int step ) {
 		super.move( step );
+
+		if(!isSane()){
+			HP--;
+		}
 		
 		if (!flying) {
 			

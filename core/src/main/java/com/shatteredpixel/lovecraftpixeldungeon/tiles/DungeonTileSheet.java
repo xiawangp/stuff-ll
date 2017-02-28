@@ -67,6 +67,8 @@ public class DungeonTileSheet {
 	public static final int EMPTY_WELL      = GROUND +19;
 	public static final int ALCHEMY_POT     = GROUND +20;
 	public static final int PEDESTAL        = GROUND +21;
+	public static final int CRAFTING        = GROUND +22;
+	public static final int ENCHANTING      = GROUND +23;
 
 
 
@@ -84,7 +86,8 @@ public class DungeonTileSheet {
 			Terrain.BARRICADE, Terrain.HIGH_GRASS, Terrain.SECRET_TRAP,
 			Terrain.TRAP, Terrain.INACTIVE_TRAP, Terrain.EMPTY_DECO,
 			Terrain.SIGN, Terrain.WELL, Terrain.STATUE, Terrain.ALCHEMY,
-			Terrain.DOOR, Terrain.OPEN_DOOR, Terrain.LOCKED_DOOR
+			Terrain.DOOR, Terrain.OPEN_DOOR, Terrain.LOCKED_DOOR,
+			Terrain.CRAFTING, Terrain.ENCHANTING
 	));
 
 	//+1 for ground above, +2 for ground right, +4 for ground below, +8 for ground left.
@@ -342,6 +345,8 @@ public class DungeonTileSheet {
 		directVisuals.put(Terrain.UNLOCKED_EXIT,    UNLOCKED_EXIT);
 		directVisuals.put(Terrain.WELL,             WELL);
 		directVisuals.put(Terrain.ALCHEMY,          ALCHEMY_POT);
+		directVisuals.put(Terrain.CRAFTING,         CRAFTING);
+		directVisuals.put(Terrain.ENCHANTING,       ENCHANTING);
 
 	}
 

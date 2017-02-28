@@ -68,7 +68,7 @@ public class GreenDewdrop extends Dewdrop {
 			
 		} else {
 			
-			vial.collectDew( this );
+			vial.collectGreenDew(this);
 			
 		}
 		

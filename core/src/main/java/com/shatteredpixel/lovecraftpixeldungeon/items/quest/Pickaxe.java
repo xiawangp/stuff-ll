@@ -28,6 +28,13 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGo;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
+import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Adamantium;
+import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Cobalt;
+import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Copper;
+import com.shatteredpixel.lovecraftpixeldungeon.items.ores.DarkGold;
+import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Iron;
+import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Uranium;
+import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfMining;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
@@ -35,6 +42,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSprite.Glowing;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.BuffIndicator;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
@@ -57,6 +65,8 @@ public class Pickaxe extends Weapon {
 		
 		unique = true;
 		bones = false;
+
+		weight = 10;
 		
 		defaultAction = AC_MINE;
 
@@ -116,12 +126,111 @@ public class Pickaxe extends Weapon {
 							
 							Level.set( pos, Terrain.WALL );
 							GameScene.updateMap( pos );
-							
-							DarkGold gold = new DarkGold();
-							if (gold.doPickUp( Dungeon.hero )) {
-								GLog.i( Messages.get(Dungeon.hero, "you_now_have", gold.name()) );
+
+							int oregenerator = Randomer.randomInteger(60);
+
+							if(oregenerator > 55){
+								Cobalt cobalt = new Cobalt();
+								if (cobalt.doPickUp( Dungeon.hero )) {
+									GLog.i( Messages.get(Dungeon.hero, "you_now_have", cobalt.name()) );
+								} else {
+									if(Dungeon.hero.belongings.misc1.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc1.level(); i >= 0; i--){
+											Dungeon.level.drop( cobalt, hero.pos ).sprite.drop();
+										}
+									} else if(Dungeon.hero.belongings.misc2.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc2.level(); i >= 0; i--){
+											Dungeon.level.drop( cobalt, hero.pos ).sprite.drop();
+										}
+									} else {
+										Dungeon.level.drop( cobalt, hero.pos ).sprite.drop();
+									}
+								}
+							} else if(oregenerator > 50){
+								Uranium uranium = new Uranium();
+								if (uranium.doPickUp( Dungeon.hero )) {
+									GLog.i( Messages.get(Dungeon.hero, "you_now_have", uranium.name()) );
+								} else {
+									if(Dungeon.hero.belongings.misc1.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc1.level(); i >= 0; i--){
+											Dungeon.level.drop( uranium, hero.pos ).sprite.drop();
+										}
+									} else if(Dungeon.hero.belongings.misc2.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc2.level(); i >= 0; i--){
+											Dungeon.level.drop( uranium, hero.pos ).sprite.drop();
+										}
+									} else {
+										Dungeon.level.drop( uranium, hero.pos ).sprite.drop();
+									}
+								}
+							} else if(oregenerator > 45){
+								Adamantium adamantium = new Adamantium();
+								if (adamantium.doPickUp( Dungeon.hero )) {
+									GLog.i( Messages.get(Dungeon.hero, "you_now_have", adamantium.name()) );
+								} else {
+									if(Dungeon.hero.belongings.misc1.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc1.level(); i >= 0; i--){
+											Dungeon.level.drop( adamantium, hero.pos ).sprite.drop();
+										}
+									} else if(Dungeon.hero.belongings.misc2.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc2.level(); i >= 0; i--){
+											Dungeon.level.drop( adamantium, hero.pos ).sprite.drop();
+										}
+									} else {
+										Dungeon.level.drop( adamantium, hero.pos ).sprite.drop();
+									}
+								}
+							} else if(oregenerator > 35){
+								DarkGold gold = new DarkGold();
+								if (gold.doPickUp( Dungeon.hero )) {
+									GLog.i( Messages.get(Dungeon.hero, "you_now_have", gold.name()) );
+								} else {
+									if(Dungeon.hero.belongings.misc1.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc1.level(); i >= 0; i--){
+											Dungeon.level.drop( gold, hero.pos ).sprite.drop();
+										}
+									} else if(Dungeon.hero.belongings.misc2.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc2.level(); i >= 0; i--){
+											Dungeon.level.drop( gold, hero.pos ).sprite.drop();
+										}
+									} else {
+										Dungeon.level.drop( gold, hero.pos ).sprite.drop();
+									}
+								}
+							} else if(oregenerator > 20){
+								Iron iron = new Iron();
+								if (iron.doPickUp( Dungeon.hero )) {
+									GLog.i( Messages.get(Dungeon.hero, "you_now_have", iron.name()) );
+								} else {
+									if(Dungeon.hero.belongings.misc1.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc1.level(); i >= 0; i--){
+											Dungeon.level.drop( iron, hero.pos ).sprite.drop();
+										}
+									} else if(Dungeon.hero.belongings.misc2.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc2.level(); i >= 0; i--){
+											Dungeon.level.drop( iron, hero.pos ).sprite.drop();
+										}
+									} else {
+										Dungeon.level.drop( iron, hero.pos ).sprite.drop();
+									}
+								}
 							} else {
-								Dungeon.level.drop( gold, hero.pos ).sprite.drop();
+								Copper copper = new Copper();
+								if (copper.doPickUp( Dungeon.hero )) {
+									GLog.i( Messages.get(Dungeon.hero, "you_now_have", copper.name()) );
+								} else {
+									if(Dungeon.hero.belongings.misc1.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc1.level(); i >= 0; i--){
+											Dungeon.level.drop( copper, hero.pos ).sprite.drop();
+										}
+									} else if(Dungeon.hero.belongings.misc2.equals(RingOfMining.class)){
+										for(int i = Dungeon.hero.belongings.misc2.level(); i >= 0; i--){
+											Dungeon.level.drop( copper, hero.pos ).sprite.drop();
+										}
+									} else {
+										Dungeon.level.drop( copper, hero.pos ).sprite.drop();
+									}
+								}
 							}
 							
 							Hunger hunger = hero.buff( Hunger.class );

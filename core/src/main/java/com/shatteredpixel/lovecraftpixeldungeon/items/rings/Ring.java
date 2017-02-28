@@ -56,6 +56,7 @@ public class Ring extends KindofMisc {
 		RingOfSharpshooting.class,
 		RingOfTenacity.class,
 		RingOfWealth.class,
+			RingOfMining.class
 	};
 
 	private static final HashMap<String, Integer> gems = new HashMap<String, Integer>() {
@@ -72,6 +73,7 @@ public class Ring extends KindofMisc {
 			put("quartz",ItemSpriteSheet.RING_QUARTZ);
 			put("agate",ItemSpriteSheet.RING_AGATE);
 			put("diamond",ItemSpriteSheet.RING_DIAMOND);
+			put("fireopal",ItemSpriteSheet.RING_FIREOPAL);
 		}
 	};
 	

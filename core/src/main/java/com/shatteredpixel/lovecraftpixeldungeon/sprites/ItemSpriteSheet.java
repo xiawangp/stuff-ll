@@ -264,6 +264,7 @@ public class ItemSpriteSheet {
 	public static final int RING_QUARTZ     = RINGS+9;
 	public static final int RING_AGATE      = RINGS+10;
 	public static final int RING_DIAMOND    = RINGS+11;
+	public static final int RING_FIREOPAL    = RINGS+12;
 	static {
 		for (int i = RINGS; i < RINGS+16; i++)
 			assignItemRect(i, 8, 10);
@@ -415,22 +416,34 @@ public class ItemSpriteSheet {
 		assignItemRect(CANDY_CANE,  13, 16);
 	}
 
-	private static final int QUEST  =                                       xy(1, 26);  //32 slots
-	public static final int SKULL   = QUEST+0;
-	public static final int DUST    = QUEST+1;
-	public static final int CANDLE  = QUEST+2;
-	public static final int EMBER   = QUEST+3;
-	public static final int PICKAXE = QUEST+4;
-	public static final int ORE     = QUEST+5;
-	public static final int TOKEN   = QUEST+6;
+	private static final int QUEST  	=                                       xy(1, 26);  //32 slots
+	public static final int SKULL   	= QUEST+0;
+	public static final int DUST    	= QUEST+1;
+	public static final int CANDLE  	= QUEST+2;
+	public static final int EMBER   	= QUEST+3;
+	public static final int PICKAXE 	= QUEST+4;
+	public static final int ORE    	 	= QUEST+5;
+	public static final int TOKEN   	= QUEST+6;
+	public static final int IRONORE   	= QUEST+7;
+	public static final int ADAMANTORE  = QUEST+8;
+	public static final int URANIUMORE  = QUEST+9;
+	public static final int COPPERORE  	= QUEST+10;
+	public static final int COBALTORE   = QUEST+11;
+	public static final int STICK   	= QUEST+12;
 	static{
-		assignItemRect(SKULL,   16, 11);
-		assignItemRect(DUST,    12, 11);
-		assignItemRect(CANDLE,  12, 12);
-		assignItemRect(EMBER,   12, 11);
-		assignItemRect(PICKAXE, 14, 14);
-		assignItemRect(ORE,     15, 15);
-		assignItemRect(TOKEN,   12, 12);
+		assignItemRect(SKULL,   	16, 11);
+		assignItemRect(DUST,    	12, 11);
+		assignItemRect(CANDLE,  	12, 12);
+		assignItemRect(EMBER,   	12, 11);
+		assignItemRect(PICKAXE, 	14, 14);
+		assignItemRect(ORE,     	15, 15);
+		assignItemRect(TOKEN,   	12, 12);
+		assignItemRect(IRONORE,   	16, 16);
+		assignItemRect(ADAMANTORE,  16, 16);
+		assignItemRect(URANIUMORE,  16, 16);
+		assignItemRect(COPPERORE,   16, 16);
+		assignItemRect(COBALTORE,   16, 16);
+		assignItemRect(STICK,   	16, 16);
 
 	}
 

@@ -115,7 +115,9 @@ public class Hunger extends Buff implements Hero.Doom {
 							target.HP++;
 						}
 					}
-					GLog.w( Messages.get(this, "onoverfed") );
+					if(Randomer.randomInteger(10) == 1){
+						GLog.w( Messages.get(this, "onoverfed") );
+					}
 					statusUpdated = true;
 				}
 				level = newLevel;

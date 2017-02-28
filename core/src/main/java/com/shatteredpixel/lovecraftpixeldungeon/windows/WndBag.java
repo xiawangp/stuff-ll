@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.windows;
 
 import android.graphics.RectF;
+
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.LovecraftPixelDungeon;
@@ -29,6 +30,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.items.EquipableItem;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Gold;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Stick;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.FoodBag;
@@ -38,6 +40,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.bags.SeedPouch;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.WandHolster;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.WeaponCase;
 import com.shatteredpixel.lovecraftpixeldungeon.items.food.Food;
+import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Ores;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.lovecraftpixeldungeon.items.wands.Wand;
@@ -75,7 +78,8 @@ public class WndBag extends WndTabbed {
 		FOOD,
 		POTION,
 		SCROLL,
-		EQUIPMENT
+		EQUIPMENT,
+		CRAFTING
 	}
 
 	protected static final int COLS_P    = 4;
@@ -387,6 +391,7 @@ public class WndBag extends WndTabbed {
 						mode == Mode.FOOD && (item instanceof Food) ||
 						mode == Mode.POTION && (item instanceof Potion) ||
 						mode == Mode.SCROLL && (item instanceof Scroll) ||
+								mode == Mode.CRAFTING && (item instanceof Ores || item instanceof Stick) ||
 						mode == Mode.EQUIPMENT && (item instanceof EquipableItem) ||
 						mode == Mode.ALL
 					);

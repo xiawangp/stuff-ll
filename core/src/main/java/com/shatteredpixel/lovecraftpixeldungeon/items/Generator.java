@@ -69,6 +69,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfFuror;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfHaste;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfMagic;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfMight;
+import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfMining;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfSharpshooting;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfTenacity;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfWealth;
@@ -351,7 +352,7 @@ public class Generator {
 				OrangeShroom.class,
 				PurpleShroom.class,
 				RedShroom.class };
-		Category.SHROOMS.probs = new float[]{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+		Category.SHROOMS.probs = new float[]{ 5, 4, 3, 2, 2, 5, 3, 3, 2, 1 };
 
 			
 		Category.RING.classes = new Class<?>[]{
@@ -365,8 +366,9 @@ public class Generator {
 			RingOfMight.class,
 			RingOfSharpshooting.class,
 			RingOfTenacity.class,
-			RingOfWealth.class};
-		Category.RING.probs = new float[]{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1 };
+			RingOfWealth.class,
+				RingOfMining.class};
+		Category.RING.probs = new float[]{ 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1 };
 
 		Category.ARTIFACT.classes = new Class<?>[]{
 			CapeOfThorns.class,
@@ -398,7 +400,7 @@ public class Generator {
 			Dreamfoil.Seed.class,
 			Stormvine.Seed.class,
 			Starflower.Seed.class};
-		Category.SEED.probs = new float[]{ 12, 12, 12, 12, 12, 12, 12, 0, 4, 12, 12, 1 };
+		Category.SEED.probs = new float[]{ 12, 12, 12, 12, 12, 12, 12, 0, 4, 12, 12, 3 };
 	}
 	
 	public static void reset() {

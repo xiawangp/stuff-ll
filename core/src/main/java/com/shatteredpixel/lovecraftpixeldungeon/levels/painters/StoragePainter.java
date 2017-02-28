@@ -38,6 +38,8 @@ public class StoragePainter extends Painter {
 		fill( level, room, Terrain.WALL );
 		fill( level, room, 1, floor );
 
+		set( level, room.random(), Terrain.CRAFTING);
+
 		boolean honeyPot = Random.Int( 2 ) == 0;
 		
 		int n = Random.IntRange( 3, 4 );

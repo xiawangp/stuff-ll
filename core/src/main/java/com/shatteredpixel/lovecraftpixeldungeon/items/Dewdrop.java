@@ -65,7 +65,7 @@ public class Dewdrop extends Item {
 			
 		} else {
 			
-			vial.collectDew( this );
+			vial.collectNormalDew( this );
 			
 		}
 		

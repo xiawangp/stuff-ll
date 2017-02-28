@@ -28,7 +28,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.items.EquipableItem;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
-import com.shatteredpixel.lovecraftpixeldungeon.items.quest.DarkGold;
+import com.shatteredpixel.lovecraftpixeldungeon.items.ores.DarkGold;
 import com.shatteredpixel.lovecraftpixeldungeon.items.quest.Pickaxe;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room;

@@ -160,10 +160,24 @@ public class DewVial extends Item {
 		return volume >= MAX_VOLUME;
 	}
 
-	public void collectDew( Dewdrop dew ) {
+	public void collectNormalDew( Dewdrop dew ) {
 
 		GLog.i( Messages.get(this, "collected") );
 		volume += dew.quantity*dew.value;
+		if (volume >= MAX_VOLUME) {
+			volume = MAX_VOLUME;
+			GLog.p( Messages.get(this, "full") );
+		}
+
+		weight = (volume/10) + 1;
+
+		updateQuickslot();
+	}
+
+	public void collectGreenDew( GreenDewdrop dew ) {
+
+		GLog.i( Messages.get(this, "collected") );
+		volume += dew.quantity*3;
 		if (volume >= MAX_VOLUME) {
 			volume = MAX_VOLUME;
 			GLog.p( Messages.get(this, "full") );

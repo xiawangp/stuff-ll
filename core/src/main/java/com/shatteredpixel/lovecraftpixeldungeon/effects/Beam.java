@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.effects;
 
 import android.opengl.GLES20;
+
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
@@ -58,6 +59,12 @@ public class Beam extends Image {
 	public static class DeathRay extends Beam{
 		public DeathRay(PointF s, PointF e){
 			super(s, e, Effects.Type.DEATH_RAY, 0.5f);
+		}
+	}
+
+	public static class ScottRay extends Beam{
+		public ScottRay(PointF s, PointF e){
+			super(s, e, Effects.Type.SCOTT_RAY, 0.5f);
 		}
 	}
 

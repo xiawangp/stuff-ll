@@ -33,7 +33,10 @@ public class Effects {
 		CHAIN,
 		DEATH_RAY,
 		LIGHT_RAY,
-		HEALTH_RAY
+		HEALTH_RAY,
+		SCOTT_RAY,
+		HYPNO,
+		MOONFURY
 	};
 	
 	public static Image get( Type type ) {
@@ -61,7 +64,16 @@ public class Effects {
 				icon.frame(icon.texture.uvRect(16, 23, 32, 31));
 				break;
 			case HEALTH_RAY:
-				icon.frame(icon.texture.uvRect(16, 30, 32, 38));
+				icon.frame(icon.texture.uvRect(16, 30, 32, 37));
+				break;
+			case SCOTT_RAY:
+				icon.frame(icon.texture.uvRect(16, 37, 32, 44));
+				break;
+			case HYPNO:
+				icon.frame(icon.texture.uvRect(16, 44, 32, 51));
+				break;
+			case MOONFURY:
+				icon.frame(icon.texture.uvRect(16, 51, 32, 58));
 				break;
 		}
 		return icon;

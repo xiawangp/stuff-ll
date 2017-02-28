@@ -88,4 +88,16 @@ public class HeroAction {
 			this.target = target;
 		}
 	}
+
+	public static class Craft extends HeroAction {
+		public Craft( int pot ) {
+			this.dst = pot;
+		}
+	}
+
+	public static class Enchant extends HeroAction {
+		public Enchant( int pot ) {
+			this.dst = pot;
+		}
+	}
 }
