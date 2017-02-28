@@ -25,14 +25,11 @@ import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Challenges;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.BrokenSeal;
-import com.shatteredpixel.lovecraftpixeldungeon.items.DewVial;
-import com.shatteredpixel.lovecraftpixeldungeon.items.Stick;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.ClothArmor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.FoodBag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.WeaponCase;
 import com.shatteredpixel.lovecraftpixeldungeon.items.food.Food;
-import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Iron;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicMapping;
@@ -98,15 +95,6 @@ public enum HeroClass {
 		new FoodBag().identify().collect();
 
 		Dungeon.gold = 1200;
-
-		DewVial vial = new DewVial();
-		vial.fill();
-		vial.collect();
-
-		new Stick().collect();
-		new Stick().collect();
-		new Iron().collect();
-		new Iron().collect();
 	}
 
 	public Badges.Badge masteryBadge() {

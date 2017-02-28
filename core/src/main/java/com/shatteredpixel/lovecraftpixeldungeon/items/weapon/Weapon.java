@@ -37,11 +37,21 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.curses.Sacrificial;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.curses.Wayward;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Blazing;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Chilling;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Confusing;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Corrode;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Corrupting;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Crazy;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Dazzling;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.DewDrawing;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Dirty;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Eldritch;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Gases;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Grim;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Lucky;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Lulling;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Mirroring;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Projecting;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Rooting;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Shocking;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Stunning;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Unstable;
@@ -272,13 +282,18 @@ abstract public class Weapon extends KindOfWeapon {
 	public static abstract class Enchantment implements Bundlable {
 
 		private static final Class<?>[] enchants = new Class<?>[]{
-			Blazing.class, Venomous.class, Vorpal.class, Shocking.class,
-			Chilling.class, Eldritch.class, Lucky.class, Projecting.class, Unstable.class, Dazzling.class,
-			Grim.class, Stunning.class, Vampiric.class,};
+			Blazing.class, Venomous.class, Vorpal.class, Shocking.class, Chilling.class,
+				Eldritch.class, Lucky.class, Projecting.class, Unstable.class, Dazzling.class,
+			Grim.class, Stunning.class, Vampiric.class,Crazy.class, Corrode.class,
+				Mirroring.class, Corrupting.class, Rooting.class, Gases.class, Dirty.class,
+				DewDrawing.class, Lulling.class, Confusing.class};
+
 		private static final float[] chances= new float[]{
-			10, 10, 10, 10,
-			5, 5, 5, 5, 5, 5,
-			2, 2, 2 };
+				5, 5, 5, 5, 5,
+				5, 5, 5, 5, 5,
+				5, 5, 5, 5, 5,
+				5, 5, 5, 5, 5,
+				5, 5, 5};
 
 		private static final Class<?>[] curses = new Class<?>[]{
 				Annoying.class, Displacing.class, Exhausting.class, Fragile.class, Sacrificial.class, Wayward.class

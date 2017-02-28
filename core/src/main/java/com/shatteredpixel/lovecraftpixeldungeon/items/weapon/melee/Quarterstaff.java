@@ -29,6 +29,7 @@ public class Quarterstaff extends MeleeWeapon {
 		image = ItemSpriteSheet.QUARTERSTAFF;
 
 		tier = 2;
+		weight = 4;
 	}
 
 	@Override

@@ -30,6 +30,7 @@ public class Shuriken extends MissileWeapon {
 		image = ItemSpriteSheet.SHURIKEN;
 
 		DLY = 0.5f;
+		weight = 1;
 	}
 
 	@Override

@@ -30,9 +30,9 @@ import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Adamantium;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Cobalt;
-import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Copper;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.DarkGold;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Iron;
+import com.shatteredpixel.lovecraftpixeldungeon.items.ores.OldCopper;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Uranium;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfMining;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
@@ -215,20 +215,20 @@ public class Pickaxe extends Weapon {
 									}
 								}
 							} else {
-								Copper copper = new Copper();
-								if (copper.doPickUp( Dungeon.hero )) {
-									GLog.i( Messages.get(Dungeon.hero, "you_now_have", copper.name()) );
+								OldCopper oldCopper = new OldCopper();
+								if (oldCopper.doPickUp( Dungeon.hero )) {
+									GLog.i( Messages.get(Dungeon.hero, "you_now_have", oldCopper.name()) );
 								} else {
 									if(Dungeon.hero.belongings.misc1.equals(RingOfMining.class)){
 										for(int i = Dungeon.hero.belongings.misc1.level(); i >= 0; i--){
-											Dungeon.level.drop( copper, hero.pos ).sprite.drop();
+											Dungeon.level.drop(oldCopper, hero.pos ).sprite.drop();
 										}
 									} else if(Dungeon.hero.belongings.misc2.equals(RingOfMining.class)){
 										for(int i = Dungeon.hero.belongings.misc2.level(); i >= 0; i--){
-											Dungeon.level.drop( copper, hero.pos ).sprite.drop();
+											Dungeon.level.drop(oldCopper, hero.pos ).sprite.drop();
 										}
 									} else {
-										Dungeon.level.drop( copper, hero.pos ).sprite.drop();
+										Dungeon.level.drop(oldCopper, hero.pos ).sprite.drop();
 									}
 								}
 							}

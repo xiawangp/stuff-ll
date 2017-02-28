@@ -51,6 +51,7 @@ public class Bomb extends Item {
 		usesTargeting = true;
 
 		stackable = true;
+		weight = 3;
 	}
 
 	public Fuse fuse;

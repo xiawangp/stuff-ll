@@ -22,6 +22,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.scenes;
 
 import android.content.Intent;
 import android.net.Uri;
+
 import com.shatteredpixel.lovecraftpixeldungeon.LovecraftPixelDungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Flare;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
@@ -38,15 +39,18 @@ import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.RenderedText;
 import com.watabou.noosa.TouchArea;
+import com.watabou.utils.Random;
 
 public class AboutScene extends PixelScene {
 
 	private static final String TTL_SHPX = "Lovecraft Pixel Dungeon";
 
 	private static final String TXT_SHPX =
-			"Design, Code, & Graphics:\nTypedScroll\nEvan\nWatabou\ndachheck\nPavelProvotorov\nConsideredHamster\nJivz\nYou?";
+			"TypedScroll\nEvan\ndachheck\nGus Warmington\nPavelProvotorov\nConsideredHamster\nJivz\nYou?";
 
 	private static final String LNK_SHPX = "https://www.reddit.com/r/PixelDungeon/search?q=author%3ATypedScroll+flair%3AModding&restrict_sr=on&sort=new&t=all";
+
+	private static final String LNK_TYPED = "pixeldungeon.reddit.com";
 
 	private static final String TTL_WATA = "Pixel Dungeon";
 
@@ -70,9 +74,9 @@ public class AboutScene extends PixelScene {
 		align(shpx);
 		add( shpx );
 
-		new Flare( 7, 64 ).color( 0x225511, true ).show( shpx, 0 ).angularSpeed = +20;
-		new Flare( 14, 64 ).color( 0x220011, true ).show( shpx, 0 ).angularSpeed = +10;
-		new Flare( 28, 64 ).color( 0x225511, true ).show( shpx, 0 ).angularSpeed = +60;
+		new Flare( Random.Int(5, 50), Random.Int(20, 100)).color( Random.Int(0xFFFFFF), true ).show( shpx, 0 ).angularSpeed = +Random.Int(10, 100);
+		new Flare( Random.Int(5, 50), Random.Int(20, 100) ).color( Random.Int(0xFFFFFF), true ).show( shpx, 0 ).angularSpeed = +Random.Int(10, 100);
+		new Flare( Random.Int(5, 50), Random.Int(20, 100) ).color( Random.Int(0xFFFFFF), true ).show( shpx, 0 ).angularSpeed = +Random.Int(10, 100);
 
 		RenderedText shpxtitle = renderText( TTL_SHPX, 8 );
 		shpxtitle.hardlight( Window.SHPX_COLOR );
@@ -86,10 +90,10 @@ public class AboutScene extends PixelScene {
 		shpxtext.maxWidth((int)Math.min(colWidth, 120));
 		add( shpxtext );
 
-		shpxtext.setPos((colWidth - shpxtext.width()) / 2, shpxtitle.y + shpxtitle.height() + 12);
+		shpxtext.setPos((colWidth - shpxtext.width()) / 2, shpxtitle.y + shpxtitle.height());
 		align(shpxtext);
 
-		RenderedTextMultiline shpxlink = renderMultiline( LNK_SHPX, 8 );
+		RenderedTextMultiline shpxlink = renderMultiline( LNK_TYPED, 8 );
 		shpxlink.maxWidth(shpxtext.maxWidth());
 		shpxlink.hardlight( Window.SHPX_COLOR );
 		add( shpxlink );
@@ -114,7 +118,9 @@ public class AboutScene extends PixelScene {
 		align(wata);
 		add( wata );
 
-		new Flare( 7, 64 ).color( 0x112233, true ).show( wata, 0 ).angularSpeed = +20;
+		new Flare( Random.Int(5, 50), Random.Int(20, 100)).color( Random.Int(0xFFFFFF), true ).show( wata, 0 ).angularSpeed = +Random.Int(10, 100);
+		new Flare( Random.Int(5, 50), Random.Int(20, 100) ).color( Random.Int(0xFFFFFF), true ).show( wata, 0 ).angularSpeed = +Random.Int(10, 100);
+		new Flare( Random.Int(5, 50), Random.Int(20, 100) ).color( Random.Int(0xFFFFFF), true ).show( wata, 0 ).angularSpeed = +Random.Int(10, 100);
 
 		RenderedText wataTitle = renderText( TTL_WATA, 8 );
 		wataTitle.hardlight(Window.TITLE_COLOR);

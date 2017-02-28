@@ -29,6 +29,7 @@ public class Scimitar extends MeleeWeapon {
 
 		tier = 3;
 		DLY = 0.8f; //1.25x speed
+		weight = 3;
 	}
 
 	@Override

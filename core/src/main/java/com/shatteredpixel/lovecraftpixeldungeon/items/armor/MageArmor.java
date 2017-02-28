@@ -36,6 +36,7 @@ public class MageArmor extends ClassArmor {
 	
 	{
 		image = ItemSpriteSheet.ARMOR_MAGE;
+		weight = 2;
 	}
 	
 	@Override

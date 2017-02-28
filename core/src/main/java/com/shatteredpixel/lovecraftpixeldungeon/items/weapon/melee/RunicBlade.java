@@ -28,6 +28,7 @@ public class RunicBlade extends MeleeWeapon {
 		image = ItemSpriteSheet.RUNIC_BLADE;
 
 		tier = 4;
+		weight = 1;
 	}
 
 	//Essentially it's a tier 4 weapon, with tier 3 base max damage, and tier 5 scaling.

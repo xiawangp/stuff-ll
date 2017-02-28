@@ -39,6 +39,7 @@ public class MysteryMeat extends Food {
 		image = ItemSpriteSheet.MEAT;
 		energy = Hunger.STARVING - Hunger.HUNGRY;
 		hornValue = 1;
+		weight = 1;
 	}
 	
 	@Override

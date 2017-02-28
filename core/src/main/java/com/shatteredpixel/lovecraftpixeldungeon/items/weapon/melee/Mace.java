@@ -29,6 +29,7 @@ public class Mace extends MeleeWeapon {
 
 		tier = 3;
 		ACC = 1.2f; //20% boost to accuracy
+		weight = 7;
 	}
 
 	@Override

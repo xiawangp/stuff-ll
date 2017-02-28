@@ -31,9 +31,9 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Stick;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Adamantium;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Cobalt;
-import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Copper;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.DarkGold;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Iron;
+import com.shatteredpixel.lovecraftpixeldungeon.items.ores.OldCopper;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Uranium;
 import com.shatteredpixel.lovecraftpixeldungeon.items.quest.Pickaxe;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Dagger;
@@ -139,7 +139,7 @@ public class WndCraft extends WndTabbed {
 			craftcode = craftcode + itemsChar.get(i-1);
 		}
 		itemsChar.clear();
-		//Copper = O, Iron = I, Gold = D, Adamantium = A, Uranium = U, Cobalt = C, Stick = S, nothing = n
+		//OldCopper = O, Iron = I, Gold = D, Adamantium = A, Uranium = U, Cobalt = C, Stick = S, nothing = n
 		if(craftcode.contains("IInnSnnSn")){
 			items.clear();
 			Dungeon.level.drop(new HandAxe(), Dungeon.hero.pos);
@@ -345,29 +345,34 @@ public class WndCraft extends WndTabbed {
 						Dungeon.level.drop(items.get(id), Dungeon.hero.pos);
 					}
 
-					itemsChar.set(id, item.toString().charAt(0));
-
 					if(item instanceof Cobalt){
 						item(new Cobalt());
 						items.set(id, new Cobalt());
+						itemsChar.set(id, 'C');
 					} else if(item instanceof Uranium){
 						item(new Uranium());
 						items.set(id, new Uranium());
+						itemsChar.set(id, 'U');
 					} else if(item instanceof Adamantium){
 						item(new Adamantium());
 						items.set(id, new Adamantium());
+						itemsChar.set(id, 'A');
 					} else if(item instanceof DarkGold){
 						item(new DarkGold());
 						items.set(id, new DarkGold());
+						itemsChar.set(id, 'D');
 					} else if(item instanceof Iron){
 						item(new Iron());
 						items.set(id, new Iron());
-					} else if(item instanceof Copper){
-						item(new Copper());
-						items.set(id, new Copper());
+						itemsChar.set(id, 'I');
+					} else if(item instanceof OldCopper){
+						item(new OldCopper());
+						items.set(id, new OldCopper());
+						itemsChar.set(id, 'O');
 					} else if(item instanceof Stick){
 						item(new Stick());
 						items.set(id, new Stick());
+						itemsChar.set(id, 'S');
 					}
 
 

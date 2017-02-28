@@ -40,6 +40,10 @@ import java.util.HashMap;
 
 public class Ring extends KindofMisc {
 
+	{
+		weight = 1;
+	}
+
 	private static final int TICKS_TO_KNOW    = 200;
 	
 	protected Buff buff;

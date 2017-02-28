@@ -29,6 +29,7 @@ public class RoundShield extends MeleeWeapon {
 		image = ItemSpriteSheet.ROUND_SHIELD;
 
 		tier = 3;
+		weight = 6;
 	}
 
 	@Override

@@ -40,7 +40,16 @@ public class Unstable extends Weapon.Enchantment {
 			Shocking.class,
 			Stunning.class,
 			Vampiric.class,
-			Vorpal.class
+			Vorpal.class,
+			Crazy.class,
+			Confusing.class,
+			Corrode.class,
+			Rooting.class,
+			Projecting.class,
+			Corrupting.class,
+			Gases.class,
+			Dirty.class,
+			DewDrawing.class
 	};
 
 	@Override

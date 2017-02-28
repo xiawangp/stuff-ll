@@ -29,6 +29,7 @@ public class BattleAxe extends MeleeWeapon {
 
 		tier = 4;
 		ACC = 1.175f; //17.5% boost to accuracy
+		weight = 10;
 	}
 
 	@Override

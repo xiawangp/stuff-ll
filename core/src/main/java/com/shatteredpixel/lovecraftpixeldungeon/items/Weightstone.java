@@ -34,6 +34,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.IconTitle;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndBag;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -49,6 +50,7 @@ public class Weightstone extends Item {
 		stackable = true;
 
 		bones = true;
+		weight = Random.Int(10);
 	}
 
 	@Override

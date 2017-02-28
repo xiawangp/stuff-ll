@@ -32,6 +32,7 @@ public class Dirk extends MeleeWeapon {
 		image = ItemSpriteSheet.DIRK;
 
 		tier = 2;
+		weight = 2;
 	}
 
 	@Override

@@ -26,6 +26,7 @@ public class ScaleArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_SCALE;
+		weight = 6;
 	}
 	
 	public ScaleArmor() {

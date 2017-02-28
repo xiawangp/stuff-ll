@@ -26,6 +26,7 @@ public class PlateArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_PLATE;
+		weight = 8;
 	}
 	
 	public PlateArmor() {

@@ -23,7 +23,9 @@ package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Yig;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLevitation;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
@@ -46,7 +48,11 @@ public class AltarPainter extends Painter {
 		int pos = c.x + c.y * level.width();
 		if(Randomer.randomBoolean() == true){
 			level.drop(new PotionOfLevitation(), pos);
-			level.drop(Generator.randomWeapon().enchant().upgrade(Random.IntRange(Dungeon.depth/2, Dungeon.depth)).identify(), pos );
+			Item item = Generator.random(Generator.Category.WEP_T5);
+			if(item instanceof Weapon){
+				((Weapon) item).enchant().upgrade(Random.IntRange(Dungeon.depth/2, Dungeon.depth)).identify();
+			}
+			level.drop(item, pos );
 			set( level, c, Terrain.PEDESTAL );
 
 		} else {

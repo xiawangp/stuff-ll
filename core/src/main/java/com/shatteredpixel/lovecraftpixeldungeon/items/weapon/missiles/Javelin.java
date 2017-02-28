@@ -31,6 +31,7 @@ public class Javelin extends MissileWeapon {
 
 	{
 		image = ItemSpriteSheet.JAVELIN;
+		weight = 3;
 	}
 
 	@Override

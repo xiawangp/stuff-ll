@@ -36,8 +36,7 @@ public class ExitPainter extends Painter {
 		}
 		
 		level.exit = level.pointToCell(room.random( 1 ));
-		//TODO: UNBARACK ONCE NEXT LEVEL FINISHED
-		//set( level, level.exit, Terrain.EXIT );
+		set( level, level.exit, Terrain.EXIT );
 	}
 	
 }

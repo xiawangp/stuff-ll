@@ -30,6 +30,7 @@ public class Dart extends MissileWeapon {
 		image = ItemSpriteSheet.DART;
 
 		bones = false; //Finding them in bones would be semi-frequent and disappointing.
+		weight = 1;
 	}
 
 	@Override

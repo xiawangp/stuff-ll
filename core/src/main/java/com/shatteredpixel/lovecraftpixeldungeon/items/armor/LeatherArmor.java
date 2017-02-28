@@ -26,6 +26,7 @@ public class LeatherArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_LEATHER;
+		weight = 4;
 	}
 	
 	public LeatherArmor() {

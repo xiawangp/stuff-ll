@@ -90,6 +90,7 @@ public class Pasty extends Food {
 		hornValue = 5;
 
 		bones = true;
+		weight = 3;
 	}
 
 	@Override

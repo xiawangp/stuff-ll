@@ -33,6 +33,7 @@ public class CurareDart extends MissileWeapon {
 	
 	{
 		image = ItemSpriteSheet.CURARE_DART;
+		weight = 1;
 	}
 
 	@Override

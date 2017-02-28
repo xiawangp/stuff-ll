@@ -47,6 +47,7 @@ public class ArmorKit extends Item {
 		image = ItemSpriteSheet.KIT;
 		
 		unique = true;
+		weight = 8;
 	}
 	
 	@Override

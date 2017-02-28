@@ -68,6 +68,7 @@ public class MagesStaff extends MeleeWeapon {
 
 		unique = true;
 		bones = false;
+		weight = 3;
 	}
 
 	public MagesStaff() {

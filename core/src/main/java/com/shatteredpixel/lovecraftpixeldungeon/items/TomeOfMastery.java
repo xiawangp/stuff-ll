@@ -48,6 +48,7 @@ public class TomeOfMastery extends Item {
 		image = ItemSpriteSheet.MASTERY;
 		
 		unique = true;
+		weight = 5;
 	}
 	
 	@Override

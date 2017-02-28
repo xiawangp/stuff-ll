@@ -43,6 +43,7 @@ public class WarriorArmor extends ClassArmor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_WARRIOR;
+		weight = 6;
 	}
 
 	@Override

@@ -50,6 +50,7 @@ public class Honeypot extends Item {
 		usesTargeting = true;
 
 		stackable = true;
+		weight = 7;
 	}
 	
 	@Override

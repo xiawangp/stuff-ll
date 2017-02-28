@@ -178,7 +178,7 @@ public class Hero extends Char {
 		name = Messages.get(this, "name");
 		
 		HP = HT = 20;
-		MH = MMH = 20;
+		MH = MMH = 10;
 		STR = STARTING_STR;
 		awareness = 0.1f;
 		
@@ -530,6 +530,13 @@ public class Hero extends Char {
 			} else
 			if (curAction instanceof HeroAction.Descend) {
 
+				//TODO REMOVE WITH NEW UPDATES
+				if(Dungeon.depth == 1){
+					GameScene.show( new WndMessage( Messages.get(this, "leave_2") ) );
+					ready();
+					return false;
+				}
+
 				return actDescend( (HeroAction.Descend)curAction );
 				
 			} else
@@ -854,7 +861,7 @@ public class Hero extends Char {
 	
 	private boolean actDescend( HeroAction.Descend action ) {
 		int stairs = action.dst;
-		if (pos == stairs && pos == Dungeon.level.exit) {
+		if (pos == stairs && pos == Dungeon.level.exit){
 			
 			curAction = null;
 
@@ -1007,7 +1014,7 @@ public class Hero extends Char {
 		if(!isSane()){
 			GLog.i(Messages.get(this, "insane"));
 			Buff.affect(this, Vertigo.class, Light.DURATION/3);
-			HP--;
+			damage(1, this);
 		}
 
 		if (buff(TimekeepersHourglass.timeStasis.class) != null)
@@ -1496,7 +1503,7 @@ public class Hero extends Char {
 		super.move( step );
 
 		if(!isSane()){
-			HP--;
+			damage(1, this);
 		}
 		
 		if (!flying) {

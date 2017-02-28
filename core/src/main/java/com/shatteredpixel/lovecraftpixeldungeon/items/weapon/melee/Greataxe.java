@@ -28,6 +28,7 @@ public class Greataxe extends MeleeWeapon {
 		image = ItemSpriteSheet.GREATAXE;
 
 		tier = 5;
+		weight = 12;
 	}
 
 	@Override

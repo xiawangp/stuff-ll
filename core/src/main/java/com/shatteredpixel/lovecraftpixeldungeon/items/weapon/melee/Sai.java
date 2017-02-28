@@ -30,6 +30,7 @@ public class Sai extends MeleeWeapon {
 
 		tier = 3;
 		DLY = 0.5f; //2x speed
+		weight = 1;
 	}
 
 	@Override

@@ -29,6 +29,7 @@ public class Whip extends MeleeWeapon {
 
 		tier = 3;
 		RCH = 3;    //lots of extra reach
+		weight = 3;
 	}
 
 	@Override

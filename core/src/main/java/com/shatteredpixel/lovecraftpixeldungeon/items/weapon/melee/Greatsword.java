@@ -28,6 +28,7 @@ public class Greatsword extends MeleeWeapon {
 		image = ItemSpriteSheet.GREATSWORD;
 
 		tier=5;
+		weight = 10;
 	}
 
 }

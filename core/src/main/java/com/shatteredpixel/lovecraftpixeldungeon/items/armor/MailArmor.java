@@ -26,6 +26,7 @@ public class MailArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_MAIL;
+		weight = 8;
 	}
 	
 	public MailArmor() {

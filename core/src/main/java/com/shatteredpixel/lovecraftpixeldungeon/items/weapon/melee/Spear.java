@@ -30,6 +30,7 @@ public class Spear extends MeleeWeapon {
 		tier = 2;
 		DLY = 1.5f; //0.67x speed
 		RCH = 2;    //extra reach
+		weight = 5;
 	}
 
 	@Override

@@ -32,6 +32,7 @@ public class AssassinsBlade extends MeleeWeapon {
 		image = ItemSpriteSheet.ASSASSINS_BLADE;
 
 		tier = 4;
+		weight = 1;
 	}
 
 	@Override

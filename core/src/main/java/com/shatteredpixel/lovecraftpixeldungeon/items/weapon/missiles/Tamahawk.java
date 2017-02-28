@@ -31,7 +31,7 @@ public class Tamahawk extends MissileWeapon {
 
 	{
 		image = ItemSpriteSheet.TOMAHAWK;
-
+		weight = 2;
 	}
 
 	@Override

@@ -39,8 +39,6 @@ public class EntrancePainter extends Painter {
 			level.entrance = level.pointToCell(room.random(1));
 		} while (level.findMob(level.entrance) != null);
 		set( level, level.entrance, Terrain.ENTRANCE );
-		set( level, room.random(), Terrain.ENCHANTING );
-		set( level, room.random(), Terrain.CRAFTING );
 	}
 	
 }

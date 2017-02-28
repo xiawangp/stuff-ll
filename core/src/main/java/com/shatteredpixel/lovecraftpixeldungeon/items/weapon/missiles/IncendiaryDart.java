@@ -36,6 +36,7 @@ public class IncendiaryDart extends MissileWeapon {
 
 	{
 		image = ItemSpriteSheet.INCENDIARY_DART;
+		weight = 1;
 	}
 
 	@Override

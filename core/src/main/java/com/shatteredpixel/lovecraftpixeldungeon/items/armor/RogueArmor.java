@@ -41,6 +41,7 @@ public class RogueArmor extends ClassArmor {
 	
 	{
 		image = ItemSpriteSheet.ARMOR_ROGUE;
+		weight = 1;
 	}
 	
 	@Override

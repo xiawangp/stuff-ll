@@ -40,6 +40,7 @@ public class MerchantsBeacon extends Item {
 		defaultAction = AC_USE;
 
 		bones = true;
+		weight = 2;
 	}
 
 	@Override

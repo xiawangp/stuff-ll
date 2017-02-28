@@ -40,6 +40,7 @@ public class Boomerang extends MissileWeapon {
 
 		unique = true;
 		bones = false;
+		weight = 2;
 	}
 
 	@Override

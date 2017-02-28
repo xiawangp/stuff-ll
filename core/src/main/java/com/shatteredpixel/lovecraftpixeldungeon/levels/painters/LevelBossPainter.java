@@ -59,12 +59,12 @@ public class LevelBossPainter extends Painter {
 			heartY = room.top + 1;
 		}
 
-		placePlant(level, room.center().x+room.center().y * level.width(), heartX + heartY * level.width(), setBoss(Dungeon.depth, room.center().x+room.center().y * level.width()));
+		placePlant(level, room.center().x+room.center().y * level.width(), heartX + heartY * level.width(), setBoss(Dungeon.depth));
 	}
 
 	//TODO: ADD ALL THE MINIBOSSES TO THE MINIBOSS ROOMS
 
-	private static Mob setBoss(final int depth, int mobpos){
+	private static Mob setBoss(final int depth){
 		Mob mob = null;
 		switch (depth){
 			case 1:

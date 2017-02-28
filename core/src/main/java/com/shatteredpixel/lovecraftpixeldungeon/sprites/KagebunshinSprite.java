@@ -18,29 +18,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.shatteredpixel.lovecraftpixeldungeon.items.ores;
+package com.shatteredpixel.lovecraftpixeldungeon.sprites;
 
-import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.Assets;
+import com.watabou.noosa.TextureFilm;
 
-public class Copper extends Ores {
-	
-	{
-		image = ItemSpriteSheet.COPPERORE;
-		weight = 8;
+public class KagebunshinSprite extends MobSprite {
+
+	public KagebunshinSprite() {
+		super();
+		
+		texture( Assets.KAGEBUN );
+		
+		TextureFilm frames = new TextureFilm( texture, 14, 15 );
+		
+		idle = new Animation( 5, true );
+		idle.frames( frames, 0, 1 );
+		
+		run = new Animation( 10, true );
+		run.frames( frames, 0, 1 );
+		
+		attack = new Animation( 10, false );
+		attack.frames( frames, 0, 2, 3 );
+		
+		die = new Animation( 8, false );
+		die.frames( frames, 0, 4, 5, 6, 7 );
+		
+		play( idle );
 	}
 	
 	@Override
-	public boolean isUpgradable() {
-		return false;
-	}
-	
-	@Override
-	public boolean isIdentified() {
-		return true;
-	}
-
-	@Override
-	public int price() {
-		return 100*quantity;
+	public int blood() {
+		return 0x880000FF;
 	}
 }

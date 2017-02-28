@@ -37,7 +37,44 @@ import com.watabou.noosa.ui.Component;
 public class ChangesScene extends PixelScene {
 
 	private static final String TXT_Update =
-			"?";
+			"_Initial Update I.I.I_ \n\n " +
+					"_-_ Player is nameable \n " +
+					"_-_ new Items: \n " +
+					"\t\t _-_ Mushrooms \n " +
+					"\t\t _-_ Ores & Stick \n " +
+					"\t\tnew Ring of Mining \n " +
+					"_-_ new Enchantments \n " +
+					"\t\t _-_ Confuse \n " +
+					"\t\t _-_ Corrode \n " +
+					"\t\t _-_ Corrupting \n " +
+					"\t\t _-_ Maddening \n " +
+					"\t\t _-_ Dew Withdrawing \n " +
+					"\t\t _-_ Infectious \n " +
+					"\t\t _-_ Gas \n " +
+					"\t\t _-_ Lulling \n " +
+					"\t\t _-_ Mirroring \n " +
+					"\t\t _-_ Rooting \n " +
+					"_-_ new Mobs \n " +
+					"\t\t _-_ Mi Go Larva \n " +
+					"\t\t _-_ Young Mi Go \n " +
+					"\t\t _-_ Mi Go \n " +
+					"\t\t _-_  Mi Go Nurse \n " +
+					"\t\t _-_ Mi Go Queen \n " +
+					"\t\t _-_ Snake God Yig \n " +
+					"\t\t _-_ Kagebunshin \n " +
+					"\t\t _-_ Parasit \n " +
+					"_-_ Shop on Depth 1 \n " +
+					"_-_ Start with _1200G_ pocket money \n " +
+					"_-_ new Rooms \n " +
+					"\t\t _-_ Level Boss Rooms \n " +
+					"\t\t _-_ Altar Rooms \n " +
+					"_-_ Crafting System \n " +
+					"_-_ Enchanting System \n " +
+					"_-_ Mental Health \n " +
+					"\t\t _-_ You dont die but go crazy and inflict self harm \n " +
+					"_-_ new Buffs \n " +
+					"\t\t _-_ Infection \n " +
+					"_-_ Dewvial can be used to upgrade ";
 
 	@Override
 	public void create() {
