@@ -25,6 +25,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGoQueen;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
+import com.shatteredpixel.lovecraftpixeldungeon.items.keys.GoldenKey;
 import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room;
@@ -34,11 +35,9 @@ import com.watabou.utils.Random;
 
 public class LevelBossPainter extends Painter {
 
-	public static void paint(Level level, Room room ) {
+	public static void paint(final Level level, Room room ) {
 
 		Room.Door entrance = room.entrance();
-		entrance.set(Room.Door.Type.LOCKED);
-		level.addItemToSpawn(new IronKey(Dungeon.depth));
 
 		fill(level, room, Terrain.WALL);
 		fill(level, room, 1, Terrain.EMPTY);
@@ -60,9 +59,20 @@ public class LevelBossPainter extends Painter {
 		placePlant(level, room.center().x+room.center().y * level.width(), heartX + heartY * level.width());
 
 		if(Dungeon.depth == 1){
-			MiGoQueen miGoQueen = new MiGoQueen();
+			MiGoQueen miGoQueen = new MiGoQueen(){
+				@Override
+				public void die(Object cause) {
+					super.die(cause);
+					level.drop(new GoldenKey(Dungeon.depth), this.pos);
+				}
+			};
 			miGoQueen.pos = room.center().x+room.center().y * level.width();
 			Dungeon.level.mobs.add(miGoQueen);
+		}
+
+		for (Room.Door door : room.connected.values()) {
+			door.set( Room.Door.Type.LOCKED );
+			level.addItemToSpawn(new IronKey(Dungeon.depth));
 		}
 	}
 

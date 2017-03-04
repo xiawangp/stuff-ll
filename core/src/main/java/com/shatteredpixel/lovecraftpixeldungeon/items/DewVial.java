@@ -98,6 +98,17 @@ public class DewVial extends Item {
 		if(action.equals( AC_BLESS )){
 			GameScene.selectItem(itemSelector, mode, inventoryTitle);
 			this.empty();
+			if(isFull()){
+				image = ItemSpriteSheet.VIALF3;
+			} else if(volume == MAX_VOLUME/2){
+				image = ItemSpriteSheet.VIALF2;
+			} else if(volume >= 1){
+				image = ItemSpriteSheet.VIALF1;
+			} else {
+				image = ItemSpriteSheet.VIAL;
+			}
+
+			updateQuickslot();
 			GLog.w( Messages.get(this, "blessed") );
 		}
 
@@ -139,7 +150,30 @@ public class DewVial extends Item {
 
 			} else {
 				GLog.w( Messages.get(this, "empty") );
+				if(isFull()){
+					image = ItemSpriteSheet.VIALF3;
+				} else if(volume == MAX_VOLUME/2){
+					image = ItemSpriteSheet.VIALF2;
+				} else if(volume >= 1){
+					image = ItemSpriteSheet.VIALF1;
+				} else {
+					image = ItemSpriteSheet.VIAL;
+				}
+
+				updateQuickslot();
 			}
+
+			if(isFull()){
+				image = ItemSpriteSheet.VIALF3;
+			} else if(volume == MAX_VOLUME/2){
+				image = ItemSpriteSheet.VIALF2;
+			} else if(volume >= 1){
+				image = ItemSpriteSheet.VIALF1;
+			} else {
+				image = ItemSpriteSheet.VIAL;
+			}
+
+			updateQuickslot();
 
 		}
 	}
@@ -171,6 +205,16 @@ public class DewVial extends Item {
 
 		weight = (volume/10) + 1;
 
+		if(isFull()){
+			image = ItemSpriteSheet.VIALF3;
+		} else if(volume == MAX_VOLUME/2){
+			image = ItemSpriteSheet.VIALF2;
+		} else if(volume >= 1){
+			image = ItemSpriteSheet.VIALF1;
+		} else {
+			image = ItemSpriteSheet.VIAL;
+		}
+
 		updateQuickslot();
 	}
 
@@ -185,11 +229,30 @@ public class DewVial extends Item {
 
 		weight = (volume/10) + 1;
 
+		if(isFull()){
+			image = ItemSpriteSheet.VIALF3;
+		} else if(volume == MAX_VOLUME/2){
+			image = ItemSpriteSheet.VIALF2;
+		} else if(volume >= 1){
+			image = ItemSpriteSheet.VIALF1;
+		} else {
+			image = ItemSpriteSheet.VIAL;
+		}
+
 		updateQuickslot();
 	}
 
 	public void fill() {
 		volume = MAX_VOLUME;
+		if(isFull()){
+			image = ItemSpriteSheet.VIALF3;
+		} else if(volume == MAX_VOLUME/2){
+			image = ItemSpriteSheet.VIALF2;
+		} else if(volume >= 1){
+			image = ItemSpriteSheet.VIALF1;
+		} else {
+			image = ItemSpriteSheet.VIAL;
+		}
 		updateQuickslot();
 	}
 

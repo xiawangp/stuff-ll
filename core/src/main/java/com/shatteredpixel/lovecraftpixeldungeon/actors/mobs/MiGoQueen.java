@@ -26,6 +26,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.items.KindOfWeapon;
+import com.shatteredpixel.lovecraftpixeldungeon.items.MiGoEgg;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Unstable;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.MeleeWeapon;
@@ -35,7 +36,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.MiGoLarvaSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.MiGoQueenSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
-import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
@@ -54,8 +54,8 @@ public class MiGoQueen extends Mob {
 		maxLvl = 5;
 		properties.add(Property.IMMOVABLE);
 
-		//loot = something slimy!
-		lootChance = 0.3f*Dungeon.depth;
+		loot = MiGoEgg.class;
+		lootChance = 0.8f;
 
 		baseSpeed = 0.2f;
 	}
@@ -111,7 +111,6 @@ public class MiGoQueen extends Mob {
 					Dungeon.quickslot.clearItem(weapon);
 					weapon.updateQuickslot();
 					Dungeon.level.drop(weapon, hero.pos).sprite.drop();
-					GLog.w(this.name+"'s gluey skin has kept your weapon sticking to it!");
 				} catch(Exception e) {
 
 				}
