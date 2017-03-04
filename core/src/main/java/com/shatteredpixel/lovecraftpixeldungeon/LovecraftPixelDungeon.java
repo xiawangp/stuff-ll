@@ -39,8 +39,9 @@ import com.watabou.noosa.RenderedText;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.audio.Sample;
 
-import javax.microedition.khronos.opengles.GL10;
 import java.util.Locale;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class LovecraftPixelDungeon extends Game {
 	

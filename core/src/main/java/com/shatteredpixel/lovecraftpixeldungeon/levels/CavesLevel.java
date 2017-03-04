@@ -22,8 +22,6 @@ package com.shatteredpixel.lovecraftpixeldungeon.levels;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTileSheet;
-import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.npcs.Blacksmith;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room.Type;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.Painter;
@@ -47,6 +45,8 @@ import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.TeleportationTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.VenomTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.WarpingTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
+import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTileSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.particles.PixelParticle;

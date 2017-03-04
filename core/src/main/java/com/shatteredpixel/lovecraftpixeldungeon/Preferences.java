@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon;
 
 import android.content.SharedPreferences;
+
 import com.watabou.noosa.Game;
 import com.watabou.utils.GameMath;
 

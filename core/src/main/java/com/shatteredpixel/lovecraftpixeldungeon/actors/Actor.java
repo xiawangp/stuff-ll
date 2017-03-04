@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.actors;
 
 import android.util.SparseArray;
+
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.LovecraftPixelDungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.Statistics;

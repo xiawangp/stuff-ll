@@ -22,7 +22,6 @@ package com.shatteredpixel.lovecraftpixeldungeon.items.bags;
 
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.food.Food;
-import com.shatteredpixel.lovecraftpixeldungeon.plants.Plant;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
 
 public class FoodBag extends Bag {

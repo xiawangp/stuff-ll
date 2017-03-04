@@ -20,8 +20,8 @@
  */
 package com.shatteredpixel.lovecraftpixeldungeon.effects;
 
-import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
+import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;

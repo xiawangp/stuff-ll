@@ -20,8 +20,8 @@
  */
 package com.shatteredpixel.lovecraftpixeldungeon.sprites;
 
-import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
+import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.watabou.noosa.Visual;
 import com.watabou.noosa.tweeners.PosTweener;
 import com.watabou.noosa.tweeners.Tweener;

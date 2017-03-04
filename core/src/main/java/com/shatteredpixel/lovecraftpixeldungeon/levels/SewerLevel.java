@@ -22,7 +22,6 @@ package com.shatteredpixel.lovecraftpixeldungeon.levels;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.npcs.Ghost;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Ripple;
 import com.shatteredpixel.lovecraftpixeldungeon.items.DewVial;
@@ -36,6 +35,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.ToxicTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.WornTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
+import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.particles.Emitter;

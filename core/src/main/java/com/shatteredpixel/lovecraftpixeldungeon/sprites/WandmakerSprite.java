@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.sprites;
 
 import android.opengl.GLES20;
+
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Halo;

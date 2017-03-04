@@ -21,12 +21,12 @@
 package com.shatteredpixel.lovecraftpixeldungeon.effects;
 
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
-import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.FlameParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.LeafParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.PoisonParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.RainbowParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.ShadowParticle;
+import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.Visual;

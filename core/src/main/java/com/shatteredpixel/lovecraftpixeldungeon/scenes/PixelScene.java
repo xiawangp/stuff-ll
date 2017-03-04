@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.scenes;
 
 import android.opengl.GLES20;
+
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.LovecraftPixelDungeon;

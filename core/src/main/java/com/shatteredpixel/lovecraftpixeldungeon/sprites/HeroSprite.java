@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.sprites;
 
 import android.graphics.RectF;
+
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;

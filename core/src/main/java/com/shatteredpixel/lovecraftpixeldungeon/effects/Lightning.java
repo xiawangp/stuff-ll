@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.effects;
 
 import android.opengl.GLES20;
+
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.watabou.noosa.Game;
@@ -31,9 +32,10 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
-import javax.microedition.khronos.opengles.GL10;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class Lightning extends Group {
 

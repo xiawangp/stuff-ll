@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.utils;
 
 import android.util.Log;
+
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.watabou.utils.Signal;
 

@@ -26,6 +26,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.scenes;
 import android.content.Intent;
 import android.net.Uri;
 import android.opengl.GLES20;
+
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.LovecraftPixelDungeon;
@@ -39,7 +40,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.ui.Icons;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.LanguageButton;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.PrefsButton;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.RedButton;
-import com.shatteredpixel.lovecraftpixeldungeon.windows.IconTitle;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndBugCatcher;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndHardNotification;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndTextInput;

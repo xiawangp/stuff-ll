@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.effects;
 
 import android.opengl.GLES20;
+
 import com.watabou.noosa.Group;
 import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;

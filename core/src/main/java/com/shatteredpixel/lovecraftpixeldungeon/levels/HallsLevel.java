@@ -21,9 +21,9 @@
 package com.shatteredpixel.lovecraftpixeldungeon.levels;
 
 import android.opengl.GLES20;
+
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Torch;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.BlazingTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.CursingTrap;
@@ -45,6 +45,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.VenomTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.WarpingTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.WeakeningTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
+import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.particles.PixelParticle;

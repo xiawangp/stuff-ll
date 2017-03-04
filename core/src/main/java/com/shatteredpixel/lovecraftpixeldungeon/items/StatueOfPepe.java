@@ -33,6 +33,9 @@ public class StatueOfPepe extends Item {
         if(action.equals(AC_POST)){
 
         }
+        if(action.equals(AC_SUMMON)){
+
+        }
     }
 
     @Override

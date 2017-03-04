@@ -22,6 +22,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.effects;
 
 import android.graphics.RectF;
 import android.opengl.GLES20;
+
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.watabou.glwrap.Texture;
 import com.watabou.noosa.Game;

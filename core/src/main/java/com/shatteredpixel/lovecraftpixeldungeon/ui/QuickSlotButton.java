@@ -21,13 +21,13 @@
 package com.shatteredpixel.lovecraftpixeldungeon.ui;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.PixelScene;
+import com.shatteredpixel.lovecraftpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.BArray;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndBag;
 import com.watabou.noosa.Image;

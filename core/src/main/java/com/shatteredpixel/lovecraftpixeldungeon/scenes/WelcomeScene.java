@@ -21,10 +21,11 @@
 package com.shatteredpixel.lovecraftpixeldungeon.scenes;
 
 import android.opengl.GLES20;
+
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.Rankings;
 import com.shatteredpixel.lovecraftpixeldungeon.LovecraftPixelDungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.Rankings;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.BannerSprites;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Fireball;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
@@ -35,9 +36,9 @@ import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import java.util.UUID;
+
+import javax.microedition.khronos.opengles.GL10;
 
 public class WelcomeScene extends PixelScene {
 

@@ -21,8 +21,8 @@
 package com.shatteredpixel.lovecraftpixeldungeon.scenes;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
-import com.shatteredpixel.lovecraftpixeldungeon.Rankings;
 import com.shatteredpixel.lovecraftpixeldungeon.LovecraftPixelDungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.Rankings;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Flare;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSprite;

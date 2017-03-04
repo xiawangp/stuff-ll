@@ -23,7 +23,6 @@ package com.shatteredpixel.lovecraftpixeldungeon.actors.blobs;
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.shatteredpixel.lovecraftpixeldungeon.Journal;
 import com.shatteredpixel.lovecraftpixeldungeon.Journal.Feature;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Awareness;
@@ -36,6 +35,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
+import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 

@@ -21,12 +21,12 @@
 package com.shatteredpixel.lovecraftpixeldungeon.windows;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTerrainTilemap;
-import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.PixelScene;
+import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTerrainTilemap;
+import com.shatteredpixel.lovecraftpixeldungeon.tiles.DungeonTilemap;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.CustomTileVisual;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.RenderedTextMultiline;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.Window;

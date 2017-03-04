@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.effects;
 
 import android.opengl.GLES20;
+
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.CharSprite;
 import com.watabou.noosa.Game;
 
