@@ -29,6 +29,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.CryptPainter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.EntrancePainter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.ExitPainter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.GardenPainter;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.KekTemplePainter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.LaboratoryPainter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.LevelBossPainter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.LibraryPainter;
@@ -98,6 +99,7 @@ public class Room extends Rect implements Graph.Node, Bundlable {
 		PIT			( PitPainter.class ),
 		ALTAR		( AltarPainter.class ),
 		LEVELBOSS	( LevelBossPainter.class ),
+		KEKTEMPLE	( KekTemplePainter.class ),
 
 		//prison quests
 		MASS_GRAVE  ( MassGravePainter.class ),

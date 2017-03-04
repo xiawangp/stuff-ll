@@ -33,6 +33,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfWealth;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room.Type;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.KekTemplePainter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.LevelBossPainter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.ShopPainter;
@@ -163,6 +164,23 @@ public abstract class RegularLevel extends Level {
 				boss.type = Room.Type.LEVELBOSS;
 			}
 		}
+
+		if(Dungeon.depth != 5 && Dungeon.depth != 10 && Dungeon.depth != 15 && Dungeon.depth != 20 && Dungeon.depth != 25 && !Dungeon.shopOnLevel() && GETGenerator() && !Dungeon.bossLevel( Dungeon.depth + 1 )){
+			Room boss = null;
+			for (Room r : roomExit.connected.keySet()) {
+				if (r.connected.size() == 1 && (r.width()-1)*(r.height()-1) >= KekTemplePainter.spaceNeeded()) {
+					boss = r;
+					break;
+				}
+			}
+
+			if (boss == null) {
+				return false;
+			} else {
+				boss.type = Room.Type.KEKTEMPLE;
+			}
+
+		}
 		
 		specials = new ArrayList<Room.Type>( Room.SPECIALS );
 		if (Dungeon.bossLevel( Dungeon.depth + 1 )) {
@@ -186,6 +204,16 @@ public abstract class RegularLevel extends Level {
 		placeTraps();
 		
 		return true;
+	}
+
+	private static boolean GETGenerator(){
+		boolean bool = false;
+		int rand = Random.Int(0, 9);
+		int rand2 = Random.Int(0, 9);
+		if(rand == rand2){
+			bool = true;
+		}
+		return bool;
 	}
 
 	protected void placeSign(){

@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Kek;
 import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room;
@@ -37,9 +38,9 @@ public class KekTemplePainter extends Painter {
 
 		placePlant(level, room.center().x+room.center().y * level.width());
 
-
-		miGoQueen.pos = room.center().x+room.center().y * level.width();
-		Dungeon.level.mobs.add(miGoQueen);
+		Kek kek = new Kek();
+		kek.pos = room.center().x+room.center().y * level.width();
+		Dungeon.level.mobs.add(kek);
 
 		for (Room.Door door : room.connected.values()) {
 			door.set( Room.Door.Type.LOCKED );
