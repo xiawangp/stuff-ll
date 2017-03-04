@@ -106,6 +106,7 @@ public class Assets {
 	public static final String YIG    	= "yig.png";
 	public static final String LARVAINFC= "larva_infected.png";
 	public static final String KAGEBUN  = "kagebunshin.png";
+	public static final String KEK    	= "frog.png";
 
 	public static final String ITEMS	        = "items.png";
 	public static final String TERRAIN_FEATURES	= "terrain_features.png";

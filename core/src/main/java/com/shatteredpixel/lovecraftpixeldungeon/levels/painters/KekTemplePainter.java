@@ -21,36 +21,45 @@
 package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Yig;
 import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
-import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLevitation;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
-import com.watabou.utils.Point;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
 
 public class KekTemplePainter extends Painter {
 
 	public static void paint(Level level, Room room ) {
 
-		fill( level, room, Terrain.WALL );
-		fill( level, room, 1, Dungeon.bossLevel( Dungeon.depth + 1 ) ? Terrain.HIGH_GRASS : Terrain.CHASM );
+		fill(level, room, Terrain.WALL);
+		fill(level, room, 1, Terrain.EMPTY);
 
-		Point c = room.center();
+		placePlant(level, room.center().x+room.center().y * level.width());
 
-		fill( level, c.x - 1, c.y - 1, 3, 3, Terrain.CHASM );
-		int pos = c.x + c.y * level.width();
-		set( level, c, Terrain.PEDESTAL );
-		Yig yig = new Yig();
-		yig.pos = pos-1;
-		yig.SLEEPING.status();
-		level.mobs.add( yig );
 
-		level.addItemToSpawn( new PotionOfLevitation() );
+		miGoQueen.pos = room.center().x+room.center().y * level.width();
+		Dungeon.level.mobs.add(miGoQueen);
 
 		for (Room.Door door : room.connected.values()) {
 			door.set( Room.Door.Type.LOCKED );
 			level.addItemToSpawn(new IronKey(Dungeon.depth));
 		}
 	}
+
+	private static void placePlant(Level level, int mobpos){
+		level.map[mobpos] = Terrain.PEDESTAL;
+
+
+		for(int i : PathFinder.NEIGHBOURS8) {
+			if (level.map[mobpos + i] == Terrain.EMPTY){
+				set(level, mobpos + i, Terrain.EMBERS);
+			}
+		}
+	}
+
+	public static int spaceNeeded(){
+		return Random.IntRange(30, 35);
+	}
+
 }
