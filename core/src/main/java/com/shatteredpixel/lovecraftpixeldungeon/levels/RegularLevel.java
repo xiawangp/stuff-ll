@@ -64,6 +64,8 @@ public abstract class RegularLevel extends Level {
 	protected ArrayList<Room.Type> specials;
 	
 	public int secretDoors;
+
+	public static boolean pepespanwed = false;
 	
 	@Override
 	protected boolean build() {
@@ -165,7 +167,7 @@ public abstract class RegularLevel extends Level {
 			}
 		}
 
-		if(Dungeon.depth != 5 && Dungeon.depth != 10 && Dungeon.depth != 15 && Dungeon.depth != 20 && Dungeon.depth != 25 && !Dungeon.shopOnLevel() && GETGenerator() && !Dungeon.bossLevel( Dungeon.depth + 1 )){
+		if(Dungeon.depth != 5 && Dungeon.depth != 10 && Dungeon.depth != 15 && Dungeon.depth != 20 && Dungeon.depth != 25 && !Dungeon.shopOnLevel() && GETGenerator() && !Dungeon.bossLevel( Dungeon.depth + 1 ) && !pepespanwed){
 			Room boss = null;
 			for (Room r : roomExit.connected.keySet()) {
 				if (r.connected.size() == 1 && (r.width()-1)*(r.height()-1) >= KekTemplePainter.spaceNeeded()) {
@@ -178,6 +180,7 @@ public abstract class RegularLevel extends Level {
 				return false;
 			} else {
 				boss.type = Room.Type.KEKTEMPLE;
+				pepespanwed = true;
 			}
 
 		}
@@ -833,12 +836,15 @@ public abstract class RegularLevel extends Level {
 	public void storeInBundle( Bundle bundle ) {
 		super.storeInBundle( bundle );
 		bundle.put( "rooms", rooms );
+		bundle.put( "pepespawned", pepespanwed);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void restoreFromBundle( Bundle bundle ) {
 		super.restoreFromBundle( bundle );
+
+		pepespanwed = bundle.getBoolean("pepespawned");
 
 		rooms = new ArrayList<>( (Collection<Room>) ((Collection<?>) bundle.getCollection( "rooms" )) );
 		for (Room r : rooms) {
