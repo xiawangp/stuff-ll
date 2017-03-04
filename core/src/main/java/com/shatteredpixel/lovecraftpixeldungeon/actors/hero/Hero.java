@@ -531,7 +531,7 @@ public class Hero extends Char {
 			if (curAction instanceof HeroAction.Descend) {
 
 				//TODO REMOVE WITH NEW UPDATES
-				if(Dungeon.depth == 1){
+				if(Dungeon.depth == 2){
 					GameScene.show( new WndMessage( Messages.get(this, "leave_2") ) );
 					ready();
 					return false;

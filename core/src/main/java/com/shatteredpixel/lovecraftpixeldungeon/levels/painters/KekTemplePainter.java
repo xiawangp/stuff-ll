@@ -22,16 +22,12 @@ package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Yig;
-import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
-import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
+import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLevitation;
-import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
-import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.watabou.utils.Point;
-import com.watabou.utils.Random;
 
 public class KekTemplePainter extends Painter {
 
@@ -41,24 +37,10 @@ public class KekTemplePainter extends Painter {
 		fill( level, room, 1, Dungeon.bossLevel( Dungeon.depth + 1 ) ? Terrain.HIGH_GRASS : Terrain.CHASM );
 
 		Point c = room.center();
-		Room.Door door = room.entrance();
-		door.set(Room.Door.Type.EMPTY);
 
-		fill( level, c.x - 1, c.y - 1, 3, 3, Terrain.EMBERS );
+		fill( level, c.x - 1, c.y - 1, 3, 3, Terrain.CHASM );
 		int pos = c.x + c.y * level.width();
-		if(Randomer.randomBoolean() == true){
-			level.drop(new PotionOfLevitation(), pos);
-			Item item = Generator.random(Generator.Category.WEP_T5);
-			if(item instanceof Weapon){
-				((Weapon) item).enchant().upgrade(Random.IntRange(Dungeon.depth/2, Dungeon.depth)).identify();
-			}
-			level.drop(item, pos );
-			set( level, c, Terrain.PEDESTAL );
-
-		} else {
-			set( level, c, Terrain.ENCHANTING);
-			level.drop(new PotionOfLevitation(), pos+1);
-		}
+		set( level, c, Terrain.PEDESTAL );
 		Yig yig = new Yig();
 		yig.pos = pos-1;
 		yig.SLEEPING.status();
@@ -66,8 +48,9 @@ public class KekTemplePainter extends Painter {
 
 		level.addItemToSpawn( new PotionOfLevitation() );
 
-
-
-		door.set( Room.Door.Type.EMPTY );
+		for (Room.Door door : room.connected.values()) {
+			door.set( Room.Door.Type.LOCKED );
+			level.addItemToSpawn(new IronKey(Dungeon.depth));
+		}
 	}
 }

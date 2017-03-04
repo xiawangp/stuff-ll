@@ -57,6 +57,7 @@ public class Assets {
 	public static final String EFFECTS		= "effects.png";
 	
 	public static final String MIGO		= "migo.png";
+	public static final String FACEHUG  = "facehugger.png";
 	public static final String MIGOQUEEN= "migoqueen.png";
 	public static final String GNOLL	= "gnoll.png";
 	public static final String CRAB		= "crab.png";
