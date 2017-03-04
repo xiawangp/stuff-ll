@@ -22,11 +22,9 @@ package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGoQueen;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
-import com.shatteredpixel.lovecraftpixeldungeon.items.keys.GoldenKey;
 import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room;
@@ -59,32 +57,18 @@ public class LevelBossPainter extends Painter {
 			heartY = room.top + 1;
 		}
 
-		placePlant(level, room.center().x+room.center().y * level.width(), heartX + heartY * level.width(), setBoss(Dungeon.depth));
-	}
+		placePlant(level, room.center().x+room.center().y * level.width(), heartX + heartY * level.width());
 
-	//TODO: ADD ALL THE MINIBOSSES TO THE MINIBOSS ROOMS
-
-	private static Mob setBoss(final int depth){
-		Mob mob = null;
-		switch (depth){
-			case 1:
-				mob = new MiGoQueen(){
-					@Override
-					public void die(Object cause) {
-						Dungeon.level.drop(new GoldenKey(depth), this.pos);
-						super.die(cause);
-					}
-				};
-				break;
+		if(Dungeon.depth == 1){
+			MiGoQueen miGoQueen = new MiGoQueen();
+			miGoQueen.pos = room.center().x+room.center().y * level.width();
+			Dungeon.level.mobs.add(miGoQueen);
 		}
-		return mob;
 	}
 
-	private static void placePlant(Level level, int mobpos, int lootpos, Mob boss){
-		boss.pos = mobpos;
-		level.mobs.add( boss );
+	private static void placePlant(Level level, int mobpos, int lootpos){
 		level.map[mobpos] = Terrain.PEDESTAL;
-		level.drop( prize( level ).upgrade(Dungeon.hero.lvl/2), lootpos ).type = Heap.Type.LOCKED_CHEST;
+		level.drop( prize().upgrade(Dungeon.hero.lvl/2), lootpos ).type = Heap.Type.LOCKED_CHEST;
 
 
 		for(int i : PathFinder.NEIGHBOURS8) {
@@ -95,10 +79,10 @@ public class LevelBossPainter extends Painter {
 	}
 
 	public static int spaceNeeded(){
-		return Random.IntRange(6, 15);
+		return Random.IntRange(20, 25);
 	}
 
-	private static Item prize(Level level ) {
+	private static Item prize() {
 		return Generator.random( Random.oneOf(
 				Generator.Category.WAND,
 				Generator.Category.RING,

@@ -33,6 +33,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfWealth;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room.Type;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.LevelBossPainter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.painters.ShopPainter;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.ChillingTrap;
@@ -150,7 +151,7 @@ public abstract class RegularLevel extends Level {
 		if(Dungeon.depth != 5 && Dungeon.depth != 10 && Dungeon.depth != 15 && Dungeon.depth != 20 && Dungeon.depth != 25){
 			Room boss = null;
 			for (Room r : roomExit.connected.keySet()) {
-				if (r.connected.size() == 1 && (r.width()-1)*(r.height()-1) >= 20) {
+				if (r.connected.size() == 1 && (r.width()-1)*(r.height()-1) >= LevelBossPainter.spaceNeeded()) {
 					boss = r;
 					break;
 				}
