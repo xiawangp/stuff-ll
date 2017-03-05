@@ -51,9 +51,9 @@ import java.util.HashSet;
 public class NormalShoggoth extends Mob {
 
 	{
-		HP = HT = 16+Dungeon.depth;
+		HP = HT = 20+Dungeon.depth;
 		EXP = 3;
-		defenseSkill = 4+Dungeon.depth;
+		defenseSkill = 8+Dungeon.depth;
 		spriteClass = NormalShoogothSprite.class;
 	}
 
@@ -62,7 +62,7 @@ public class NormalShoggoth extends Mob {
 	@Override
 	public int damageRoll() {
 		int min = 1;
-		int max = (HP*2 <= HT) ? 4 : 6;
+		int max = (HP*2 <= HT) ? 5 : 8;
 		if (pumpedUp > 0) {
 			pumpedUp = 0;
 			PathFinder.buildDistanceMap( pos, BArray.not( Level.solid, null ), 2 );

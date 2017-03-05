@@ -21,9 +21,11 @@
 package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Yig;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
+import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLevitation;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
@@ -41,10 +43,8 @@ public class AltarPainter extends Painter {
 		fill( level, room, 1, Dungeon.bossLevel( Dungeon.depth + 1 ) ? Terrain.HIGH_GRASS : Terrain.CHASM );
 
 		Point c = room.center();
-		Room.Door door = room.entrance();
-		door.set(Room.Door.Type.EMPTY);
 
-		fill( level, c.x - 1, c.y - 1, 3, 3, Terrain.EMBERS );
+		fill( level, c.x - 1, c.y - 1, 3, 3, Terrain.WATER );
 		int pos = c.x + c.y * level.width();
 		if(Randomer.randomBoolean() == true){
 			level.drop(new PotionOfLevitation(), pos);
@@ -59,15 +59,27 @@ public class AltarPainter extends Painter {
 			set( level, c, Terrain.ENCHANTING);
 			level.drop(new PotionOfLevitation(), pos+1);
 		}
-		Yig yig = new Yig();
-		yig.pos = pos-1;
-		yig.SLEEPING.status();
-		level.mobs.add( yig );
 
 		level.addItemToSpawn( new PotionOfLevitation() );
 
+		for (Room.Door door : room.connected.values()) {
+			door.set( Room.Door.Type.HIDDEN );
+			level.addItemToSpawn(new IronKey(Dungeon.depth));
+		}
 
+		placeBoss(level, pos-1);
+	}
 
-		door.set( Room.Door.Type.EMPTY );
+	private static void placeBoss( Level level, int mobpos ) {
+
+		//TODO: MORE MINIBOSSES
+		int pos;
+		do {
+			pos = mobpos;
+		} while (level.heaps.get( pos ) != null);
+
+		Mob boss1= new Yig();
+		boss1.pos = pos;
+		level.mobs.add( boss1 );
 	}
 }

@@ -22,6 +22,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGoQueen;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
@@ -56,16 +57,10 @@ public class LevelBossPainter extends Painter {
 			heartY = room.top + 1;
 		}
 
-		for (Room.Door door : room.connected.values()) {
-			door.set( Room.Door.Type.LOCKED );
-			level.addItemToSpawn(new IronKey(Dungeon.depth));
-		}
-
 		int mobpos = room.center().x+room.center().y * level.width();
 
 		level.map[mobpos] = Terrain.PEDESTAL;
 		level.drop( prize().upgrade(Dungeon.hero.lvl/2), heartX + heartY * level.width() ).type = Heap.Type.LOCKED_CHEST;
-
 
 		for(int i : PathFinder.NEIGHBOURS8) {
 			if (level.map[mobpos + i] == Terrain.EMPTY){
@@ -73,17 +68,32 @@ public class LevelBossPainter extends Painter {
 			}
 		}
 
+		for (Room.Door door : room.connected.values()) {
+			door.set( Room.Door.Type.LOCKED );
+			level.addItemToSpawn(new IronKey(Dungeon.depth));
+		}
+
+		placeBoss(level, mobpos);
+	}
+
+	private static void placeBoss( Level level, int mobpos ) {
+
+		//TODO: MORE LEVELBOSSES
+		int pos;
+		do {
+			pos = mobpos;
+		} while (level.heaps.get( pos ) != null);
+
 		if(Dungeon.depth == 1){
-			MiGoQueen miGoQueen = new MiGoQueen(){
+			Mob boss1= new MiGoQueen(){
 				@Override
 				public void die(Object cause) {
 					super.die(cause);
-					level.drop(new GoldenKey(Dungeon.depth), this.pos);
+					Dungeon.level.drop(new GoldenKey(Dungeon.depth), this.pos);
 				}
 			};
-			miGoQueen.pos = mobpos;
-			miGoQueen.SLEEPING.status();
-			level.mobs.add(miGoQueen);
+			boss1.pos = pos;
+			level.mobs.add( boss1 );
 		}
 	}
 

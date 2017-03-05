@@ -22,6 +22,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Kek;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.items.StatueOfPepe;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
@@ -37,11 +38,6 @@ public class KekTemplePainter extends Painter {
 		fill(level, room, Terrain.WALL);
 		fill(level, room, 1, Terrain.WATER);
 
-		for (Room.Door door : room.connected.values()) {
-			door.set( Room.Door.Type.BARRICADE );
-			level.addItemToSpawn(new PotionOfLiquidFlame());
-		}
-
 		int mobpos = room.center().x+room.center().y * level.width();
 
 		level.map[mobpos] = Terrain.PEDESTAL;
@@ -53,16 +49,30 @@ public class KekTemplePainter extends Painter {
 			}
 		}
 
-		Kek kek = new Kek(){
+		for (Room.Door door : room.connected.values()) {
+			door.set( Room.Door.Type.BARRICADE );
+			level.addItemToSpawn(new PotionOfLiquidFlame());
+		}
+
+		placeBoss(level, mobpos);
+	}
+
+	private static void placeBoss( Level level, int mobpos ) {
+
+		int pos;
+		do {
+			pos = mobpos;
+		} while (level.heaps.get( pos ) != null);
+
+		Mob boss1= new Kek(){
 			@Override
 			public void die(Object cause) {
 				super.die(cause);
 				Dungeon.level.drop(new StatueOfPepe(), this.pos);
 			}
 		};
-		kek.pos = mobpos;
-		kek.HUNTING.status();
-		level.mobs.add(kek);
+		boss1.pos = pos;
+		level.mobs.add( boss1 );
 	}
 
 	public static int spaceNeeded(){
