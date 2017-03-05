@@ -329,7 +329,7 @@ public class GameScene extends PixelScene {
 			case 1:
 				WndStory.showChapter( WndStory.ID_SEWERS );
 				//TODO: UPDATE IF MORE LEVELS GET accessible.
-				add(new WndHardNotification(Icons.BUG.get(), Messages.get(this, "notfinished"), Messages.get(this, "sorry"), Messages.get(this, "okay"), 5));
+				add(new WndHardNotification(Icons.BUG.get(), Messages.get(this, "notfinished"), Messages.get(this, "sorry", 1), Messages.get(this, "okay"), 5));
 				break;
 			case 6:
 				WndStory.showChapter( WndStory.ID_PRISON );
