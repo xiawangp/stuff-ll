@@ -62,12 +62,22 @@ public class Infected extends FlavourBuff {
 				Dungeon.fail( getClass() );
 			}
 			if(Random.Int(10) > 8){
-				Larva larva = new Larva();
-				do {
-					larva.pos = target.pos + PathFinder.NEIGHBOURS8[Random.Int( 8 )];
-				} while (!Level.passable[larva.pos] && Actor.findChar( larva.pos ) == null);
-				GameScene.add( larva );
-				Actor.addDelayed( new Pushing( larva, target.pos, larva.pos ), -1 );
+				if(target != Dungeon.hero){
+					Larva larva = new Larva();
+					Buff.affect(larva, Corruption.class);
+					do {
+						larva.pos = target.pos + PathFinder.NEIGHBOURS8[Random.Int( 8 )];
+					} while (!Level.passable[larva.pos] && Actor.findChar( larva.pos ) == null);
+					GameScene.add( larva );
+					Actor.addDelayed( new Pushing( larva, target.pos, larva.pos ), -1 );
+				} else {
+					Larva larva = new Larva();
+					do {
+						larva.pos = target.pos + PathFinder.NEIGHBOURS8[Random.Int( 8 )];
+					} while (!Level.passable[larva.pos] && Actor.findChar( larva.pos ) == null);
+					GameScene.add( larva );
+					Actor.addDelayed( new Pushing( larva, target.pos, larva.pos ), -1 );
+				}
 			}
 			spend( TICK );
 		}

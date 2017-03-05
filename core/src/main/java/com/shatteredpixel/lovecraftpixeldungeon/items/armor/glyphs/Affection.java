@@ -23,6 +23,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.items.armor.glyphs;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Charm;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Corruption;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.Armor.Glyph;
@@ -45,6 +46,9 @@ public class Affection extends Glyph {
 
 			Buff.affect( attacker, Charm.class, Charm.durationFactor( attacker ) * duration ).object = defender.id();
 			attacker.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, 5 );
+			if(level > 3){
+				Buff.affect(attacker, Corruption.class);
+			}
 
 		}
 		

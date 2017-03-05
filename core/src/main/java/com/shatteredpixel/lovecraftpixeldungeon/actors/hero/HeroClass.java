@@ -25,8 +25,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Challenges;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.BrokenSeal;
-import com.shatteredpixel.lovecraftpixeldungeon.items.MiGoEgg;
-import com.shatteredpixel.lovecraftpixeldungeon.items.StatueOfPepe;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.ClothArmor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.FoodBag;
@@ -97,8 +95,6 @@ public enum HeroClass {
 		new FoodBag().identify().collect();
 
 		Dungeon.gold = 1200;
-		new MiGoEgg().collect();
-		new StatueOfPepe().collect();
 	}
 
 	public Badges.Badge masteryBadge() {

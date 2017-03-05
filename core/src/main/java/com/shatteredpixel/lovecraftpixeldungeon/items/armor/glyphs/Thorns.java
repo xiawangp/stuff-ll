@@ -23,6 +23,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.items.armor.glyphs;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Bleeding;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Infected;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSprite;
 import com.watabou.utils.Random;
@@ -39,6 +40,7 @@ public class Thorns extends Armor.Glyph {
 		if ( Random.Int( level/2 + 5) >= 4) {
 
 			Buff.affect( attacker, Bleeding.class).set( Math.max( level/2, damage));
+			Buff.affect( attacker, Infected.class);
 
 		}
 

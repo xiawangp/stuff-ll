@@ -47,6 +47,7 @@ public class Potential extends Glyph {
 			shockDmg *= Math.pow(0.9, level);
 
 			defender.damage( shockDmg, LightningTrap.LIGHTNING );
+			attacker.damage( shockDmg, LightningTrap.LIGHTNING );
 			
 			checkOwner( defender );
 			if (defender == Dungeon.hero) {
