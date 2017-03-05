@@ -1005,7 +1005,7 @@ public class Hero extends Char {
 			damage = belongings.armor.proc( enemy, this, damage );
 		}
 
-		if(isSane()){
+		if(!isSane()){
 			Buff.affect(this, Vertigo.class, Vertigo.DURATION);
 		}
 		
