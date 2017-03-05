@@ -3,17 +3,22 @@ package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Cripple;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Levitation;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.MiGoTounge;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
+import com.shatteredpixel.lovecraftpixeldungeon.items.StatueOfPepe;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Unstable;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Whip;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.mechanics.Ballistica;
+import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.YigSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
+import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
@@ -29,7 +34,7 @@ public class Kek extends Mob{
 
         EXP = 10*Dungeon.depth;
         baseSpeed = 3f;
-        //loot =
+        loot = new StatueOfPepe();
         lootChance = 10f;
 
         properties.add(Property.MINIBOSS);
@@ -69,6 +74,7 @@ public class Kek extends Mob{
 
     @Override
     protected boolean act() {
+        Buff.affect(enemy, Levitation.class, Levitation.DURATION);
         if (state == HUNTING &&
                 paralysed <= 0 &&
                 enemy != null &&
@@ -141,6 +147,7 @@ public class Kek extends Mob{
     @Override
     public void die( Object cause ) {
         super.die( cause );
+        GLog.n(Messages.get(this, "die"));
     }
 
     private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();

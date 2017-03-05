@@ -1,8 +1,27 @@
 package com.shatteredpixel.lovecraftpixeldungeon.items;
 
+import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Bleeding;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Bless;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Corruption;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.GasesImmunity;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Invisibility;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.MoonFury;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Ooze;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Slow;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Speed;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Kek;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
+import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -31,10 +50,80 @@ public class StatueOfPepe extends Item {
     public void execute(Hero hero, String action) {
         super.execute(hero, action);
         if(action.equals(AC_POST)){
+            if(!curUser.isStarving() && curUser.MH == curUser.MMH && curUser.HP == curUser.HT){
+                ArrayList<Integer> ints = new ArrayList<>();
+                for(int i = 9; i > 0; i--){
+                    ints.add(Random.Int(0, 9));
+                }
+                String intsstring = ">";
+                for(int y = 0; y < ints.size(); y++){
+                    intsstring = intsstring + ints.get(y).toString();
+                }
+                int score = 1;
+                if(ints.get(8) == ints.get(7)){
+                    score *=2;
+                    if(ints.get(7) == ints.get(6)){
+                        score *=2;
+                        if(ints.get(6) == ints.get(5)){
+                            score *=2;
+                            if(ints.get(5) == ints.get(4)){
+                                score *=2;
+                                if(ints.get(4) == ints.get(3)){
+                                    score *=2;
+                                    if(ints.get(3) == ints.get(2)){
+                                        score *=2;
+                                        if(ints.get(2) == ints.get(1)){
+                                            score *=2;
+                                            if(ints.get(1) == ints.get(0)){
+                                                score *=2;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Buff.affect(curUser, Bless.class, score*5);
+                    Buff.affect(curUser, Speed.class, score*5);
+                    Buff.affect(curUser, GasesImmunity.class, score*5);
+                    Buff.affect(curUser, Invisibility.class, score*5);
+                    Buff.affect(curUser, MoonFury.class, score*5);
+                    curUser.earnExp(score*2);
+                    GLog.p(Messages.get(this, "pos", intsstring));
+                } else {
+                    Buff.affect(curUser, Ooze.class);
+                    Buff.affect(curUser, Bleeding.class);
+                    Buff.affect(curUser, Slow.class, 30f);
+                    GLog.n(Messages.get(this, "neg", intsstring));
+                }
+            } else {
+                GLog.w(Messages.get(this, "cantpost"));
+            }
 
         }
         if(action.equals(AC_SUMMON)){
-
+            if(!kekspawnused){
+                ArrayList<Integer> spawnPoints = new ArrayList<>();
+                for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
+                    int p = curUser.pos + PathFinder.NEIGHBOURS8[i];
+                    if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+                        spawnPoints.add( p );
+                    }
+                }
+                if (spawnPoints.size() > 0) {
+                    Kek kek = new Kek();
+                    kek.pos = Random.element( spawnPoints );
+                    Buff.affect(kek, Corruption.class);
+                    GameScene.add( kek );
+                    Actor.addDelayed( new Pushing( kek, curUser.pos, kek.pos ), -1 );
+                    kekspawnused = true;
+                    GLog.p(Messages.get(this, "summoned"));
+                } else {
+                    GLog.w(Messages.get(this, "cantspawn2"));
+                }
+            } else {
+                GLog.w(Messages.get(this, "cantspawn1"));
+            }
         }
     }
 
