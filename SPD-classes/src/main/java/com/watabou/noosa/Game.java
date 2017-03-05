@@ -21,22 +21,6 @@
 
 package com.watabou.noosa;
 
-import java.util.ArrayList;
-
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-
-import com.watabou.glscripts.Script;
-import com.watabou.gltextures.TextureCache;
-import com.watabou.glwrap.ScreenConfigChooser;
-import com.watabou.glwrap.Vertexbuffer;
-import com.watabou.input.Keys;
-import com.watabou.input.Touchscreen;
-import com.watabou.noosa.audio.Music;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.BitmapCache;
-import com.watabou.utils.SystemTime;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -52,7 +36,23 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
 
-public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTouchListener {
+import com.watabou.glscripts.Script;
+import com.watabou.gltextures.TextureCache;
+import com.watabou.glwrap.ScreenConfigChooser;
+import com.watabou.glwrap.Vertexbuffer;
+import com.watabou.input.Keys;
+import com.watabou.input.Touchscreen;
+import com.watabou.noosa.audio.Music;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.BitmapCache;
+import com.watabou.utils.SystemTime;
+
+import java.util.ArrayList;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
+public class Game extends Activity implements GLSurfaceView.Renderer, View.OnTouchListener{
 
 	public static Game instance;
 
