@@ -30,14 +30,14 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.MiGoEgg;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
-import com.shatteredpixel.lovecraftpixeldungeon.sprites.GuardSprite;
+import com.shatteredpixel.lovecraftpixeldungeon.sprites.FacehuggerSprite;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 public class Facehugger extends Mob {
 
 	{
-		spriteClass = GuardSprite.class;
+		spriteClass = FacehuggerSprite.class;
 
 		HP = HT = 40;
 		defenseSkill = 10;
@@ -84,7 +84,7 @@ public class Facehugger extends Mob {
 
 		Ballistica chain = new Ballistica(pos, target, Ballistica.PROJECTILE);
 
-		if (chain.collisionPos != enemy.pos || chain.path.size() < 2 || Level.pit[chain.path.get(1)])
+		if (chain.collisionPos != enemy.pos || chain.path.size() < 1 || Level.pit[chain.path.get(1)])
 			return false;
 		else {
 			int newPos = -1;

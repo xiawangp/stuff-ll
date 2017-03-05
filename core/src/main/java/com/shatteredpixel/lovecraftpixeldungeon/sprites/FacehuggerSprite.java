@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.sprites;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
+import com.watabou.noosa.MovieClip;
 import com.watabou.noosa.TextureFilm;
 
 public class FacehuggerSprite extends MobSprite {
@@ -32,17 +33,17 @@ public class FacehuggerSprite extends MobSprite {
 
 		TextureFilm frames = new TextureFilm( texture, 16, 16 );
 
-		idle = new Animation( 5, true );
-		idle.frames( frames, 0, 1, 0, 2 );
+		idle = new MovieClip.Animation( 5, true );
+		idle.frames( frames, 16, 17, 16, 18 );
 
-		run = new Animation( 15, true );
-		run.frames( frames, 3, 4, 5, 6 );
+		run = new MovieClip.Animation( 10, true );
+		run.frames( frames, 19, 20, 21, 22 );
 
-		attack = new Animation( 12, false );
-		attack.frames( frames, 7, 8, 9 );
+		attack = new MovieClip.Animation( 12, false );
+		attack.frames( frames, 23, 24, 25 );
 
-		die = new Animation( 12, false );
-		die.frames( frames, 10, 11, 12, 13 );
+		die = new MovieClip.Animation( 12, false );
+		die.frames( frames, 26, 27, 28, 29 );
 
 		play( idle );
 	}

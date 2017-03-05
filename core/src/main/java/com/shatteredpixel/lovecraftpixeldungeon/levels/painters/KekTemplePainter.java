@@ -22,7 +22,8 @@ package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Kek;
-import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
+import com.shatteredpixel.lovecraftpixeldungeon.items.StatueOfPepe;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Room;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
@@ -34,33 +35,37 @@ public class KekTemplePainter extends Painter {
 	public static void paint(Level level, Room room ) {
 
 		fill(level, room, Terrain.WALL);
-		fill(level, room, 1, Terrain.EMPTY);
-
-		placePlant(level, room.center().x+room.center().y * level.width());
-
-		Kek kek = new Kek();
-		kek.pos = room.center().x+room.center().y * level.width();
-		Dungeon.level.mobs.add(kek);
+		fill(level, room, 1, Terrain.WATER);
 
 		for (Room.Door door : room.connected.values()) {
-			door.set( Room.Door.Type.LOCKED );
-			level.addItemToSpawn(new IronKey(Dungeon.depth));
+			door.set( Room.Door.Type.BARRICADE );
+			level.addItemToSpawn(new PotionOfLiquidFlame());
 		}
-	}
 
-	private static void placePlant(Level level, int mobpos){
+		int mobpos = room.center().x+room.center().y * level.width();
+
 		level.map[mobpos] = Terrain.PEDESTAL;
 
 
 		for(int i : PathFinder.NEIGHBOURS8) {
-			if (level.map[mobpos + i] == Terrain.EMPTY){
-				set(level, mobpos + i, Terrain.EMBERS);
+			if (level.map[mobpos + i] == Terrain.WATER){
+				set(level, mobpos + i, Terrain.CHASM);
 			}
 		}
+
+		Kek kek = new Kek(){
+			@Override
+			public void die(Object cause) {
+				super.die(cause);
+				Dungeon.level.drop(new StatueOfPepe(), this.pos);
+			}
+		};
+		kek.pos = mobpos;
+		level.mobs.add(kek);
 	}
 
 	public static int spaceNeeded(){
-		return Random.IntRange(30, 35);
+		return Random.IntRange(20, 25);
 	}
 
 }

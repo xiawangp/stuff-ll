@@ -67,7 +67,7 @@ public class LevelBossPainter extends Painter {
 				}
 			};
 			miGoQueen.pos = room.center().x+room.center().y * level.width();
-			Dungeon.level.mobs.add(miGoQueen);
+			level.mobs.add(miGoQueen);
 		}
 
 		for (Room.Door door : room.connected.values()) {

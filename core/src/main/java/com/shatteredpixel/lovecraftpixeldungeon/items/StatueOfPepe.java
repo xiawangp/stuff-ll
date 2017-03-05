@@ -33,16 +33,18 @@ public class StatueOfPepe extends Item {
 
     {
         image = ItemSpriteSheet.ARTIFACT_STATUEPEPE1;
-        stackable = true;
+        stackable = false;
         identify();
         weight = 20;
         defaultAction = AC_POST;
+        unique = true;
     }
 
     @Override
     public ArrayList<String> actions(Hero hero ) {
         ArrayList<String> actions = super.actions( hero );
         actions.add( AC_POST );
+        actions.add( AC_SUMMON );
         return actions;
     }
 
@@ -91,6 +93,7 @@ public class StatueOfPepe extends Item {
                     curUser.earnExp(score*2);
                     GLog.p(Messages.get(this, "pos", intsstring));
                 } else {
+                    curUser.MH = curUser.MH/2;
                     Buff.affect(curUser, Ooze.class);
                     Buff.affect(curUser, Bleeding.class);
                     Buff.affect(curUser, Slow.class, 30f);
