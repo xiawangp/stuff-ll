@@ -68,8 +68,8 @@ public class Bestiary {
 			classes = new Class<?>[]{ MiGo.class, YoungMiGo.class, MiGoNurse.class };
 			break;
 		case 2:
-			chances = new float[]{ 1, 1 };
-			classes = new Class<?>[]{  };
+			chances = new float[]{ 2, 1, 1 };
+			classes = new Class<?>[]{ MiGo.class, YoungMiGo.class, NormalShoggoth.class };
 			break;
 		case 3:
 			chances = new float[]{ 2, 4, 1, 1 };

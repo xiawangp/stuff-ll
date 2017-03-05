@@ -22,4 +22,12 @@ package com.shatteredpixel.lovecraftpixeldungeon.items.rings;
 
 public class RingOfMining extends Ring {
 
+    @Override
+    protected RingBuff buff( ) {
+        return new RingOfMining.Buff();
+    }
+
+    public class Buff extends RingBuff {
+    }
+
 }
