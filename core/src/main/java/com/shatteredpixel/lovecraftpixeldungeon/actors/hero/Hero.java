@@ -37,7 +37,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Drowsy;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Fury;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Hunger;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Invisibility;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Light;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Paralysis;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Regeneration;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.SnipersMark;
@@ -1005,17 +1004,16 @@ public class Hero extends Char {
 		if (belongings.armor != null) {
 			damage = belongings.armor.proc( enemy, this, damage );
 		}
+
+		if(isSane()){
+			Buff.affect(this, Vertigo.class, Vertigo.DURATION);
+		}
 		
 		return damage;
 	}
 	
 	@Override
 	public void damage( int dmg, Object src ) {
-		if(!isSane()){
-			GLog.i(Messages.get(this, "insane"));
-			Buff.affect(this, Vertigo.class, Light.DURATION/3);
-			damage(1, this);
-		}
 
 		if (buff(TimekeepersHourglass.timeStasis.class) != null)
 			return;
@@ -1503,7 +1501,7 @@ public class Hero extends Char {
 		super.move( step );
 
 		if(!isSane()){
-			damage(1, this);
+			damage(2, this);
 		}
 		
 		if (!flying) {

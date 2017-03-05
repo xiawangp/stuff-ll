@@ -61,6 +61,7 @@ public class KekTemplePainter extends Painter {
 			}
 		};
 		kek.pos = mobpos;
+		kek.HUNTING.status();
 		level.mobs.add(kek);
 	}
 

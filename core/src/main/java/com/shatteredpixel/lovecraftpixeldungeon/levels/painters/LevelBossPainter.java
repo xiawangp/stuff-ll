@@ -56,7 +56,22 @@ public class LevelBossPainter extends Painter {
 			heartY = room.top + 1;
 		}
 
-		placePlant(level, room.center().x+room.center().y * level.width(), heartX + heartY * level.width());
+		for (Room.Door door : room.connected.values()) {
+			door.set( Room.Door.Type.LOCKED );
+			level.addItemToSpawn(new IronKey(Dungeon.depth));
+		}
+
+		int mobpos = room.center().x+room.center().y * level.width();
+
+		level.map[mobpos] = Terrain.PEDESTAL;
+		level.drop( prize().upgrade(Dungeon.hero.lvl/2), heartX + heartY * level.width() ).type = Heap.Type.LOCKED_CHEST;
+
+
+		for(int i : PathFinder.NEIGHBOURS8) {
+			if (level.map[mobpos + i] == Terrain.EMPTY){
+				set(level, mobpos + i, Terrain.EMBERS);
+			}
+		}
 
 		if(Dungeon.depth == 1){
 			MiGoQueen miGoQueen = new MiGoQueen(){
@@ -66,25 +81,9 @@ public class LevelBossPainter extends Painter {
 					level.drop(new GoldenKey(Dungeon.depth), this.pos);
 				}
 			};
-			miGoQueen.pos = room.center().x+room.center().y * level.width();
+			miGoQueen.pos = mobpos;
+			miGoQueen.SLEEPING.status();
 			level.mobs.add(miGoQueen);
-		}
-
-		for (Room.Door door : room.connected.values()) {
-			door.set( Room.Door.Type.LOCKED );
-			level.addItemToSpawn(new IronKey(Dungeon.depth));
-		}
-	}
-
-	private static void placePlant(Level level, int mobpos, int lootpos){
-		level.map[mobpos] = Terrain.PEDESTAL;
-		level.drop( prize().upgrade(Dungeon.hero.lvl/2), lootpos ).type = Heap.Type.LOCKED_CHEST;
-
-
-		for(int i : PathFinder.NEIGHBOURS8) {
-			if (level.map[mobpos + i] == Terrain.EMPTY){
-				set(level, mobpos + i, Terrain.EMBERS);
-			}
 		}
 	}
 
