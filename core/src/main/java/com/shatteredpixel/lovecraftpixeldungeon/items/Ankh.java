@@ -24,6 +24,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSprite.Glowing;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
@@ -81,11 +82,13 @@ public class Ankh extends Item {
 				GLog.p( Messages.get(this, "bless") );
 				hero.spend( 1f );
 				hero.busy();
+				image = ItemSpriteSheet.BLESSED_ANKH;
 
 
 				Sample.INSTANCE.play( Assets.SND_DRINK );
 				CellEmitter.get(hero.pos).start(Speck.factory(Speck.LIGHT), 0.2f, 3);
 				hero.sprite.operate( hero.pos );
+				SpellSprite.show(curUser, SpellSprite.SCROLL_UPGRADE_SMALL, SpellSprite.COLOUR_HOLY);
 			}
 		}
 	}

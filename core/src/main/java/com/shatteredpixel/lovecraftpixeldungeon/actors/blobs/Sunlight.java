@@ -21,35 +21,41 @@
 package com.shatteredpixel.lovecraftpixeldungeon.actors.blobs;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Corruption;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.BlobEmitter;
-import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.CorruptionParticle;
-import com.shatteredpixel.lovecraftpixeldungeon.items.GreenDewdrop;
-import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.SunLightParticle;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Plant;
+import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.watabou.utils.Random;
 
-public class CorruptionGas extends Blob {
+public class Sunlight extends Blob {
 	
 	@Override
 	protected void evolve() {
 		super.evolve();
-		
-		Char ch;
+
 		int cell;
 
 		for (int i = area.left; i < area.right; i++) {
 			for (int j = area.top; j < area.bottom; j++) {
 				cell = i + j * Dungeon.level.width();
-				if(Level.flamable[cell] && Level.losBlocking[cell] && !Level.solid[cell] && Random.Int(5) > 3){
-					Dungeon.level.drop( new GreenDewdrop(), cell ).sprite.drop();
-				}
-				if (cur[cell] > 0 && (ch = Actor.findChar(cell)) != null) {
-					if (!ch.immunities().contains(this.getClass()) && ch != Dungeon.hero)
-						Buff.affect(ch, Corruption.class);
+				if(Dungeon.level.map[cell] == Terrain.EMBERS){
+					Dungeon.level.map[cell] = Terrain.GRASS;
+				} else if(Dungeon.level.map[cell] == Terrain.GRASS){
+					Dungeon.level.map[cell] = Terrain.HIGH_GRASS;
+				} else if(Dungeon.level.map[cell] == Terrain.HIGH_GRASS){
+					GLog.p("spawn!");
+					int rand = Random.Int(0, 2);
+					if(rand == 0){
+						Dungeon.level.plant((Plant.Seed)Generator.random(Generator.Category.SEED), cell);
+						Dungeon.level.map[cell] = Terrain.EMPTY_DECO;
+					} else if(rand == 1){
+						Dungeon.level.drop(Generator.random(Generator.Category.SHROOMS), cell);
+					} else {
+						Dungeon.level.drop(Generator.random(Generator.Category.SEED), cell);
+					}
 				}
 			}
 		}
@@ -59,7 +65,7 @@ public class CorruptionGas extends Blob {
 	public void use( BlobEmitter emitter ) {
 		super.use( emitter );
 		
-		emitter.pour(CorruptionParticle.FACTORY, 1.4f);
+		emitter.pour(SunLightParticle.FACTORY, 1f);
 	}
 	
 	@Override

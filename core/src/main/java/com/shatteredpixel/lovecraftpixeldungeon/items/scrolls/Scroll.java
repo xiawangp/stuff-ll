@@ -56,7 +56,11 @@ public abstract class Scroll extends Item {
 		ScrollOfLullaby.class,
 		ScrollOfMagicalInfusion.class,
 		ScrollOfPsionicBlast.class,
-		ScrollOfMirrorImage.class
+		ScrollOfMirrorImage.class,
+			ScrollOfThunderstorm.class,
+			ScrollOfSunlight.class,
+			ScrollOfSummoning.class,
+			ScrollOfEquivalentExchange.class
 	};
 
 	private static final HashMap<String, Integer> runes = new HashMap<String, Integer>() {
@@ -73,6 +77,10 @@ public abstract class Scroll extends Item {
 			put("BERKANAN",ItemSpriteSheet.SCROLL_BERKANAN);
 			put("ODAL",ItemSpriteSheet.SCROLL_ODAL);
 			put("TIWAZ",ItemSpriteSheet.SCROLL_TIWAZ);
+			put("ALGIZ",ItemSpriteSheet.SCROLL_ALGIZ);
+			put("JERA",ItemSpriteSheet.SCROLL_JERA);
+			put("DAGAZ",ItemSpriteSheet.SCROLL_DAGAZ);
+			put("EHWAZ",ItemSpriteSheet.SCROLL_EHWAZ);
 		}
 	};
 	

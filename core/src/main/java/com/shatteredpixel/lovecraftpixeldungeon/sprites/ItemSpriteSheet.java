@@ -105,6 +105,7 @@ public class ItemSpriteSheet {
 	public static final int MASTERY         = SINGLE_USE+12;
 	public static final int KIT             = SINGLE_USE+13;
 	public static final int AMULET          = SINGLE_USE+14;
+	public static final int BLESSED_ANKH    = SINGLE_USE+15;
 	static{
 		assignItemRect(ANKH,            10, 16);
 		assignItemRect(STYLUS,          12, 13);
@@ -121,6 +122,7 @@ public class ItemSpriteSheet {
 		assignItemRect(MASTERY,         13, 16);
 		assignItemRect(KIT,             16, 15);
 		assignItemRect(AMULET,          16, 16);
+		assignItemRect(BLESSED_ANKH,    10, 16);
 	}
 
 	                                                                                    //32 free slots
@@ -273,7 +275,7 @@ public class ItemSpriteSheet {
 	public static final int RING_QUARTZ     = RINGS+9;
 	public static final int RING_AGATE      = RINGS+10;
 	public static final int RING_DIAMOND    = RINGS+11;
-	public static final int RING_FIREOPAL    = RINGS+12;
+	public static final int RING_FIREOPAL   = RINGS+12;
 	static {
 		for (int i = RINGS; i < RINGS+16; i++)
 			assignItemRect(i, 8, 10);
@@ -306,6 +308,8 @@ public class ItemSpriteSheet {
 	public static final int ARTIFACT_STATUEPEPE1= ARTIFACTS+23;
 	public static final int ARTIFACT_STATUEPEPE2= ARTIFACTS+24;
 	public static final int ARTIFACT_STATUEPEPE3= ARTIFACTS+25;
+	public static final int ARTIFACT_PIPE       = ARTIFACTS+26;
+	public static final int ARTIFACT_GRINDER    = ARTIFACTS+27;
 	static{
 		assignItemRect(ARTIFACT_CLOAK,      9,  15);
 		assignItemRect(ARTIFACT_ARMBAND,    16, 13);
@@ -333,6 +337,8 @@ public class ItemSpriteSheet {
 		assignItemRect(ARTIFACT_STATUEPEPE1,16, 16);
 		assignItemRect(ARTIFACT_STATUEPEPE2,16, 16);
 		assignItemRect(ARTIFACT_STATUEPEPE3,16, 16);
+		assignItemRect(ARTIFACT_PIPE,       16, 16);
+		assignItemRect(ARTIFACT_GRINDER,    16, 16);
 	}
 
 	private static final int SHROOMS        	=                               xy(1, 19);  //16 slots
@@ -361,11 +367,15 @@ public class ItemSpriteSheet {
 	public static final int SCROLL_GYFU     = SCROLLS+4;
 	public static final int SCROLL_RAIDO    = SCROLLS+5;
 	public static final int SCROLL_ISAZ     = SCROLLS+6;
-	public static final int SCROLL_MANNAZ   = SCROLLS+7;
+	public static final int SCROLL_ALGIZ    = SCROLLS+7;
 	public static final int SCROLL_NAUDIZ   = SCROLLS+8;
 	public static final int SCROLL_BERKANAN = SCROLLS+9;
 	public static final int SCROLL_ODAL     = SCROLLS+10;
 	public static final int SCROLL_TIWAZ    = SCROLLS+11;
+	public static final int SCROLL_JERA     = SCROLLS+12;
+	public static final int SCROLL_DAGAZ    = SCROLLS+13;
+	public static final int SCROLL_EHWAZ    = SCROLLS+14;
+	public static final int SCROLL_MANNAZ   = SCROLLS+15;
 	static {
 		for (int i = SCROLLS; i < SCROLLS+16; i++)
 			assignItemRect(i, 15, 14);
@@ -384,6 +394,10 @@ public class ItemSpriteSheet {
 	public static final int POTION_CHARCOAL = POTIONS+9;
 	public static final int POTION_SILVER   = POTIONS+10;
 	public static final int POTION_IVORY    = POTIONS+11;
+	public static final int POTION_SICKGREEN= POTIONS+12;
+	public static final int POTION_AQUA		= POTIONS+13;
+	public static final int POTION_DARKGREEN= POTIONS+14;
+	public static final int POTION_BLOODY   = POTIONS+15;
 	static {
 		for (int i = POTIONS; i < POTIONS+16; i++)
 			assignItemRect(i, 10, 14);
@@ -402,6 +416,10 @@ public class ItemSpriteSheet {
 	public static final int SEED_EARTHROOT  = SEEDS+9;
 	public static final int SEED_FADELEAF   = SEEDS+10;
 	public static final int SEED_BLANDFRUIT = SEEDS+11;
+	public static final int SEED_DEWCATCHER = SEEDS+12;
+	public static final int SEED_AQUA 		= SEEDS+13;
+	public static final int SEED_DARKGREEN  = SEEDS+14;
+	public static final int SEED_BONEBLOOM 	= SEEDS+15;
 	static{
 		for (int i = SEEDS; i < SEEDS+16; i++)
 			assignItemRect(i, 10, 10);
@@ -420,6 +438,7 @@ public class ItemSpriteSheet {
 	public static final int PUMPKIN_PIE = FOOD+7;
 	public static final int CANDY_CANE  = FOOD+8;
 	public static final int MIGOEGG     = FOOD+9;
+	public static final int ROTTEN_FLESH= FOOD+10;
 	static{
 		assignItemRect(MEAT,        15, 11);
 		assignItemRect(STEAK,       15, 11);
@@ -431,6 +450,7 @@ public class ItemSpriteSheet {
 		assignItemRect(PUMPKIN_PIE, 16, 12);
 		assignItemRect(CANDY_CANE,  13, 16);
 		assignItemRect(MIGOEGG,     16, 14);
+		assignItemRect(ROTTEN_FLESH,15, 11);
 	}
 
 	private static final int QUEST  	=                                       xy(1, 26);  //32 slots
@@ -475,6 +495,7 @@ public class ItemSpriteSheet {
 	public static final int VIALF1      = BAGS+7;
 	public static final int VIALF2      = BAGS+8;
 	public static final int VIALF3      = BAGS+9;
+	public static final int WATERBAG    = BAGS+10;
 	static{
 		assignItemRect(VIAL,        12, 12);
 		assignItemRect(POUCH,       14, 15);
@@ -486,6 +507,7 @@ public class ItemSpriteSheet {
 		assignItemRect(VIALF1,      12, 12);
 		assignItemRect(VIALF2,      12, 12);
 		assignItemRect(VIALF3,      12, 12);
+		assignItemRect(WATERBAG,    16, 16);
 	}
 
 	                                                                                    //64 free slots

@@ -47,6 +47,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CheckedCell;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Flare;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Amulet;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Ankh;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Dewdrop;
@@ -1397,6 +1398,7 @@ public class Hero extends Char {
 			spend(-cooldown());
 
 			new Flare(8, 32).color(0xFFFF66, true).show(sprite, 2f);
+			SpellSprite.show(this, SpellSprite.SCROLL_EXORCISM, SpellSprite.COLOUR_HOLY);
 			CellEmitter.get(this.pos).start(Speck.factory(Speck.LIGHT), 0.2f, 3);
 
 			ankh.detach(belongings.backpack);
@@ -1676,7 +1678,7 @@ public class Hero extends Char {
 		exp = 0;
 		
 		belongings.resurrect( resetLevel );
-
+		SpellSprite.show(this, SpellSprite.SCROLL_UPGRADE_SMALL, SpellSprite.COLOUR_HOLY);
 		live();
 	}
 	
