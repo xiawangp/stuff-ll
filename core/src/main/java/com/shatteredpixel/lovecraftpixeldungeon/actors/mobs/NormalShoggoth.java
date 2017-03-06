@@ -31,6 +31,9 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Ooze;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.ElmoParticle;
+import com.shatteredpixel.lovecraftpixeldungeon.items.PurpleGooDrop;
+import com.shatteredpixel.lovecraftpixeldungeon.items.RedGooDrop;
+import com.shatteredpixel.lovecraftpixeldungeon.items.YellowGooDrop;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfPsionicBlast;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Grim;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
@@ -199,8 +202,26 @@ public class NormalShoggoth extends Mob {
 
 	@Override
 	public void die( Object cause ) {
-		
 		super.die( cause );
+		switch (Random.Int(0, 20)){
+			case 0:
+			case 1:
+				Dungeon.level.drop(new PurpleGooDrop(), this.pos);
+				break;
+			case 2:
+			case 3:
+			case 4:
+				Dungeon.level.drop(new RedGooDrop(), this.pos);
+				break;
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+				Dungeon.level.drop(new YellowGooDrop(), this.pos);
+				break;
+			default:
+				break;
+		}
 	}
 
 	private final String PUMPEDUP = "pumpedup";

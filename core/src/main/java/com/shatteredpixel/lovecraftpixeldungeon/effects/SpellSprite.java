@@ -89,9 +89,9 @@ public class SpellSprite extends Image {
 	
 	public SpellSprite() {
 		super( Assets.SPELL_ICONS );
-		
+
 		if (film == null) {
-			film = new TextureFilm( texture, SIZE );
+			film = new TextureFilm( texture, SIZE, SIZE );
 		}
 	}
 	

@@ -218,6 +218,78 @@ public class DewVial extends Item {
 		updateQuickslot();
 	}
 
+	public void collectRedGooDew( RedGooDrop dew ) {
+
+		GLog.i( Messages.get(this, "collected") );
+		volume += dew.quantity*dew.value;
+		if (volume >= MAX_VOLUME) {
+			volume = MAX_VOLUME;
+			GLog.p( Messages.get(this, "full") );
+		}
+
+		weight = (volume/10) + 1;
+
+		if(isFull()){
+			image = ItemSpriteSheet.VIALF3;
+		} else if(volume == MAX_VOLUME/2){
+			image = ItemSpriteSheet.VIALF2;
+		} else if(volume >= 1){
+			image = ItemSpriteSheet.VIALF1;
+		} else {
+			image = ItemSpriteSheet.VIAL;
+		}
+
+		updateQuickslot();
+	}
+
+	public void collectYellowGooDew( YellowGooDrop dew ) {
+
+		GLog.i( Messages.get(this, "collected") );
+		volume += dew.quantity*dew.value;
+		if (volume >= MAX_VOLUME) {
+			volume = MAX_VOLUME;
+			GLog.p( Messages.get(this, "full") );
+		}
+
+		weight = (volume/10) + 1;
+
+		if(isFull()){
+			image = ItemSpriteSheet.VIALF3;
+		} else if(volume == MAX_VOLUME/2){
+			image = ItemSpriteSheet.VIALF2;
+		} else if(volume >= 1){
+			image = ItemSpriteSheet.VIALF1;
+		} else {
+			image = ItemSpriteSheet.VIAL;
+		}
+
+		updateQuickslot();
+	}
+
+	public void collectPurpleGooDew( PurpleGooDrop dew ) {
+
+		GLog.i( Messages.get(this, "collected") );
+		volume += dew.quantity*dew.value;
+		if (volume >= MAX_VOLUME) {
+			volume = MAX_VOLUME;
+			GLog.p( Messages.get(this, "full") );
+		}
+
+		weight = (volume/10) + 1;
+
+		if(isFull()){
+			image = ItemSpriteSheet.VIALF3;
+		} else if(volume == MAX_VOLUME/2){
+			image = ItemSpriteSheet.VIALF2;
+		} else if(volume >= 1){
+			image = ItemSpriteSheet.VIALF1;
+		} else {
+			image = ItemSpriteSheet.VIAL;
+		}
+
+		updateQuickslot();
+	}
+
 	public void collectGreenDew( GreenDewdrop dew ) {
 
 		GLog.i( Messages.get(this, "collected") );

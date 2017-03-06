@@ -27,22 +27,19 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.HeroSubClass;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.CharSprite;
-import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
-public class GreenDewdrop extends Dewdrop {
+public class PurpleGooDrop extends Item {
 	
 	{
-		image = ItemSpriteSheet.GREEN_DEWDROP;
+		image = ItemSpriteSheet.GOO_DROP_PURPLE;
 		
 		stackable = true;
-
-		glowing();
 	}
 
-	public final int value = 3;
+	public final int value = 14;
 	
 	@Override
 	public boolean doPickUp( Hero hero ) {
@@ -68,7 +65,7 @@ public class GreenDewdrop extends Dewdrop {
 			
 		} else {
 			
-			vial.collectGreenDew(this);
+			vial.collectPurpleGooDew( this );
 			
 		}
 		
@@ -76,13 +73,6 @@ public class GreenDewdrop extends Dewdrop {
 		hero.spendAndNext( TIME_TO_PICK_UP );
 		
 		return true;
-	}
-
-	private static final ItemSprite.Glowing GLOW = new ItemSprite.Glowing( 0x48EC5B );
-
-	@Override
-	public ItemSprite.Glowing glowing() {
-		return GLOW;
 	}
 
 	@Override
