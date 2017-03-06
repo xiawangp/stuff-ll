@@ -24,6 +24,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.ShadowParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.Armor;
@@ -57,6 +58,7 @@ public class ScrollOfUpgrade extends InventoryScroll {
 			boolean hadGoodEnchant = w.hasGoodEnchant();
 
 			w.upgrade();
+			SpellSprite.show(curUser, SpellSprite.SCROLL_UPGRADE, SpellSprite.COLOUR_HOLY);
 
 			if (hadCursedEnchant && !w.hasCurseEnchant()){
 				removeCurse( Dungeon.hero );
@@ -74,6 +76,7 @@ public class ScrollOfUpgrade extends InventoryScroll {
 			boolean hadGoodGlyph = a.hasGoodGlyph();
 
 			a.upgrade();
+			SpellSprite.show(curUser, SpellSprite.SCROLL_UPGRADE, SpellSprite.COLOUR_HOLY);
 
 			if (hadCursedGlyph && !a.hasCurseGlyph()){
 				removeCurse( Dungeon.hero );
@@ -88,6 +91,7 @@ public class ScrollOfUpgrade extends InventoryScroll {
 			boolean wasCursed = item.cursed;
 
 			item.upgrade();
+			SpellSprite.show(curUser, SpellSprite.SCROLL_UPGRADE, SpellSprite.COLOUR_HOLY);
 
 			if (wasCursed && !item.cursed){
 				removeCurse( Dungeon.hero );
@@ -97,6 +101,7 @@ public class ScrollOfUpgrade extends InventoryScroll {
 			boolean wasCursed = item.cursed;
 
 			item.upgrade();
+			SpellSprite.show(curUser, SpellSprite.SCROLL_UPGRADE, SpellSprite.COLOUR_HOLY);
 
 			if (wasCursed && !item.cursed){
 				if (item.level() < 1){
@@ -108,6 +113,7 @@ public class ScrollOfUpgrade extends InventoryScroll {
 
 		} else {
 			item.upgrade();
+			SpellSprite.show(curUser, SpellSprite.SCROLL_UPGRADE, SpellSprite.COLOUR_HOLY);
 		}
 		
 		Badges.validateItemLevelAquired( item );

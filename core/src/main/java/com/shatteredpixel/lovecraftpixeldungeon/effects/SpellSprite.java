@@ -35,7 +35,37 @@ public class SpellSprite extends Image {
 	public static final int MAP			= 1;
 	public static final int CHARGE		= 2;
 	public static final int MASTERY		= 3;
-	public static final int BERSERK     = 4;
+
+	public static final int SCROLL_IDENTIFY	= 12;
+	public static final int SCROLL_TRANSMUT = 13;
+	public static final int SCROLL_FARSIGHT = 14;
+	public static final int SCROLL_EXORCISM	= 15;
+	public static final int SCROLL_SUNLIGHT	= 16;
+	public static final int SCROLL_DARKNESS	= 17;
+	public static final int SCROLL_CHALLENGE= 18;
+	public static final int SCROLL_TELEPORT	= 19;
+	public static final int SCROLL_MASSHARM = 20;
+	public static final int SCROLL_RAISEDEAD= 21;
+	public static final int SCROLL_UPGRADE	= 22;
+	public static final int SCROLL_ENCHANT	= 23;
+
+	public static final int SCROLL_IDENTIFY_SMALL	= 24;
+    public static final int SCROLL_TRANSMUT_SMALL   = 25;
+    public static final int SCROLL_FARSIGHT_SMALL   = 26;
+    public static final int SCROLL_EXORCISM_SMALL	= 27;
+    public static final int SCROLL_SUNLIGHT_SMALL	= 28;
+    public static final int SCROLL_DARKNESS_SMALL	= 29;
+    public static final int SCROLL_CHALLENGE_SMALL  = 30;
+    public static final int SCROLL_TELEPORT_SMALL	= 31;
+    public static final int SCROLL_MASSHARM_SMALL   = 32;
+    public static final int SCROLL_RAISEDEAD_SMALL  = 33;
+    public static final int SCROLL_UPGRADE_SMALL	= 34;
+    public static final int SCROLL_ENCHANT_SMALL	= 35;
+
+	public static final int COLOUR_HOLY	= 0xFFF799;
+	public static final int COLOUR_RUNE	= 0x3499FF;
+	public static final int COLOUR_DARK	= 0xFF0000;
+	public static final int COLOUR_WILD	= 0xFF00FF;
 	
 	private static final int SIZE	= 16;
 	
@@ -119,7 +149,7 @@ public class SpellSprite extends Image {
 		all.remove( target );
 	}
 	
-	public static void show( Char ch, int index ) {
+	public static void show( Char ch, int index, int color ) {
 		
 		if (!ch.sprite.visible) {
 			return;
@@ -129,11 +159,18 @@ public class SpellSprite extends Image {
 		if (old != null) {
 			old.kill();
 		}
-		
+
 		SpellSprite sprite = GameScene.spellSprite();
 		sprite.revive();
 		sprite.reset( index );
 		sprite.target = ch;
-		all.put( ch,  sprite );
+		sprite.hardlight( color );
+		all.put(ch, sprite);
+	}
+
+	public static void show( Char ch, int index ) {
+
+		show( ch, index, 0xFFFFFF );
+
 	}
 }

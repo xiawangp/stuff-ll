@@ -23,6 +23,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.items.scrolls;
 import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Enchanting;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
@@ -52,6 +53,7 @@ public class ScrollOfMagicalInfusion extends InventoryScroll {
 		Badges.validateItemLevelAquired(item);
 
 		curUser.sprite.emitter().start(Speck.factory(Speck.UP), 0.2f, 3);
+		SpellSprite.show(curUser, SpellSprite.SCROLL_ENCHANT, SpellSprite.COLOUR_WILD);
 		Enchanting.show(curUser, item);
 	}
 

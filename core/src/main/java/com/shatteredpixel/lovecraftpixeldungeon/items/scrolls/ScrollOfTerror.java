@@ -27,6 +27,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Invisibility;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Terror;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Flare;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
@@ -42,6 +43,7 @@ public class ScrollOfTerror extends Scroll {
 	protected void doRead() {
 		
 		new Flare( 5, 32 ).color( 0xFF0000, true ).show( curUser.sprite, 2f );
+		SpellSprite.show(curUser, SpellSprite.SCROLL_CHALLENGE_SMALL, SpellSprite.COLOUR_HOLY);
 		Sample.INSTANCE.play( Assets.SND_READ );
 		Invisibility.dispel();
 		

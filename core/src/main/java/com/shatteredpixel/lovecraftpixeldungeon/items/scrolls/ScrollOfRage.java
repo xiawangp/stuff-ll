@@ -28,6 +28,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Invisibility;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
@@ -64,6 +65,7 @@ public class ScrollOfRage extends Scroll {
 		setKnown();
 		
 		curUser.sprite.centerEmitter().start( Speck.factory( Speck.SCREAM ), 0.3f, 3 );
+		SpellSprite.show(curUser, SpellSprite.SCROLL_CHALLENGE, SpellSprite.COLOUR_DARK);
 		Sample.INSTANCE.play( Assets.SND_CHALLENGE );
 		Invisibility.dispel();
 

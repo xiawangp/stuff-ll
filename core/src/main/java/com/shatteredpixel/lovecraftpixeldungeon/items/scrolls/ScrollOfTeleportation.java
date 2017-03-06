@@ -26,6 +26,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Invisibility;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
@@ -48,6 +49,7 @@ public class ScrollOfTeleportation extends Scroll {
 		setKnown();
 
 		readAnimation();
+		SpellSprite.show(curUser, SpellSprite.SCROLL_TELEPORT, SpellSprite.COLOUR_RUNE);
 	}
 	
 	public static void teleportHero( Hero  hero ) {

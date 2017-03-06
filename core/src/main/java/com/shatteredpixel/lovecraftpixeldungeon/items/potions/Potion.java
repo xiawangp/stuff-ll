@@ -29,6 +29,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Fire;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Burning;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Splash;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ItemStatusHandler;
@@ -207,6 +208,7 @@ public class Potion extends Item {
 		Sample.INSTANCE.play( Assets.SND_DRINK );
 		
 		hero.sprite.operate( hero.pos );
+		SpellSprite.show(curUser, SpellSprite.SCROLL_TRANSMUT_SMALL, SpellSprite.COLOUR_WILD);
 	}
 	
 	@Override

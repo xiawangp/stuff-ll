@@ -23,6 +23,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.items.scrolls;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Weakness;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Flare;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.ShadowParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.Armor;
@@ -62,9 +63,11 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 			if (item != null && item.cursed) {
 				item.cursed = false;
 				procced = true;
+				SpellSprite.show(curUser, SpellSprite.SCROLL_EXORCISM_SMALL, SpellSprite.COLOUR_HOLY);
 			}
 			if (item != null && !item.cursed) {
 				item.identify();
+				SpellSprite.show(curUser, SpellSprite.SCROLL_EXORCISM_SMALL, SpellSprite.COLOUR_RUNE);
 			}
 			if (item instanceof Weapon){
 				Weapon w = (Weapon) item;

@@ -22,6 +22,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.items.scrolls;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Identification;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
@@ -40,6 +41,7 @@ public class ScrollOfIdentify extends InventoryScroll {
 	protected void onItemSelected( Item item ) {
 		
 		curUser.sprite.parent.add( new Identification( curUser.sprite.center().offset( 0, -16 ) ) );
+		SpellSprite.show(curUser, SpellSprite.SCROLL_IDENTIFY, SpellSprite.COLOUR_RUNE);
 		
 		item.identify();
 		GLog.i( Messages.get(this, "it_is", item) );

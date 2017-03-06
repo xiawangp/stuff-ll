@@ -112,7 +112,7 @@ public class Berserk extends Buff {
 				BuffIndicator.refreshHero();
 				target.SHLD = shield.maxShield() * 5;
 
-				SpellSprite.show(target, SpellSprite.BERSERK);
+				SpellSprite.show(target, SpellSprite.SCROLL_CHALLENGE_SMALL, SpellSprite.COLOUR_DARK);
 				Sample.INSTANCE.play( Assets.SND_CHALLENGE );
 				GameScene.flash(0xFF0000);
 			}
