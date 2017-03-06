@@ -235,7 +235,7 @@ public class Generator {
 			ScrollOfLullaby.class,
 			ScrollOfMagicalInfusion.class,
 			ScrollOfPsionicBlast.class,
-			ScrollOfMirrorImage.class };
+			ScrollOfMirrorImage.class};
 		Category.SCROLL.probs = new float[]{ 30, 10, 20, 0, 15, 15, 12, 8, 8, 0, 4, 10 };
 		
 		Category.POTION.classes = new Class<?>[]{

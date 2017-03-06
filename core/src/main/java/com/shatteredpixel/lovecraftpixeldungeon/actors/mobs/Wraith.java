@@ -23,8 +23,11 @@ package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Terror;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Vertigo;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.ShadowParticle;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Grim;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
@@ -49,6 +52,9 @@ public class Wraith extends Mob {
 		EXP = 0;
 		
 		flying = true;
+
+		loot = Generator.random(Generator.Category.SCROLL);
+		lootChance = 0.5f;
 
 		properties.add(Property.UNDEAD);
 	}
@@ -89,8 +95,16 @@ public class Wraith extends Mob {
 		state = WANDERING;
 		return true;
 	}
-	
-	public static void spawnAround( int pos ) {
+
+	@Override
+	public int attackProc(Char enemy, int damage) {
+		if(Random.Int(5) == 5){
+			Buff.affect(enemy, Vertigo.class, 2f);
+		}
+		return super.attackProc(enemy, damage);
+	}
+
+	public static void spawnAround(int pos ) {
 		for (int n : PathFinder.NEIGHBOURS4) {
 			int cell = pos + n;
 			if (Level.passable[cell] && Actor.findChar( cell ) == null) {
