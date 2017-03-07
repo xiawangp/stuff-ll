@@ -30,6 +30,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.effects.BannerSprites;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.BannerSprites.Type;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.playername.NameGenerator;
 import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.playername.Playername;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.Archs;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.ExitButton;
@@ -50,7 +51,9 @@ import com.watabou.noosa.particles.BitmaskEmitter;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.ui.Button;
 import com.watabou.utils.Callback;
+import com.watabou.utils.Random;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class StartScene extends PixelScene {
@@ -291,7 +294,12 @@ public class StartScene extends PixelScene {
 
 		Dungeon.hero = null;
 		if(Dungeon.hero.playername == "?" || Dungeon.hero.playername == null || Dungeon.hero.playername == Messages.get(TitleScene.class, "playernamerandomname")){
-			Dungeon.hero.playername = Playername.makeDeadPlayerName();
+			try {
+				Dungeon.hero.playername = new NameGenerator(Assets.SCRIPT_ELVENNAMES).compose(Random.Int(3, 5));
+			} catch (IOException e) {
+				e.printStackTrace();
+				Dungeon.hero.playername = Playername.makeDeadPlayerName();
+			}
 		}
 		InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
 
