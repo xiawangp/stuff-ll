@@ -33,6 +33,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.food.Food;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicMapping;
+import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfThunderstorm;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.lovecraftpixeldungeon.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Dagger;
@@ -95,6 +96,8 @@ public enum HeroClass {
 		new FoodBag().identify().collect();
 
 		Dungeon.gold = 1200;
+
+		new ScrollOfThunderstorm().collect();
 	}
 
 	public Badges.Badge masteryBadge() {

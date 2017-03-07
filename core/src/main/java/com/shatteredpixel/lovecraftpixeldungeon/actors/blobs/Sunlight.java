@@ -27,7 +27,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.plants.Plant;
-import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.watabou.utils.Random;
 
 public class Sunlight extends Blob {
@@ -45,8 +44,11 @@ public class Sunlight extends Blob {
 					Dungeon.level.map[cell] = Terrain.GRASS;
 				} else if(Dungeon.level.map[cell] == Terrain.GRASS){
 					Dungeon.level.map[cell] = Terrain.HIGH_GRASS;
+				} else if(Dungeon.level.map[cell] == Terrain.EMPTY_DECO){
+					Dungeon.level.map[cell] = Terrain.GRASS;
+				} else if(Dungeon.level.map[cell] == Terrain.EMPTY){
+					Dungeon.level.map[cell] = Terrain.EMPTY_DECO;
 				} else if(Dungeon.level.map[cell] == Terrain.HIGH_GRASS){
-					GLog.p("spawn!");
 					int rand = Random.Int(0, 2);
 					if(rand == 0){
 						Dungeon.level.plant((Plant.Seed)Generator.random(Generator.Category.SEED), cell);

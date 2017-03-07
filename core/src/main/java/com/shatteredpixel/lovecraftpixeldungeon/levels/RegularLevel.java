@@ -151,7 +151,8 @@ public abstract class RegularLevel extends Level {
 			}
 		}
 
-		if(Dungeon.depth != 5 && Dungeon.depth != 10 && Dungeon.depth != 15 && Dungeon.depth != 20 && Dungeon.depth != 25){
+		//thanks HoboMasta
+		if(Dungeon.depth % 5 != 0){
 			Room boss = null;
 			for (Room r : roomExit.connected.keySet()) {
 				if (r.connected.size() == 1 && (r.width()-1)*(r.height()-1) >= LevelBossPainter.spaceNeeded()) {
@@ -167,7 +168,8 @@ public abstract class RegularLevel extends Level {
 			}
 		}
 
-		if(Dungeon.depth != 5 && Dungeon.depth != 10 && Dungeon.depth != 15 && Dungeon.depth != 20 && Dungeon.depth != 25 && !Dungeon.shopOnLevel() && GETGenerator() && !Dungeon.bossLevel( Dungeon.depth + 1 ) && !pepespanwed){
+		//thanks HoboMasta
+		if(Dungeon.depth % 5 != 0 && !Dungeon.shopOnLevel() && GETGenerator() && !Dungeon.bossLevel( Dungeon.depth + 1 ) && !pepespanwed){
 			Room boss = null;
 			for (Room r : roomExit.connected.keySet()) {
 				if (r.connected.size() == 1 && (r.width()-1)*(r.height()-1) >= KekTemplePainter.spaceNeeded()) {
