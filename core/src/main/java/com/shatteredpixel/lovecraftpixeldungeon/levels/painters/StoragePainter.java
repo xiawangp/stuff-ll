@@ -20,8 +20,8 @@
  */
 package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
+import com.shatteredpixel.lovecraftpixeldungeon.items.Ancientpot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
-import com.shatteredpixel.lovecraftpixeldungeon.items.Honeypot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
@@ -49,7 +49,7 @@ public class StoragePainter extends Painter {
 				pos = level.pointToCell(room.random());
 			} while (level.map[pos] != floor);
 			if (honeyPot){
-				level.drop( new Honeypot(), pos);
+				level.drop( new Ancientpot(), pos);
 				honeyPot = false;
 			} else
 				level.drop( prize( level ), pos );

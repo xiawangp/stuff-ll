@@ -27,8 +27,8 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Terror;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Ancientpot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Gold;
-import com.shatteredpixel.lovecraftpixeldungeon.items.Honeypot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.MasterThievesArmband;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
@@ -97,7 +97,7 @@ public class Thief extends Mob {
 		if (item != null) {
 			Dungeon.level.drop( item, pos ).sprite.drop();
 			//updates position
-			if (item instanceof Honeypot.ShatteredPot) ((Honeypot.ShatteredPot)item).setHolder( this );
+			if (item instanceof Ancientpot.ShatteredPot) ((Ancientpot.ShatteredPot)item).setHolder( this );
 		}
 	}
 
@@ -148,13 +148,13 @@ public class Thief extends Mob {
 			Dungeon.quickslot.clearItem( item );
 			item.updateQuickslot();
 
-			if (item instanceof Honeypot){
-				this.item = ((Honeypot)item).shatter(this, this.pos);
+			if (item instanceof Ancientpot){
+				this.item = ((Ancientpot)item).shatter(this, this.pos);
 				item.detach( hero.belongings.backpack );
 			} else {
 				this.item = item.detach( hero.belongings.backpack );
-				if ( item instanceof Honeypot.ShatteredPot)
-					((Honeypot.ShatteredPot)item).setHolder(this);
+				if ( item instanceof Ancientpot.ShatteredPot)
+					((Ancientpot.ShatteredPot)item).setHolder(this);
 			}
 
 			return true;

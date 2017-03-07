@@ -24,8 +24,13 @@ import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Storm;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Invisibility;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class ScrollOfThunderstorm extends Scroll {
 
@@ -43,7 +48,16 @@ public class ScrollOfThunderstorm extends Scroll {
 		Sample.INSTANCE.play( Assets.SND_BLAST );
 		Invisibility.dispel();
 
-		GameScene.add( Blob.seed( curUser.pos, 1000, Storm.class ) );
+		ArrayList<Integer> candidates = new ArrayList<Integer>();
+		for (int i : PathFinder.NEIGHBOURS8){
+			if (Level.passable[curUser.pos+i]){
+				candidates.add(curUser.pos+i);
+			}
+		}
+
+		int startpoint = Random.element(candidates);
+
+		GameScene.add( Blob.seed( startpoint, 1000*curUser.STR, Storm.class ) );
 		
 		setKnown();
 

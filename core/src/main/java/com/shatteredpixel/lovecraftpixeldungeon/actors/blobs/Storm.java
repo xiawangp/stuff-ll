@@ -44,7 +44,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
-import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 public class Storm extends Blob {
@@ -59,8 +58,8 @@ public class Storm extends Blob {
 			for (int j = area.top; j < area.bottom; j++) {
 				cell = i + j * Dungeon.level.width();
 				if(Actor.findChar(cell) != null){
-					Buff.affect(Actor.findChar(cell), Blindness.class, Vertigo.DURATION);
-					Buff.affect(Actor.findChar(cell), Slow.class, Vertigo.DURATION);
+					Buff.affect(Actor.findChar(cell), Blindness.class, Vertigo.DURATION/10);
+					Buff.affect(Actor.findChar(cell), Slow.class, Vertigo.DURATION/10);
 				}
 
 				if (Random.Int(20) < 11
@@ -85,11 +84,10 @@ public class Storm extends Blob {
 					Buff.detach(ch, Burning.class);
 				}
 
-				if(Random.Int(20) < 8){
+				if(Random.Int(20) < 3){
 					thunderstrike(cell);
-					viewed();
 				} else {
-					if(Random.Int(10) < 5){
+					if(Random.Int(40) == 5){
 						listen();
 					}
 				}
@@ -98,8 +96,7 @@ public class Storm extends Blob {
 		}
 	}
 
-	public void viewed() {
-		GameScene.flash(0x888888);
+	public static void viewed() {
 		Sample.INSTANCE.play(Assets.SND_BLAST);
 		Camera.main.shake(3, 0.3f);
 		Dungeon.hero.interrupt();
@@ -113,39 +110,35 @@ public class Storm extends Blob {
 
 	public static void thunderstrike( int cell ) {
 
-		Emitter emitter = CellEmitter.get( cell );
+		Char is = Actor.findChar( cell );
 
-		for( int n : PathFinder.NEIGHBOURS8) {
+		if (is != null) {
+			Emitter emitter = CellEmitter.get( cell );
 
-			Char ch = Actor.findChar( cell + n );
+			int power = Random.IntRange(is.HT / 2, is.HT / 3);
 
-			if (ch != null) {
+			if ( is instanceof Hero) {
+				is.damage(is.HP/8, LightningTrap.LIGHTNING);
+				viewed();
+				Sample.INSTANCE.play(Assets.SND_BLAST);
+			} else {
+				is.damage(power, LightningTrap.LIGHTNING);
+			}
 
-				int power = Random.IntRange(ch.HT / 3, ch.HT * 2 / 3);
+			if( Dungeon.visible[ cell ] ) {
 
-				if ( ch instanceof Hero) {
-					power = power / 2;
-				}
+				emitter.parent.add(new Lightning(cell + Dungeon.level.width(), cell - Dungeon.level.width(), null));
 
+				emitter.parent.add(new Lightning(cell - 1, cell + 1, null));
 
-				ch.damage(n == 0 ? power : power / 2, LightningTrap.LIGHTNING);
+				emitter.burst(Speck.factory(Speck.DISCOVER), Random.Int(4, 6));
 
 			}
-		}
 
-		if( Dungeon.visible[ cell ] ) {
-
-			emitter.parent.add(new Lightning(cell + Dungeon.level.width(), cell - Dungeon.level.width(), null));
-
-			emitter.parent.add(new Lightning(cell - 1, cell + 1, null));
-
-			emitter.burst(Speck.factory(Speck.DISCOVER), Random.Int(4, 6));
-
-		}
-
-		for (Mob mob : Dungeon.level.mobs) {
-			if (Dungeon.level.distance( cell, mob.pos ) <= 4 ) {
-				mob.beckon(cell);
+			for (Mob mob : Dungeon.level.mobs) {
+				if (Dungeon.level.distance( cell, mob.pos ) <= 4 ) {
+					mob.beckon(cell);
+				}
 			}
 		}
 	}

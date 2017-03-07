@@ -22,11 +22,11 @@ package com.shatteredpixel.lovecraftpixeldungeon.windows;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Ancientpot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Ankh;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Bomb;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Gold;
-import com.shatteredpixel.lovecraftpixeldungeon.items.Honeypot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Stick;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Adamantium;
@@ -217,7 +217,7 @@ public class WndCraft extends WndTabbed {
 			Dungeon.level.drop(new MagesStaff(), Dungeon.hero.pos);
 		} else if(craftcode.contains("OnOOnOOOO")){
 			items.clear();
-			Dungeon.level.drop(new Honeypot.ShatteredPot(), Dungeon.hero.pos);
+			Dungeon.level.drop(new Ancientpot.ShatteredPot(), Dungeon.hero.pos);
 		} else if(craftcode.contains("nnnnDnnnn")){
 			items.clear();
 			Dungeon.level.drop(new Gold().quantity(10), Dungeon.hero.pos);

@@ -25,11 +25,11 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Belongings;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.npcs.ImpShopkeeper;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.npcs.Shopkeeper;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Ancientpot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Ankh;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Bomb;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap;
-import com.shatteredpixel.lovecraftpixeldungeon.items.Honeypot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.MerchantsBeacon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Stylus;
@@ -203,7 +203,7 @@ public class ShopPainter extends Painter {
 				break;
 			case 3:
 			case 4:
-				itemsToSpawn.add( new Honeypot() );
+				itemsToSpawn.add( new Ancientpot() );
 				break;
 		}
 

@@ -25,7 +25,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Bee;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.AirElement;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Splash;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
@@ -39,7 +39,7 @@ import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class Honeypot extends Item {
+public class Ancientpot extends Item {
 	
 	public static final String AC_SHATTER	= "SHATTER";
 	
@@ -110,20 +110,20 @@ public class Honeypot extends Item {
 		}
 		
 		if (newPos != -1) {
-			Bee bee = new Bee();
-			bee.spawn( Dungeon.depth );
-			bee.setPotInfo( pos, owner );
-			bee.HP = bee.HT;
-			bee.pos = newPos;
+			AirElement airElement = new AirElement();
+			airElement.spawn( Dungeon.depth );
+			airElement.setPotInfo( pos, owner );
+			airElement.HP = airElement.HT;
+			airElement.pos = newPos;
 			
-			GameScene.add( bee );
-			Actor.addDelayed( new Pushing( bee, pos, newPos ), -1f );
+			GameScene.add( airElement );
+			Actor.addDelayed( new Pushing( airElement, pos, newPos ), -1f );
+
+			airElement.sprite.alpha( 0 );
+			airElement.sprite.parent.add( new AlphaTweener( airElement.sprite, 1, 0.15f ) );
 			
-			bee.sprite.alpha( 0 );
-			bee.sprite.parent.add( new AlphaTweener( bee.sprite, 1, 0.15f ) );
-			
-			Sample.INSTANCE.play( Assets.SND_BEE );
-			return new ShatteredPot().setBee( bee );
+			Sample.INSTANCE.play( Assets.SND_MISS );
+			return new ShatteredPot().setBee( airElement );
 		} else {
 			return this;
 		}
@@ -195,7 +195,7 @@ public class Honeypot extends Item {
 			if (Dungeon.depth != beeDepth)
 				return;
 
-			Bee bee = (Bee)Actor.findById( myBee );
+			AirElement bee = (AirElement)Actor.findById( myBee );
 			if (bee != null)
 				bee.setPotInfo( cell, holder );
 		}

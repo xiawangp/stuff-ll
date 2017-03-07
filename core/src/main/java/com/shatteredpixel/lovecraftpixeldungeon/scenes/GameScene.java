@@ -37,8 +37,8 @@ import com.shatteredpixel.lovecraftpixeldungeon.effects.Flare;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.FloatingText;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Ripple;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Ancientpot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap;
-import com.shatteredpixel.lovecraftpixeldungeon.items.Honeypot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.PotionBandolier;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.ScrollHolder;
@@ -359,8 +359,8 @@ public class GameScene extends PixelScene {
 					((Potion)item).shatter( pos );
 				} else if (item instanceof Plant.Seed) {
 					Dungeon.level.plant( (Plant.Seed)item, pos );
-				} else if (item instanceof Honeypot) {
-					Dungeon.level.drop(((Honeypot) item).shatter(null, pos), pos);
+				} else if (item instanceof Ancientpot) {
+					Dungeon.level.drop(((Ancientpot) item).shatter(null, pos), pos);
 				} else {
 					Dungeon.level.drop( item, pos );
 				}
