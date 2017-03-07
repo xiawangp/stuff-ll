@@ -32,14 +32,14 @@ public class AirElementSprite extends MobSprite {
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 16 );
 		
-		idle = new Animation( 24, true );
+		idle = new Animation( 12, true );
 		idle.frames( frames, 0, 1, 2, 1, 3);
 		
-		run = new Animation( 24, true );
+		run = new Animation( 15, true );
 		run.frames( frames, 1, 3 );
 		
-		attack = new Animation( 10, false );
-		attack.frames( frames, 1, 4, 5, 6, 6, 6, 6, 2 );
+		attack = new Animation( 20, false );
+		attack.frames( frames, 1, 4, 5, 6, 2 );
 		
 		die = new Animation( 20, false );
 		die.frames( frames, 7, 8, 9, 10, 11, 12 );

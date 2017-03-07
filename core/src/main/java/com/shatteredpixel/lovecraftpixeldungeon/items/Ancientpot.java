@@ -29,8 +29,10 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.AirElement;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Splash;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
+import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.windows.WndBag;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundle;
@@ -147,6 +149,8 @@ public class Ancientpot extends Item {
 	//The bee's broken 'home', all this item does is let its bee know where it is, and who owns it (if anyone).
 	public static class ShatteredPot extends Item {
 
+		public static final String AC_FILL	= "FILL";
+
 		{
 			image = ItemSpriteSheet.SHATTPOT;
 			stackable = false;
@@ -159,6 +163,22 @@ public class Ancientpot extends Item {
 			myBee = bee.id();
 			beeDepth = Dungeon.depth;
 			return this;
+		}
+
+		@Override
+		public ArrayList<String> actions(Hero hero) {
+			ArrayList<String> actions = super.actions(hero);
+			actions.add( AC_FILL );
+			return actions;
+		}
+
+		@Override
+		public void execute(Hero hero, String action) {
+			super.execute(hero, action);
+
+			if(action.equals(AC_FILL)){
+				GameScene.selectItem( itemSelector, WndBag.Mode.ANCIENTPOT, Messages.get(this, "fill") );
+			}
 		}
 
 		@Override
@@ -226,5 +246,16 @@ public class Ancientpot extends Item {
 			myBee = bundle.getInt( MYBEE );
 			beeDepth = bundle.getInt( BEEDEPTH );
 		}
+
+		private final WndBag.Listener itemSelector = new WndBag.Listener() {
+			@Override
+			public void onSelect( Item item ) {
+				if (item != null) {
+					ShatteredPot.this.detach(curUser.belongings.backpack);
+					curUser.sprite.operate(curUser.pos);
+					new Ancientpot().collect();
+				}
+			}
+		};
 	}
 }

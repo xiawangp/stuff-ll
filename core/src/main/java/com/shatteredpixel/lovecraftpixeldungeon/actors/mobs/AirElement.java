@@ -40,12 +40,10 @@ public class AirElement extends Mob {
 	
 	{
 		spriteClass = AirElementSprite.class;
-		
-		viewDistance = 10;
 
 		EXP = 1;
 		
-		flying = true;
+		//flying = true;
 		state = WANDERING;
 	}
 
@@ -79,8 +77,8 @@ public class AirElement extends Mob {
 	public void spawn( int level ) {
 		this.level = level;
 		
-		HT = (2 + level) * 4;
-		defenseSkill = 9 + level;
+		HT = (5 + level) * 5;
+		defenseSkill = 12 + level;
 	}
 
 	public void setPotInfo(int potPos, Char potHolder){
