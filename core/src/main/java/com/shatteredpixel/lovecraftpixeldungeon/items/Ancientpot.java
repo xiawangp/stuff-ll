@@ -251,6 +251,7 @@ public class Ancientpot extends Item {
 			@Override
 			public void onSelect( Item item ) {
 				if (item != null) {
+					item.detach(curUser.belongings.backpack);
 					ShatteredPot.this.detach(curUser.belongings.backpack);
 					curUser.sprite.operate(curUser.pos);
 					new Ancientpot().collect();
