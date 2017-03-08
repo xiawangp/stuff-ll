@@ -48,6 +48,7 @@ public class ScrollOfRecharging extends Scroll {
 		Sample.INSTANCE.play( Assets.SND_READ );
 		Invisibility.dispel();
 
+		curUser.decreaseMentalHealth(1);
 		GLog.i( Messages.get(this, "surge") );
 		SpellSprite.show( curUser, SpellSprite.CHARGE );
 		setKnown();

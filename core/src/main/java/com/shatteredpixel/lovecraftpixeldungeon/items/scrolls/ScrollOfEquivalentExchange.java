@@ -47,6 +47,7 @@ public class ScrollOfEquivalentExchange extends Scroll {
 			curUser.belongings.weapon.level(aup);
 			curUser.belongings.armor.level(wup);
 			SpellSprite.show(curUser, SpellSprite.SCROLL_ENCHANT, SpellSprite.COLOUR_RUNE);
+			curUser.decreaseMentalHealth(wup);
 		} else {
 			if(curUser.belongings.misc1 != null && curUser.belongings.misc2 != null){
 				int m1 = curUser.belongings.misc1.level();
@@ -54,6 +55,7 @@ public class ScrollOfEquivalentExchange extends Scroll {
 				curUser.belongings.misc2.level(m1);
 				curUser.belongings.misc1.level(m2);
 				SpellSprite.show(curUser, SpellSprite.SCROLL_ENCHANT, SpellSprite.COLOUR_RUNE);
+				curUser.decreaseMentalHealth(m1);
 			} else {
 				for(int i = curUser.belongings.backpack.items.size(); i > 0; i--){
 					curUser.exp++;

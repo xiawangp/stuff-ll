@@ -75,7 +75,8 @@ public class ScrollOfMagicMapping extends Scroll {
 		if (noticed) {
 			Sample.INSTANCE.play( Assets.SND_SECRET );
 		}
-		
+
+		curUser.decreaseMentalHealth(6);
 		SpellSprite.show( curUser, SpellSprite.MAP );
 		Sample.INSTANCE.play( Assets.SND_READ );
 		Invisibility.dispel();

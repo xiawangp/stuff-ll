@@ -56,6 +56,7 @@ public class ScrollOfTerror extends Scroll {
 				if (mob.buff(Terror.class) != null){
 					count++;
 					affected = mob;
+					curUser.decreaseMentalHealth(1);
 				}
 			}
 		}

@@ -49,6 +49,7 @@ public class ScrollOfMirrorImage extends Scroll {
 			int p = curUser.pos + PathFinder.NEIGHBOURS8[i];
 			if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
 				respawnPoints.add( p );
+				curUser.decreaseMentalHealth(4);
 			}
 		}
 		

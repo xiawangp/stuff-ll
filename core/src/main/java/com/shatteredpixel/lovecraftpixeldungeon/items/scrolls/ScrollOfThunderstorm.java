@@ -57,6 +57,7 @@ public class ScrollOfThunderstorm extends Scroll {
 
 		int startpoint = Random.element(candidates);
 
+		curUser.decreaseMentalHealth(2);
 		GameScene.add( Blob.seed( startpoint, 1000*curUser.STR, Storm.class ) );
 		
 		setKnown();

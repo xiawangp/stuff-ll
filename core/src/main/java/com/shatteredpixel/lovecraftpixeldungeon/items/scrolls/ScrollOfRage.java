@@ -63,7 +63,8 @@ public class ScrollOfRage extends Scroll {
 
 		GLog.w( Messages.get(this, "roar") );
 		setKnown();
-		
+
+		curUser.decreaseMentalHealth(3);
 		curUser.sprite.centerEmitter().start( Speck.factory( Speck.SCREAM ), 0.3f, 3 );
 		SpellSprite.show(curUser, SpellSprite.SCROLL_CHALLENGE, SpellSprite.COLOUR_DARK);
 		Sample.INSTANCE.play( Assets.SND_CHALLENGE );

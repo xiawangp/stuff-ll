@@ -46,6 +46,7 @@ public class ScrollOfTeleportation extends Scroll {
 		Invisibility.dispel();
 		
 		teleportHero( curUser );
+		curUser.decreaseMentalHealth(6);
 		setKnown();
 
 		readAnimation();

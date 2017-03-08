@@ -58,6 +58,7 @@ public class ScrollOfPsionicBlast extends Scroll {
 		}
 
 		curUser.damage(Math.max(curUser.HT/5, curUser.HP/2), this);
+		curUser.decreaseMentalHealth(5);
 		SpellSprite.show(curUser, SpellSprite.SCROLL_MASSHARM, SpellSprite.COLOUR_WILD);
 		Buff.prolong( curUser, Paralysis.class, Random.Int( 4, 6 ) );
 		Buff.prolong( curUser, Blindness.class, Random.Int( 6, 9 ) );

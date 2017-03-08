@@ -21,18 +21,18 @@
 package com.shatteredpixel.lovecraftpixeldungeon.items.scrolls;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
-import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Blindness;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Corruption;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Invisibility;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Paralysis;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
-import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Alb;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.AlbParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
-import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
-import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Random;
+import com.watabou.noosa.tweeners.AlphaTweener;
+import com.watabou.utils.PathFinder;
 
 public class ScrollOfSummoning extends Scroll {
 
@@ -47,26 +47,38 @@ public class ScrollOfSummoning extends Scroll {
 		
 		Sample.INSTANCE.play( Assets.SND_READ );
 		Invisibility.dispel();
-		
-		for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
-			if (Level.fieldOfView[mob.pos]) {
-				mob.damage(mob.HT, this );
+
+		for (int n : PathFinder.NEIGHBOURS4) {
+			int cell = curUser.pos + n;
+			if (Level.passable[cell] && Actor.findChar( cell ) == null) {
+				curUser.decreaseMentalHealth(2);
+				spawnAt( cell );
 			}
 		}
-
-		curUser.damage(Math.max(curUser.HT/5, curUser.HP/2), this);
-		SpellSprite.show(curUser, SpellSprite.SCROLL_MASSHARM, SpellSprite.COLOUR_WILD);
-		Buff.prolong( curUser, Paralysis.class, Random.Int( 4, 6 ) );
-		Buff.prolong( curUser, Blindness.class, Random.Int( 6, 9 ) );
-		Dungeon.observe();
 		
 		setKnown();
+		readAnimation();
+	}
 
-		curUser.spendAndNext( TIME_TO_READ ); //no animation here, the flash interrupts it anyway.
+	public static Alb spawnAt(int pos ) {
+		if (Level.passable[pos] && Actor.findChar( pos ) == null) {
 
-		if (!curUser.isAlive()) {
-			Dungeon.fail( getClass() );
-			GLog.n( Messages.get(this, "ondeath") );
+			Alb alb = new Alb();
+			if(!Randomer.randomBoolean()){
+				Buff.affect(alb, Corruption.class);
+			}
+			alb.pos = pos;
+			alb.state = alb.HUNTING;
+			GameScene.add( alb, 2f );
+
+			alb.sprite.alpha( 0 );
+			alb.sprite.parent.add( new AlphaTweener( alb.sprite, 1, 0.5f ) );
+
+			alb.sprite.emitter().burst(AlbParticle.FACTORY, 5 );
+
+			return alb;
+		} else {
+			return null;
 		}
 	}
 	

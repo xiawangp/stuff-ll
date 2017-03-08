@@ -74,6 +74,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfSharpshooting;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfTenacity;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfWealth;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.Scroll;
+import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfEquivalentExchange;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicMapping;
@@ -83,8 +84,11 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfPsionicBla
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfRage;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfRemoveCurse;
+import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfSummoning;
+import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfSunlight;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfTerror;
+import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfThunderstorm;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.BlueShroom;
 import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.BlueWhiteShroom;
@@ -235,8 +239,12 @@ public class Generator {
 			ScrollOfLullaby.class,
 			ScrollOfMagicalInfusion.class,
 			ScrollOfPsionicBlast.class,
-			ScrollOfMirrorImage.class};
-		Category.SCROLL.probs = new float[]{ 30, 10, 20, 0, 15, 15, 12, 8, 8, 0, 4, 10 };
+			ScrollOfMirrorImage.class,
+				ScrollOfSunlight.class,
+				ScrollOfThunderstorm.class,
+				ScrollOfEquivalentExchange.class,
+				ScrollOfSummoning.class};
+		Category.SCROLL.probs = new float[]{ 30, 10, 20, 0, 15, 15, 12, 8, 8, 0, 4, 10, 7, 8, 4, 4};
 		
 		Category.POTION.classes = new Class<?>[]{
 			PotionOfHealing.class,

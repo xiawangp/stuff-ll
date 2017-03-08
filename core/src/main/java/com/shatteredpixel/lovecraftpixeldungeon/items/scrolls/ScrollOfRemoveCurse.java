@@ -51,6 +51,7 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 
 		if (procced) {
 			GLog.p( Messages.get(this, "cleansed") );
+			curUser.decreaseMentalHealth(4);
 		} else {
 			GLog.i( Messages.get(this, "not_cleansed") );
 		}
