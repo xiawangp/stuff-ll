@@ -294,12 +294,31 @@ public class StartScene extends PixelScene {
 
 		Dungeon.hero = null;
 		if(Dungeon.hero.playername == "?" || Dungeon.hero.playername == null || Dungeon.hero.playername == Messages.get(TitleScene.class, "playernamerandomname")){
+			String pathfile;
+			switch (Random.Int(0, 3)){
+				case 0:
+					pathfile = Assets.ELVENNAMES;
+					break;
+				case 1:
+					pathfile = Assets.GOBLINNAMES;
+					break;
+				case 2:
+					pathfile = Assets.ROMANNAMES;
+					break;
+				case 4:
+					pathfile = Assets.FANTASYNAMES;
+					break;
+				default:
+					pathfile = Assets.FANTASYNAMES;
+					break;
+			}
 			try {
-				Dungeon.hero.playername = new NameGenerator(Assets.SCRIPT_ELVENNAMES).compose(Random.Int(3, 5));
+				Dungeon.hero.playername = new NameGenerator(pathfile, Game.instance).compose(Random.Int(3, 5));
 			} catch (IOException e) {
 				e.printStackTrace();
 				Dungeon.hero.playername = Playername.makeDeadPlayerName();
 			}
+
 		}
 		InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
 

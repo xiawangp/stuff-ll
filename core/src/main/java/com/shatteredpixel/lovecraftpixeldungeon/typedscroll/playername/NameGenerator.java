@@ -1,8 +1,11 @@
 package com.shatteredpixel.lovecraftpixeldungeon.typedscroll.playername;
 
+import android.content.Context;
+
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -56,25 +59,16 @@ public class NameGenerator {
 
     private String fileName;
 
-    /**
-     * Create new random name generator object. refresh() is automatically called.
-     * @param fileName insert file name, where syllables are located
-     * @throws IOException
-     */
-    public NameGenerator(String fileName) throws IOException{
-        this.fileName = fileName;
-        refresh();
+
+    public NameGenerator(String filename, Context context) throws IOException{
+        fileName = filename;
+        refresh(context);
     }
 
-    /**
-     * Change the file. refresh() is automatically called during the process.
-     * @param fileName insert the file name, where syllables are located.
-     * @throws IOException
-     */
-    public void changeFile(String fileName) throws IOException{
+    public void changeFile(String filename, Context context) throws IOException{
         if(fileName == null) throw new IOException("File name cannot be null");
-        this.fileName = fileName;
-        refresh();
+        fileName = filename;
+        refresh(context);
     }
 
     /**
@@ -82,15 +76,16 @@ public class NameGenerator {
      * is called every time file name is changed or new NameGenerator object created.
      * @throws IOException
      */
-    public void refresh() throws IOException{
+    public void refresh(Context context) throws IOException{
 
-        FileReader input = null;
+        InputStream fIn;
+        InputStreamReader isr;
         BufferedReader bufRead;
         String line;
 
-        input = new FileReader(fileName);
-
-        bufRead = new BufferedReader(input);
+        fIn = context.getAssets().open(fileName, Context.MODE_WORLD_READABLE);
+        isr = new InputStreamReader(fIn);
+        bufRead = new BufferedReader(isr);
         line="";
 
         while(line != null){
@@ -108,6 +103,8 @@ public class NameGenerator {
             }
         }
         bufRead.close();
+        isr.close();
+        fIn.close();
     }
 
     private String upper(String s){

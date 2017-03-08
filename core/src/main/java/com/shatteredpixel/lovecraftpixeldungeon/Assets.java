@@ -138,6 +138,11 @@ public class Assets {
 	public static final String FONT1X       = "font1x.png";
 	public static final String FONT2X       = "font2x.png";
 
+	public static final String ELVENNAMES   = "names/elvennamegenerator.txt";
+	public static final String ROMANNAMES   = "names/romannamegenerator.txt";
+	public static final String GOBLINNAMES  = "names/goblinnamegenerator.txt";
+	public static final String FANTASYNAMES = "names/fantasynamegenerator.txt";
+
 	public static final String THEME	= "theme.ogg";
 	public static final String TUNE		= "game.ogg";
 	public static final String HAPPY	= "surface.ogg";
@@ -189,6 +194,4 @@ public class Assets {
 	public static final String SND_BEE      = "snd_bee.mp3";
 	public static final String SND_DEGRADE  = "snd_degrade.mp3";
 	public static final String SND_MIMIC    = "snd_mimic.mp3";
-
-	public static final String SCRIPT_ELVENNAMES    = "assets/elvennamegenerator.txt";
 }
