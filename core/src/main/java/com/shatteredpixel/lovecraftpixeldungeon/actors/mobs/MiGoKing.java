@@ -52,7 +52,7 @@ public class MiGoKing extends Mob {
 		maxLvl = 5;
 		properties.add(Property.IMMOVABLE);
 
-		//loot = MiGoEgg.class; ?
+		loot = MiGoSword.class;
 		lootChance = 0.8f;
 
 		baseSpeed = 2f;
