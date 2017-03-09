@@ -208,7 +208,7 @@ public class TitleScene extends PixelScene {
 		if(Dungeon.hero.playername == null){
 			placeWndtTxtInput(yourname);
 
-			WndHardNotification pleasehelp = new WndHardNotification(Icons.TYPEDSCROLL.get(), Messages.get(this, "pleasehelp"), Messages.get(this, "pleasehelptxt"), Messages.get(this, "pleasehelprecognized"), 5);
+			WndHardNotification pleasehelp = new WndHardNotification(Icons.TYPEDSCROLL.get(), Messages.get(this, "pleasehelp"), Messages.get(this, "pleasehelptxt"), Messages.get(this, "pleasehelprecognized"), 1);
 			add(pleasehelp);
 		}
 	}

@@ -68,7 +68,8 @@ public class Potion extends Item {
 			PotionOfPurity.class,
 			PotionOfInvisibility.class,
 			PotionOfMight.class,
-			PotionOfFrost.class
+			PotionOfFrost.class,
+			PotionOfWaterWave.class,
 	};
 
 	private static final HashMap<String, Integer> colors = new HashMap<String, Integer>() {
@@ -85,6 +86,7 @@ public class Potion extends Item {
 			put("charcoal",ItemSpriteSheet.POTION_CHARCOAL);
 			put("silver",ItemSpriteSheet.POTION_SILVER);
 			put("ivory",ItemSpriteSheet.POTION_IVORY);
+			put("aqua",ItemSpriteSheet.POTION_AQUA);
 		}
 	};
 	
@@ -146,7 +148,8 @@ public class Potion extends Item {
 			if (isKnown() && (
 					this instanceof PotionOfLiquidFlame ||
 					this instanceof PotionOfToxicGas ||
-					this instanceof PotionOfParalyticGas)) {
+					this instanceof PotionOfParalyticGas ||
+					this instanceof PotionOfWaterWave)) {
 				
 					GameScene.show(
 						new WndOptions( Messages.get(Potion.class, "harmful"),

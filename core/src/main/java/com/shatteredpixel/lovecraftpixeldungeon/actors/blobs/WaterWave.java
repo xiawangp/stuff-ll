@@ -25,10 +25,14 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Burning;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Cripple;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Slow;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.BlobEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.WaterWaveParticle;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
+import com.watabou.utils.Random;
 
 public class WaterWave extends Blob {
 
@@ -45,9 +49,26 @@ public class WaterWave extends Blob {
 
 				if (cur[cell] > 0 && (ch = Actor.findChar( cell )) != null) {
 					if (!ch.immunities().contains(this.getClass()))
-						Buff.prolong( ch, Slow.class, Slow.duration( ch )/5 );
+						Buff.affect(ch, Slow.class, Slow.duration(ch));
+						Buff.affect(ch, Cripple.class, Slow.duration(ch));
 					if(ch == Dungeon.hero){
 						Burning.dispel();
+					}
+				}
+
+				if (Random.Int(20) < 11
+						&& (Dungeon.level.map[cell] == Terrain.GRASS
+						|| Dungeon.level.map[cell] == Terrain.HIGH_GRASS
+						|| Dungeon.level.map[cell] == Terrain.EMPTY
+						|| Dungeon.level.map[cell] == Terrain.EMPTY_DECO
+						|| Dungeon.level.map[cell] == Terrain.EMBERS)) {
+
+					int oldTile = Dungeon.level.map[cell];
+					Dungeon.level.set(cell, Terrain.WATER);
+
+					if (Dungeon.visible[cell]) {
+						GameScene.updateMap( cell );
+						GameScene.discoverTile( cell, oldTile );
 					}
 				}
 			}
