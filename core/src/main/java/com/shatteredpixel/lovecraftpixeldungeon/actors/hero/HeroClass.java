@@ -25,6 +25,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Challenges;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.BrokenSeal;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Waterbag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.ClothArmor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.FoodBag;
@@ -93,6 +94,9 @@ public enum HeroClass {
 
 		new WeaponCase().identify().collect();
 		new FoodBag().identify().collect();
+		Waterbag waterbag = new Waterbag();
+		waterbag.fill();
+		waterbag.identify().collect();
 
 		Dungeon.gold = 1200;
 	}

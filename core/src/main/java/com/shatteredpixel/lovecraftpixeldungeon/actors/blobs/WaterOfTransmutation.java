@@ -28,6 +28,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator.Category;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Waterbag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.Artifact;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMight;
@@ -48,6 +49,12 @@ public class WaterOfTransmutation extends WellWater {
 	
 	@Override
 	protected Item affectItem( Item item ) {
+
+		if (item instanceof Waterbag && !((Waterbag)item).isFull()) {
+			((Waterbag)item).fill();
+			Journal.remove( Feature.WELL_OF_HEALTH );
+			return item;
+		}
 		
 		if (item instanceof MagesStaff) {
 			item = changeStaff( (MagesStaff)item );

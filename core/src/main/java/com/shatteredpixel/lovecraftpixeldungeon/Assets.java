@@ -110,6 +110,7 @@ public class Assets {
 	public static final String KAGEBUN  = "kagebunshin.png";
 	public static final String KEK    	= "frog.png";
 	public static final String ALB		= "alb.png";
+	public static final String MIGOKING = "migoking.png";
 
 	public static final String ITEMS	        = "items.png";
 	public static final String TERRAIN_FEATURES	= "terrain_features.png";
@@ -151,6 +152,17 @@ public class Assets {
 	public static final String SND_CLICK	= "snd_click.mp3";
 	public static final String SND_BADGE	= "snd_badge.mp3";
 	public static final String SND_GOLD		= "snd_gold.mp3";
+
+	public static final String SONGSURFACECOOL	= "coolsurface.mp3";
+	public static final String SONGBOSSAMBIENT	= "bossambient.mp3";
+	public static final String SONGBOSSFIGHT2	= "bossfight2.mp3";
+	public static final String SONGBBOSS		= "songboss.mp3";
+	public static final String SONGCAVES		= "songcaves.mp3";
+	public static final String SONGCAVES2		= "songcaves2.mp3";
+	public static final String SONGICE			= "songice.mp3";
+	public static final String SONGPRISON		= "songprison.mp3";
+	public static final String SONGTEMPLE		= "songtemple.mp3";
+	public static final String SONGTOWN			= "songtown.mp3";
 	
 	public static final String SND_OPEN		= "snd_door_open.mp3";
 	public static final String SND_UNLOCK	= "snd_unlock.mp3";

@@ -32,6 +32,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.ShaftParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.DewVial;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Waterbag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
@@ -63,6 +64,11 @@ public class WaterOfHealth extends WellWater {
 	protected Item affectItem( Item item ) {
 		if (item instanceof DewVial && !((DewVial)item).isFull()) {
 			((DewVial)item).fill();
+			Journal.remove( Feature.WELL_OF_HEALTH );
+			return item;
+		}
+		if (item instanceof Waterbag && !((Waterbag)item).isFull()) {
+			((Waterbag)item).fill();
 			Journal.remove( Feature.WELL_OF_HEALTH );
 			return item;
 		}

@@ -1,6 +1,5 @@
 package com.shatteredpixel.lovecraftpixeldungeon.effects.particles;
 
-import com.shatteredpixel.lovecraftpixeldungeon.effects.MagicMissile;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
@@ -11,7 +10,7 @@ public class AlbParticle extends PixelParticle {
     public static final Emitter.Factory FACTORY = new Emitter.Factory() {
         @Override
         public void emit( Emitter emitter, int index, float x, float y ) {
-            ((MagicMissile.MagicParticle)emitter.recycle( MagicMissile.MagicParticle.class )).reset( x, y );
+            ((AlbParticle)emitter.recycle(AlbParticle.class )).reset( x, y );
         }
         @Override
         public boolean lightMode() {
@@ -22,7 +21,7 @@ public class AlbParticle extends PixelParticle {
     public static final Emitter.Factory ATTRACTING = new Emitter.Factory() {
         @Override
         public void emit( Emitter emitter, int index, float x, float y ) {
-            ((MagicMissile.MagicParticle)emitter.recycle( MagicMissile.MagicParticle.class )).resetAttract( x, y );
+            ((AlbParticle)emitter.recycle(AlbParticle.class )).resetAttract( x, y );
         }
         @Override
         public boolean lightMode() {
@@ -34,6 +33,8 @@ public class AlbParticle extends PixelParticle {
         super();
 
         color( 0x5FD00B );
+        tint( 0x5FD00B );
+        hardlight( 0x5FD00B );
         lifespan = 0.5f;
 
         speed.set( Random.Float( -10, +10 ), Random.Float( -10, +10 ) );

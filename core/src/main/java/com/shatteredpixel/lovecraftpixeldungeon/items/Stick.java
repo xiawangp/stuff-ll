@@ -7,7 +7,15 @@ public class Stick extends Item {
     {
         image = ItemSpriteSheet.STICK;
         stackable = true;
-        identify();
     }
 
+    @Override
+    public boolean isIdentified() {
+        return true;
+    }
+
+    @Override
+    public boolean isUpgradable() {
+        return false;
+    }
 }

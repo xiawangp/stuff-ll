@@ -160,7 +160,7 @@ public class Alb extends Mob {
 
                 if (Dungeon.visible[pos]) {
                     ch.sprite.flash();
-                    CellEmitter.get(pos).burst(Speck.factory(Speck.STEAM), 6);
+                    CellEmitter.get(pos).burst(Speck.factory(Speck.GREENSMOKE), 6);
                 }
 
                 if (!ch.isAlive() && ch == Dungeon.hero) {

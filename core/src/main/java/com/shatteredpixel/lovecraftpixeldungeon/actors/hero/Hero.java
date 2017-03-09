@@ -1331,6 +1331,10 @@ public class Hero extends Char {
 	public boolean isStarving() {
 		return buff(Hunger.class) != null && ((Hunger)buff( Hunger.class )).isStarving();
 	}
+
+	public boolean isHungry() {
+		return buff(Hunger.class) != null && ((Hunger)buff( Hunger.class )).isHungry();
+	}
 	
 	@Override
 	public void add( Buff buff ) {

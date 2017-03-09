@@ -50,6 +50,19 @@ public class Gold extends Item {
 	
 	public Gold( int value ) {
 		this.quantity = value;
+		if(quantity <= 10){
+			image = ItemSpriteSheet.MONEY10;
+		} else if(quantity <= 50 && quantity > 10){
+			image = ItemSpriteSheet.MONEY50;
+		} else if(quantity <= 100 && quantity > 50){
+			image = ItemSpriteSheet.MONEY100;
+		} else if(quantity <= 500 && quantity > 100){
+			image = ItemSpriteSheet.MONEY500;
+		} else if(quantity <= 1000 && quantity > 500){
+			image = ItemSpriteSheet.MONEY1000;
+		} else {
+			image = ItemSpriteSheet.GOLD;
+		}
 	}
 	
 	@Override
@@ -90,6 +103,19 @@ public class Gold extends Item {
 	@Override
 	public Item random() {
 		quantity = Random.Int( 30 + Dungeon.depth * 10, 60 + Dungeon.depth * 20 );
+		if(quantity <= 10){
+			image = ItemSpriteSheet.MONEY10;
+		} else if(quantity <= 50 && quantity > 10){
+			image = ItemSpriteSheet.MONEY50;
+		} else if(quantity <= 100 && quantity > 50){
+			image = ItemSpriteSheet.MONEY100;
+		} else if(quantity <= 500 && quantity > 100){
+			image = ItemSpriteSheet.MONEY500;
+		} else if(quantity <= 1000 && quantity > 500){
+			image = ItemSpriteSheet.MONEY1000;
+		} else {
+			image = ItemSpriteSheet.GOLD;
+		}
 		return this;
 	}
 	

@@ -250,7 +250,19 @@ public class LovecraftPixelDungeon extends Game {
 				Assets.SND_BONES,
 				Assets.SND_BEE,
 				Assets.SND_DEGRADE,
-				Assets.SND_MIMIC );
+				Assets.SND_MIMIC,
+
+				Assets.SONGBBOSS,
+				Assets.SONGBOSSAMBIENT,
+				Assets.SONGBOSSFIGHT2,
+				Assets.SONGCAVES,
+				Assets.SONGCAVES2,
+				Assets.SONGICE,
+				Assets.SONGPRISON,
+				Assets.SONGSURFACECOOL,
+				Assets.SONGTEMPLE,
+				Assets.SONGTOWN
+				);
 
 		if (classicFont()) {
 			RenderedText.setFont("pixelfont.ttf");

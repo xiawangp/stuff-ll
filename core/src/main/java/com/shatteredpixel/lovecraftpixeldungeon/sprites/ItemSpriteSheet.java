@@ -73,6 +73,11 @@ public class ItemSpriteSheet {
 	public static final int GOO_DROP_YELLOW = CONTAINERS+7;
 	public static final int GOO_DROP_RED    = CONTAINERS+8;
 	public static final int GOO_DROP_PURPLE = CONTAINERS+9;
+	public static final int MONEY10			= CONTAINERS+10;
+	public static final int MONEY50			= CONTAINERS+11;
+	public static final int MONEY100		= CONTAINERS+12;
+	public static final int MONEY500		= CONTAINERS+13;
+	public static final int MONEY1000		= CONTAINERS+14;
 	static{
 		assignItemRect(BONES,           14, 11);
 		assignItemRect(REMAINS,         14, 11);
@@ -87,6 +92,11 @@ public class ItemSpriteSheet {
 		assignItemRect(GOO_DROP_YELLOW, 16, 12);
 		assignItemRect(GOO_DROP_RED,    16, 12);
 		assignItemRect(GOO_DROP_PURPLE, 16, 12);
+		assignItemRect(MONEY10, 		16, 16);
+		assignItemRect(MONEY50, 		16, 16);
+		assignItemRect(MONEY100, 		16, 16);
+		assignItemRect(MONEY500, 		16, 16);
+		assignItemRect(MONEY1000, 		16, 16);
 	}
 
 	private static final int SINGLE_USE     =                               xy(1, 3);   //32 slots

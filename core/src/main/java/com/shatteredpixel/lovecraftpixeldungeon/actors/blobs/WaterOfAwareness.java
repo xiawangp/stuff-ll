@@ -32,6 +32,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.effects.BlobEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Identification;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Waterbag;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
@@ -76,6 +77,11 @@ public class WaterOfAwareness extends WellWater {
 	
 	@Override
 	protected Item affectItem( Item item ) {
+		if (item instanceof Waterbag && !((Waterbag)item).isFull()) {
+			((Waterbag)item).fill();
+			Journal.remove( Feature.WELL_OF_HEALTH );
+			return item;
+		}
 		if (item.isIdentified()) {
 			return null;
 		} else {
