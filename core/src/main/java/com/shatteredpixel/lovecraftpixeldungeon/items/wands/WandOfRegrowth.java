@@ -30,10 +30,13 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.MagicMissile;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Dewdrop;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfExperience;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMight;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
 import com.shatteredpixel.lovecraftpixeldungeon.mechanics.Ballistica;
+import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.plants.BlandfruitBush;
 import com.shatteredpixel.lovecraftpixeldungeon.plants.Plant;
 import com.shatteredpixel.lovecraftpixeldungeon.plants.Starflower;
@@ -83,7 +86,7 @@ public class WandOfRegrowth extends Wand {
 
 		int chrgUsed = chargesPerCast();
 		//numbers greater than n*100% means n guaranteed plants, e.g. 210% = 2 plants w/10% chance for 3 plants.
-		numPlants = 0.2f + chrgUsed*chrgUsed*0.020f; //scales from 22% to 220%
+		numPlants = 0.5f + chrgUsed*chrgUsed*0.020f; //scales from 22% to 220%
 		numDews = 0.05f + chrgUsed*chrgUsed*0.016f; //scales from 6.6% to 165%
 		numPods = 0.02f + chrgUsed*chrgUsed*0.013f; //scales from 3.3% to 135%
 		numStars = (chrgUsed*chrgUsed*chrgUsed/5f)*0.005f; //scales from 0.1% to 100%
@@ -276,12 +279,19 @@ public class WandOfRegrowth extends Wand {
 				candidates.remove(c);
 			}
 
+			if(Random.Int(0, 10) == 1){
+				Dungeon.level.drop(new Dewcatcher.Seed(), pos).sprite.drop(pos);
+			}
+
 		}
 
-		//seed is never dropped, only care about plant class
 		public static class Seed extends Plant.Seed {
 			{
+				image = ItemSpriteSheet.SEED_DEWCATCHER;
+				name = Messages.get(WandOfRegrowth.class, "dewcatcherseedname");
+
 				plantClass = Dewcatcher.class;
+				alchemyClass = PotionOfMight.class;
 			}
 		}
 	}
@@ -310,12 +320,20 @@ public class WandOfRegrowth extends Wand {
 				candidates.remove(c);
 			}
 
+			if(Random.Int(0, 10) == 1){
+				Dungeon.level.drop(new Seedpod.Seed(), pos).sprite.drop(pos);
+			}
+
 		}
 
-		//seed is never dropped, only care about plant class
 		public static class Seed extends Plant.Seed {
 			{
+				image = ItemSpriteSheet.SEED_DARKGREEN;
+				name = Messages.get(WandOfRegrowth.class, "seedpodseedname");
+
 				plantClass = Seedpod.class;
+				//TODO:
+				alchemyClass = PotionOfExperience.class;
 			}
 		}
 
