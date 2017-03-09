@@ -228,7 +228,7 @@ public class MiGoQueen extends Mob {
 							Actor.addDelayed( new Pushing( miGo, pos, miGo.pos ), -1 );
 
 							this.die(miGo);
-							this.sprite.die();
+							this.sprite.killAndErase();
 						}
 						return super.defenseProc(enemy, damage);
 					}
@@ -238,7 +238,7 @@ public class MiGoQueen extends Mob {
 				GameScene.add( young );
 				Actor.addDelayed( new Pushing( young, pos, young.pos ), -1 );
 				this.die(young);
-				this.sprite.die();
+				this.sprite.killAndErase();
 			}
 			return super.defenseProc(enemy, damage);
 		}

@@ -25,7 +25,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Yig;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
-import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLevitation;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
@@ -64,7 +63,6 @@ public class AltarPainter extends Painter {
 
 		for (Room.Door door : room.connected.values()) {
 			door.set( Room.Door.Type.HIDDEN );
-			level.addItemToSpawn(new IronKey(Dungeon.depth));
 		}
 
 		placeBoss(level, pos-1);
