@@ -31,7 +31,7 @@ public class MiGoSword extends Mob {
 		spriteClass = MiGoSwordSprite.class;
 		
 		HP = HT = 6+ Dungeon.depth;
-		defenseSkill = 4+(Dungeon.depth/2);
+		defenseSkill = 0;
 
 		EXP = 2;
 		
@@ -42,11 +42,6 @@ public class MiGoSword extends Mob {
 	public int attackProc(Char enemy, int damage) {
 		mentalMinus(2, 8, enemy);
 		return super.attackProc(enemy, damage)*3;
-	}
-
-	@Override
-	public int defenseProc(Char enemy, int damage) {
-		return 0;
 	}
 
 	@Override
