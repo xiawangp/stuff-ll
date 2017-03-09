@@ -21,37 +21,29 @@
 package com.shatteredpixel.lovecraftpixeldungeon.sprites;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
-import com.shatteredpixel.lovecraftpixeldungeon.effects.Splash;
 import com.watabou.noosa.TextureFilm;
 
-public class MiGoQueenSprite extends MobSprite {
+public class MiGoSwordSprite extends MobSprite {
 
-	public MiGoQueenSprite() {
+	public MiGoSwordSprite() {
 		super();
 		
-		texture( Assets.MIGOQUEEN );
-		
-		TextureFilm frames = new TextureFilm( texture, 20, 19 );
-		
-		idle = new Animation( 10, true );
-		idle.frames( frames, 0, 1, 2, 2, 1, 0, 3, 4, 4, 3, 0, 5, 6, 6, 5 );
-		
-		run = new Animation( 12, true );
-		run.frames( frames, 0 );
-		
+		texture( Assets.MIGOSWORD );
+
+		TextureFilm frames = new TextureFilm( texture, 16, 16 );
+
+		idle = new Animation( 5, true );
+		idle.frames( frames, 0, 1, 0, 2 );
+
+		run = new Animation( 15, true );
+		run.frames( frames, 3, 4, 5, 6 );
+
 		attack = new Animation( 12, false );
-		attack.frames( frames, 0 );
-		
-		die = new Animation( 10, false );
-		die.frames( frames, 0, 7, 8, 9 );
-		
+		attack.frames( frames, 7, 8, 9 );
+
+		die = new Animation( 12, false );
+		die.frames( frames, 10, 11, 12, 13 );
+
 		play( idle );
-	}
-	
-	@Override
-	public void die() {
-		super.die();
-		
-		Splash.at( center(), 0x7EFD75, 12 );
 	}
 }

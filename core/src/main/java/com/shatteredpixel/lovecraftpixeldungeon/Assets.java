@@ -111,6 +111,8 @@ public class Assets {
 	public static final String KEK    	= "frog.png";
 	public static final String ALB		= "alb.png";
 	public static final String MIGOKING = "migoking.png";
+	public static final String MIGOSWORD= "migosword.png";
+	public static final String MIGOSHIEL= "migoshield.png";
 
 	public static final String ITEMS	        = "items.png";
 	public static final String TERRAIN_FEATURES	= "terrain_features.png";

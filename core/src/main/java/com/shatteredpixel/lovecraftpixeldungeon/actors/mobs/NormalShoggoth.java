@@ -120,6 +120,7 @@ public class NormalShoggoth extends Mob {
 
 	@Override
 	public int attackProc( Char enemy, int damage ) {
+		mentalMinus(3, 4, enemy);
 		if (Random.Int( 3 ) == 0) {
 			Buff.affect( enemy, Ooze.class );
 			enemy.sprite.burst( 0xF0A0C8, 5 );

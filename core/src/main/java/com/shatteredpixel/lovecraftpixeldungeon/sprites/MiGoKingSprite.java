@@ -24,26 +24,26 @@ import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Splash;
 import com.watabou.noosa.TextureFilm;
 
-public class MiGoQueenSprite extends MobSprite {
+public class MiGoKingSprite extends MobSprite {
 
-	public MiGoQueenSprite() {
+	public MiGoKingSprite() {
 		super();
 		
-		texture( Assets.MIGOQUEEN );
+		texture( Assets.MIGOKING );
 		
-		TextureFilm frames = new TextureFilm( texture, 20, 19 );
+		TextureFilm frames = new TextureFilm( texture, 20, 20 );
 		
 		idle = new Animation( 10, true );
-		idle.frames( frames, 0, 1, 2, 2, 1, 0, 3, 4, 4, 3, 0, 5, 6, 6, 5 );
+		idle.frames( frames, 5, 1, 3, 4, 0, 3, 6, 2, 3, 1 );
 		
 		run = new Animation( 12, true );
-		run.frames( frames, 0 );
+		run.frames( frames, 3 );
 		
 		attack = new Animation( 12, false );
-		attack.frames( frames, 0 );
+		attack.frames( frames, 0, 1, 2, 3 );
 		
 		die = new Animation( 10, false );
-		die.frames( frames, 0, 7, 8, 9 );
+		die.frames( frames, 3, 7, 8, 9 );
 		
 		play( idle );
 	}

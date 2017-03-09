@@ -21,6 +21,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGoKing;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGoQueen;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
@@ -86,6 +87,16 @@ public class LevelBossPainter extends Painter {
 
 		if(Dungeon.depth == 1){
 			Mob boss1= new MiGoQueen(){
+				@Override
+				public void die(Object cause) {
+					super.die(cause);
+					Dungeon.level.drop(new GoldenKey(Dungeon.depth), this.pos);
+				}
+			};
+			boss1.pos = pos;
+			level.mobs.add( boss1 );
+		} else if(Dungeon.depth == 2){
+			Mob boss1= new MiGoKing(){
 				@Override
 				public void die(Object cause) {
 					super.die(cause);
