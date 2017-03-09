@@ -87,7 +87,7 @@ public class Storm extends Blob {
 				if(Random.Int(20) < 3){
 					thunderstrike(cell);
 				} else {
-					if(Random.Int(40) == 5){
+					if(Random.Int(140) == 5){
 						listen();
 					}
 				}
