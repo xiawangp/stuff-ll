@@ -293,6 +293,38 @@ public class StartScene extends PixelScene {
 	private void startNewGame() {
 
 		Dungeon.hero = null;
+		if(Dungeon.hero.playername == "elf"){
+			try {
+				Dungeon.hero.playername = new NameGenerator(Assets.ELVENNAMES, Game.instance).compose(Random.Int(3, 5));
+			} catch (IOException e) {
+				e.printStackTrace();
+				Dungeon.hero.playername = Playername.makeDeadPlayerName();
+			}
+		} else
+		if(Dungeon.hero.playername == "goblin"){
+			try {
+				Dungeon.hero.playername = new NameGenerator(Assets.GOBLINNAMES, Game.instance).compose(Random.Int(3, 5));
+			} catch (IOException e) {
+				e.printStackTrace();
+				Dungeon.hero.playername = Playername.makeDeadPlayerName();
+			}
+		} else
+		if(Dungeon.hero.playername == "roman"){
+			try {
+				Dungeon.hero.playername = new NameGenerator(Assets.ROMANNAMES, Game.instance).compose(Random.Int(3, 5));
+			} catch (IOException e) {
+				e.printStackTrace();
+				Dungeon.hero.playername = Playername.makeDeadPlayerName();
+			}
+		} else
+		if(Dungeon.hero.playername == "fantasy"){
+			try {
+				Dungeon.hero.playername = new NameGenerator(Assets.FANTASYNAMES, Game.instance).compose(Random.Int(3, 5));
+			} catch (IOException e) {
+				e.printStackTrace();
+				Dungeon.hero.playername = Playername.makeDeadPlayerName();
+			}
+		} else
 		if(Dungeon.hero.playername == "?" || Dungeon.hero.playername == null || Dungeon.hero.playername == Messages.get(TitleScene.class, "playernamerandomname")){
 			String pathfile;
 			switch (Random.Int(0, 3)){
