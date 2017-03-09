@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 public class Waterbag extends Item {
 
-	private static final int MAX_VOLUME	= 10;
+	private static final int MAX_VOLUME	= 5;
 
 	private static final String AC_DRINK	= "DRINK";
 

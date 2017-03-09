@@ -25,6 +25,18 @@ import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.LovecraftPixelDungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.Statistics;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Blob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.ConfusionGas;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.CorruptionGas;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Fire;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Foliage;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.ParalyticGas;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Regrowth;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.StenchGas;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Storm;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.ToxicGas;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.VenomGas;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.WaterWave;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Burning;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Frost;
@@ -51,9 +63,21 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicalInfusion;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.BlueShroom;
+import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.BlueWhiteShroom;
+import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.EggShroom;
+import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.FlyAgaricShroom;
+import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.GreenRedShroom;
+import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.GreenShroom;
+import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.LanternShroom;
+import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.Mushrooms;
+import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.OrangeShroom;
+import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.PurpleShroom;
+import com.shatteredpixel.lovecraftpixeldungeon.items.shrooms.RedShroom;
 import com.shatteredpixel.lovecraftpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.plants.Plant.Seed;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
@@ -236,7 +260,40 @@ public class Heap implements Bundlable {
 				burnt = true;
 			} else if (item instanceof Dewdrop) {
 				items.remove( item );
+				GameScene.add(Blob.seed( pos, 2, Foliage.class));
 				evaporated = true;
+			} else if (item instanceof YellowGooDrop) {
+				items.remove( item );
+				items.add( new RedGooDrop());
+				evaporated = true;
+			} else if (item instanceof RedGooDrop) {
+				items.remove( item );
+				items.add( new PurpleGooDrop());
+				evaporated = true;
+			} else if (item instanceof Mushrooms) {
+				items.remove( item );
+				if(item instanceof BlueShroom){
+					GameScene.add(Blob.seed( pos, 10*Random.Int(1,3), WaterWave.class));
+				} else if(item instanceof GreenShroom){
+					GameScene.add(Blob.seed( pos, 10*Random.Int(1,3), Regrowth.class));
+				} else if(item instanceof GreenRedShroom){
+					GameScene.add(Blob.seed( pos, 10*Random.Int(1,3), CorruptionGas.class));
+				} else if(item instanceof BlueWhiteShroom){
+					GameScene.add(Blob.seed( pos, 10*Random.Int(1,3), StenchGas.class));
+				} else if(item instanceof EggShroom){
+					GameScene.add(Blob.seed( pos, 10*Random.Int(1,3), ConfusionGas.class));
+				} else if(item instanceof FlyAgaricShroom){
+					GameScene.add(Blob.seed( pos, 10*Random.Int(1,3), ToxicGas.class));
+				} else if(item instanceof LanternShroom){
+					GameScene.add(Blob.seed( pos, 10*Random.Int(1,3), Storm.class));
+				} else if(item instanceof OrangeShroom){
+					GameScene.add(Blob.seed( pos, 10*Random.Int(1,3), Fire.class));
+				} else if(item instanceof PurpleShroom){
+					GameScene.add(Blob.seed( pos, 10*Random.Int(1,3), VenomGas.class));
+				} else if(item instanceof RedShroom){
+					GameScene.add(Blob.seed( pos, 10*Random.Int(1,3), ParalyticGas.class));
+				}
+				burnt = true;
 			} else if (item instanceof MysteryMeat) {
 				replace( item, ChargrilledMeat.cook( (MysteryMeat)item ) );
 				burnt = true;
