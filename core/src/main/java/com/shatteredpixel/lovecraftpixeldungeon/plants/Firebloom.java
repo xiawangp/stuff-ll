@@ -21,13 +21,23 @@
 package com.shatteredpixel.lovecraftpixeldungeon.plants;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Fire;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingPlantFireBloom;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.FlameParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Firebloom extends Plant {
 	
@@ -37,11 +47,33 @@ public class Firebloom extends Plant {
 	
 	@Override
 	public void activate() {
-		
-		GameScene.add( Blob.seed( pos, 2, Fire.class ) );
-		
-		if (Dungeon.visible[pos]) {
-			CellEmitter.get( pos ).burst( FlameParticle.FACTORY, 5 );
+
+		if(Randomer.randomBoolean()){
+			GameScene.add( Blob.seed( pos, 2, Fire.class ) );
+
+			if (Dungeon.visible[pos]) {
+				CellEmitter.get( pos ).burst( FlameParticle.FACTORY, 5 );
+			}
+		} else {
+			ArrayList<Integer> spawnPoints = new ArrayList<>();
+
+			for (int i=0; i < PathFinder.NEIGHBOURS8.length; i++) {
+				int p = pos + PathFinder.NEIGHBOURS8[i];
+				if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+					spawnPoints.add( p );
+				}
+			}
+
+			if (spawnPoints.size() > 0) {
+				Mob livingPlantFireBloom;
+				livingPlantFireBloom = new LivingPlantFireBloom();
+				livingPlantFireBloom.pos = Random.element( spawnPoints );
+
+				GameScene.add(livingPlantFireBloom);
+				Actor.addDelayed( new Pushing( livingPlantFireBloom, pos, livingPlantFireBloom.pos ), -1 );
+
+				CellEmitter.get( livingPlantFireBloom.pos ).burst( FlameParticle.FACTORY, 2 );
+			}
 		}
 	}
 	

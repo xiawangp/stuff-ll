@@ -29,6 +29,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.EarthParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.BuffIndicator;
 import com.watabou.noosa.Camera;
 import com.watabou.utils.Bundle;
@@ -41,15 +42,19 @@ public class Earthroot extends Plant {
 	
 	@Override
 	public void activate() {
-		Char ch = Actor.findChar(pos);
-		
-		if (ch == Dungeon.hero) {
-			Buff.affect( ch, Armor.class ).level(ch.HT);
-		}
-		
-		if (Dungeon.visible[pos]) {
-			CellEmitter.bottom( pos ).start( EarthParticle.FACTORY, 0.05f, 8 );
-			Camera.main.shake( 1, 0.4f );
+		if(Randomer.randomBoolean()){
+			Char ch = Actor.findChar(pos);
+
+			if (ch == Dungeon.hero) {
+				Buff.affect( ch, Armor.class ).level(ch.HT);
+			}
+
+			if (Dungeon.visible[pos]) {
+				CellEmitter.bottom( pos ).start( EarthParticle.FACTORY, 0.05f, 8 );
+				Camera.main.shake( 1, 0.4f );
+			}
+		} else {
+
 		}
 	}
 	

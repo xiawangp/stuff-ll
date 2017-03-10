@@ -43,6 +43,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.WornShortswor
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.missiles.Boomerang;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.missiles.Dart;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Firebloom;
 import com.watabou.utils.Bundle;
 
 public enum HeroClass {
@@ -97,6 +98,8 @@ public enum HeroClass {
 		Waterbag waterbag = new Waterbag();
 		waterbag.fill();
 		waterbag.identify().collect();
+
+		new Firebloom.Seed().collect();
 
 		Dungeon.gold = 1200;
 	}
