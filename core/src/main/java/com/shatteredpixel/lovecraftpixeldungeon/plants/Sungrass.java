@@ -25,14 +25,25 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingPlantSunGrass;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.FlameParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.ShaftParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.BuffIndicator;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Sungrass extends Plant {
 	
@@ -42,14 +53,36 @@ public class Sungrass extends Plant {
 	
 	@Override
 	public void activate() {
-		Char ch = Actor.findChar(pos);
-		
-		if (ch == Dungeon.hero) {
-			Buff.affect( ch, Health.class ).boost(ch.HT);
-		}
-		
-		if (Dungeon.visible[pos]) {
-			CellEmitter.get( pos ).start( ShaftParticle.FACTORY, 0.2f, 3 );
+		if(Randomer.randomBoolean()){
+			Char ch = Actor.findChar(pos);
+
+			if (ch == Dungeon.hero) {
+				Buff.affect( ch, Health.class ).boost(ch.HT);
+			}
+
+			if (Dungeon.visible[pos]) {
+				CellEmitter.get( pos ).start( ShaftParticle.FACTORY, 0.2f, 3 );
+			}
+		} else {
+			ArrayList<Integer> spawnPoints = new ArrayList<>();
+
+			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
+				int p = pos + PathFinder.NEIGHBOURS8[i];
+				if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+					spawnPoints.add( p );
+				}
+			}
+
+			if (spawnPoints.size() > 0) {
+				Mob livingPlantSungrass;
+				livingPlantSungrass = new LivingPlantSunGrass();
+				livingPlantSungrass.pos = Random.element( spawnPoints );
+
+				GameScene.add(livingPlantSungrass);
+				Actor.addDelayed( new Pushing( livingPlantSungrass, pos, livingPlantSungrass.pos ), -1 );
+
+				CellEmitter.get( livingPlantSungrass.pos ).burst( FlameParticle.FACTORY, 2 );
+			}
 		}
 	}
 	

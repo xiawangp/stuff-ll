@@ -29,6 +29,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.BannerSprites;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.BannerSprites.Type;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.RegularLevel;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.playername.NameGenerator;
 import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.playername.Playername;
@@ -292,6 +293,7 @@ public class StartScene extends PixelScene {
 
 	private void startNewGame() {
 
+		RegularLevel.pepespanwed = false;
 
 		Dungeon.hero = null;
 		if(Dungeon.hero.playername == "?" ||

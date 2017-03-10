@@ -23,26 +23,25 @@ package com.shatteredpixel.lovecraftpixeldungeon.sprites;
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.watabou.noosa.TextureFilm;
 
-public class LivingFirebloomPlantSprite extends MobSprite {
+public class LivingSungrassPlantSprite extends MobSprite {
 
-	public LivingFirebloomPlantSprite() {
+	public LivingSungrassPlantSprite() {
 		super();
-
 
 		texture(Assets.LPLANTS);
 
 		TextureFilm frames = new TextureFilm(texture, 16, 16);
 
 		idle = new Animation(5, true);
-		idle.frames(frames, 0, 1);
+		idle.frames(frames, 0+(4*9), 1+(4*9));
 		run = new Animation( 15, true);
-		run.frames( frames, 0, 1, 2, 3, 4, 5);
+		run.frames( frames, 0+(4*9), 1+(4*9), 2+(4*9), 3+(4*9), 4+(4*9), 5+(4*9));
 
 		attack = new Animation( 12, false );
-		attack.frames( frames, 0, 2, 3, 4, 0);
+		attack.frames( frames, 0+(4*9), 2+(4*9), 3+(4*9), 4+(4*9), 0+(4*9));
 
 		die = new Animation( 5, false);
-		die.frames( frames, 6, 7, 8);
+		die.frames( frames, 6+(4*9), 7+(4*9), 8+(4*9));
 
 		play(idle);
 	}

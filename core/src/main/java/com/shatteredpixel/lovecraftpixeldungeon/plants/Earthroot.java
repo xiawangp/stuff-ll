@@ -24,15 +24,25 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingPlantEarthRoot;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.EarthParticle;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.FlameParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfParalyticGas;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.BuffIndicator;
 import com.watabou.noosa.Camera;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Earthroot extends Plant {
 	
@@ -54,7 +64,25 @@ public class Earthroot extends Plant {
 				Camera.main.shake( 1, 0.4f );
 			}
 		} else {
+			ArrayList<Integer> spawnPoints = new ArrayList<>();
 
+			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
+				int p = pos + PathFinder.NEIGHBOURS8[i];
+				if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+					spawnPoints.add( p );
+				}
+			}
+
+			if (spawnPoints.size() > 0) {
+				Mob livingPlantEarthroot;
+				livingPlantEarthroot = new LivingPlantEarthRoot();
+				livingPlantEarthroot.pos = Random.element( spawnPoints );
+
+				GameScene.add(livingPlantEarthroot);
+				Actor.addDelayed( new Pushing( livingPlantEarthroot, pos, livingPlantEarthroot.pos ), -1 );
+
+				CellEmitter.get( livingPlantEarthroot.pos ).burst( FlameParticle.FACTORY, 2 );
+			}
 		}
 	}
 	
