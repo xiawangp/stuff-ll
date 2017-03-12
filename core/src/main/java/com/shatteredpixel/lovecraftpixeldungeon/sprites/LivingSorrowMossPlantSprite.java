@@ -23,9 +23,9 @@ package com.shatteredpixel.lovecraftpixeldungeon.sprites;
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.watabou.noosa.TextureFilm;
 
-public class LivingDreamfoilPlantSprite extends MobSprite {
+public class LivingSorrowmossPlantSprite extends MobSprite {
 
-	public LivingDreamfoilPlantSprite() {
+	public LivingSorrowmossPlantSprite() {
 		super();
 
 		texture(Assets.LPLANTS);
@@ -33,15 +33,15 @@ public class LivingDreamfoilPlantSprite extends MobSprite {
 		TextureFilm frames = new TextureFilm(texture, 16, 16);
 
 		idle = new Animation(5, true);
-		idle.frames(frames, 0+(8*9), 1+(8*9));
+		idle.frames(frames, 0+(2*9), 1+(2*9));
 		run = new Animation( 15, true);
-		run.frames( frames, 0+(8*9), 1+(8*9), 2+(8*9), 3+(8*9), 4+(8*9), 5+(8*9));
+		run.frames( frames, 0+(2*9), 1+(2*9), 2+(2*9), 3+(2*9), 4+(2*9), 5+(2*9));
 
 		attack = new Animation( 12, false );
-		attack.frames( frames, 0+(8*9), 2+(8*9), 3+(8*9), 4+(8*9), 0+(8*9));
+		attack.frames( frames, 0+(2*9), 2+(2*9), 3+(2*9), 4+(2*9), 0+(2*9));
 
 		die = new Animation( 5, false);
-		die.frames( frames, 6+(8*9), 7+(8*9), 8+(8*9));
+		die.frames( frames, 6+(2*9), 7+(2*9), 8+(2*9));
 
 		play(idle);
 	}

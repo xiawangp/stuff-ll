@@ -46,7 +46,6 @@ public class ScrollOfTeleportation extends Scroll {
 		Invisibility.dispel();
 		
 		teleportHero( curUser );
-		curUser.decreaseMentalHealth(6);
 		setKnown();
 
 		readAnimation();
@@ -54,7 +53,7 @@ public class ScrollOfTeleportation extends Scroll {
 	}
 	
 	public static void teleportHero( Hero  hero ) {
-
+		curUser.decreaseMentalHealth(6);
 		int count = 10;
 		int pos;
 		do {

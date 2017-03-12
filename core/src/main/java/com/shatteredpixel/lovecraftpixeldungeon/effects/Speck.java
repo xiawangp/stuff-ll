@@ -66,6 +66,7 @@ public class Speck extends Image {
 	public static final int CONFUSION	= 113;
 	public static final int RED_LIGHT   = 114;
 	public static final int GREENSMOKE  = 115;
+	public static final int TELEPORT  	= 116;
 	
 	private static final int SIZE = 7;
 	
@@ -114,6 +115,7 @@ public class Speck extends Image {
 		case CONFUSION:
 		case DUST:
 			case GREENSMOKE:
+			case TELEPORT:
 			frame( film.get( STEAM ) );
 			break;
 		default:
@@ -321,6 +323,13 @@ public class Speck extends Image {
 			angle = Random.Float( 360 );
 			lifespan = Random.Float( 1f, 3f );
 			break;
+
+			case TELEPORT:
+				hardlight( Random.Int( 0x84FF71, 0x8700A1 ));
+				angularSpeed = Random.Float( -70, +70 );
+				angle = Random.Float( 360 );
+				lifespan = Random.Float( 1f, 3f );
+				break;
 
 		case DUST:
 			hardlight( 0xFFFF66 );

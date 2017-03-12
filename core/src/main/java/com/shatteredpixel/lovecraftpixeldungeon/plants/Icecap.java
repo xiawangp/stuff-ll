@@ -21,13 +21,24 @@
 package com.shatteredpixel.lovecraftpixeldungeon.plants;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Fire;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Freezing;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingPlantIceCap;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.IceWindParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfFrost;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.BArray;
 import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Icecap extends Plant {
 	
@@ -37,14 +48,41 @@ public class Icecap extends Plant {
 	
 	@Override
 	public void activate() {
+
+		if(Randomer.randomBoolean()){
+			PathFinder.buildDistanceMap( pos, BArray.not( Level.losBlocking, null ), 1 );
 		
-		PathFinder.buildDistanceMap( pos, BArray.not( Level.losBlocking, null ), 1 );
+			Fire fire = (Fire)Dungeon.level.blobs.get( Fire.class );
 		
-		Fire fire = (Fire)Dungeon.level.blobs.get( Fire.class );
-		
-		for (int i=0; i < PathFinder.distance.length; i++) {
-			if (PathFinder.distance[i] < Integer.MAX_VALUE) {
+			for (int i=0; i < PathFinder.distance.length; i++) {
+				if (PathFinder.distance[i] < Integer.MAX_VALUE) {
 				Freezing.affect( i, fire );
+				}
+			}
+		} else {
+			ArrayList<Integer> spawnPoints = new ArrayList<>();
+
+			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
+				int p = pos + PathFinder.NEIGHBOURS8[i];
+				if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+					spawnPoints.add( p );
+				}
+			}
+
+			if (spawnPoints.size() > 0) {
+				Mob livingIcecapPlant;
+				livingIcecapPlant = new LivingPlantIceCap();
+				livingIcecapPlant.pos = Random.element( spawnPoints );
+
+				GameScene.add(livingIcecapPlant);
+				Actor.addDelayed( new Pushing( livingIcecapPlant, pos, livingIcecapPlant.pos ), -1 );
+
+				if (Dungeon.visible[pos]) {
+					CellEmitter.get( pos ).burst( IceWindParticle.FACTORY, 2 );
+				}
+				if (Dungeon.visible[livingIcecapPlant.pos]) {
+					CellEmitter.get( livingIcecapPlant.pos ).burst( IceWindParticle.FACTORY, 2 );
+				}
 			}
 		}
 	}

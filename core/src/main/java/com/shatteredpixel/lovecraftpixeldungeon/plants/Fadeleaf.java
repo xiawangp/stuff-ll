@@ -25,11 +25,20 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingPlantFadeLeaf;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfTeleportation;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Fadeleaf extends Plant {
 	
@@ -39,36 +48,63 @@ public class Fadeleaf extends Plant {
 	
 	@Override
 	public void activate() {
-		Char ch = Actor.findChar(pos);
-		
-		if (ch instanceof Hero) {
-			
-			ScrollOfTeleportation.teleportHero( (Hero)ch );
-			((Hero)ch).curAction = null;
-			
-		} else if (ch instanceof Mob && !ch.properties().contains(Char.Property.IMMOVABLE)) {
+		if(Randomer.randomBoolean()){
+			Char ch = Actor.findChar(pos);
 
-			int count = 10;
-			int newPos;
-			do {
-				newPos = Dungeon.level.randomRespawnCell();
-				if (count-- <= 0) {
-					break;
+			if (ch instanceof Hero) {
+
+				ScrollOfTeleportation.teleportHero( (Hero)ch );
+				((Hero)ch).curAction = null;
+
+			} else if (ch instanceof Mob && !ch.properties().contains(Char.Property.IMMOVABLE)) {
+
+				int count = 10;
+				int newPos;
+				do {
+					newPos = Dungeon.level.randomRespawnCell();
+					if (count-- <= 0) {
+						break;
+					}
+				} while (newPos == -1);
+
+				if (newPos != -1 && !Dungeon.bossLevel()) {
+
+					ch.pos = newPos;
+					ch.sprite.place( ch.pos );
+					ch.sprite.visible = Dungeon.visible[ch.pos];
+
 				}
-			} while (newPos == -1);
-			
-			if (newPos != -1 && !Dungeon.bossLevel()) {
-			
-				ch.pos = newPos;
-				ch.sprite.place( ch.pos );
-				ch.sprite.visible = Dungeon.visible[ch.pos];
-				
+
 			}
 
-		}
-		
-		if (Dungeon.visible[pos]) {
-			CellEmitter.get( pos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
+			if (Dungeon.visible[pos]) {
+				CellEmitter.get( pos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
+			}
+		} else {
+			ArrayList<Integer> spawnPoints = new ArrayList<>();
+
+			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
+				int p = pos + PathFinder.NEIGHBOURS8[i];
+				if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+					spawnPoints.add( p );
+				}
+			}
+
+			if (spawnPoints.size() > 0) {
+				Mob livingPlantFadeLeaf;
+				livingPlantFadeLeaf = new LivingPlantFadeLeaf();
+				livingPlantFadeLeaf.pos = Random.element( spawnPoints );
+
+				GameScene.add(livingPlantFadeLeaf);
+				Actor.addDelayed( new Pushing( livingPlantFadeLeaf, pos, livingPlantFadeLeaf.pos ), -1 );
+
+				if (Dungeon.visible[pos]) {
+					CellEmitter.get( pos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
+				}
+				if (Dungeon.visible[livingPlantFadeLeaf.pos]) {
+					CellEmitter.get( livingPlantFadeLeaf.pos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
+				}
+			}
 		}
 	}
 	

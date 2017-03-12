@@ -20,6 +20,7 @@
  */
 package com.shatteredpixel.lovecraftpixeldungeon.plants;
 
+import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Bleeding;
@@ -36,7 +37,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingPlantDreamFoil;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
-import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.FlameParticle;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfPurity;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
@@ -74,6 +75,10 @@ public class Dreamfoil extends Plant {
 					Buff.detach( ch, Vertigo.class);
 				}
 			}
+
+			if (Dungeon.visible[pos]) {
+				CellEmitter.get( pos ).burst( Speck.factory( Speck.STAR ), 4 );
+			}
 		} else {
 			ArrayList<Integer> spawnPoints = new ArrayList<>();
 
@@ -92,7 +97,12 @@ public class Dreamfoil extends Plant {
 				GameScene.add(livingPlantDreamfoil);
 				Actor.addDelayed( new Pushing( livingPlantDreamfoil, pos, livingPlantDreamfoil.pos ), -1 );
 
-				CellEmitter.get( livingPlantDreamfoil.pos ).burst( FlameParticle.FACTORY, 2 );
+				if (Dungeon.visible[pos]) {
+					CellEmitter.get( pos ).burst( Speck.factory( Speck.STAR ), 4 );
+				}
+				if (Dungeon.visible[livingPlantDreamfoil.pos]) {
+					CellEmitter.get( livingPlantDreamfoil.pos ).burst( Speck.factory( Speck.STAR ), 4 );
+				}
 			}
 		}
 	}

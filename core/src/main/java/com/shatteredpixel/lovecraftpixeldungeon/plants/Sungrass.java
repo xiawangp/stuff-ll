@@ -30,7 +30,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingP
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
-import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.FlameParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.ShaftParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
@@ -81,7 +80,12 @@ public class Sungrass extends Plant {
 				GameScene.add(livingPlantSungrass);
 				Actor.addDelayed( new Pushing( livingPlantSungrass, pos, livingPlantSungrass.pos ), -1 );
 
-				CellEmitter.get( livingPlantSungrass.pos ).burst( FlameParticle.FACTORY, 2 );
+				if (Dungeon.visible[pos]) {
+					CellEmitter.get( pos ).start( ShaftParticle.FACTORY, 0.2f, 3 );
+				}
+				if (Dungeon.visible[livingPlantSungrass.pos]) {
+					CellEmitter.get( pos ).start( ShaftParticle.FACTORY, 0.2f, 3 );
+				}
 			}
 		}
 	}

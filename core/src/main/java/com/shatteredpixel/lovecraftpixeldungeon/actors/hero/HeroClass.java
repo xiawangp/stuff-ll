@@ -36,6 +36,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.lovecraftpixeldungeon.items.wands.WandOfMagicMissile;
+import com.shatteredpixel.lovecraftpixeldungeon.items.wands.WandOfRegrowth;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Dagger;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Knuckles;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.MagesStaff;
@@ -43,6 +44,15 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.WornShortswor
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.missiles.Boomerang;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.missiles.Dart;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Blindweed;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Dreamfoil;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Earthroot;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Fadeleaf;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Firebloom;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Icecap;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Sorrowmoss;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Stormvine;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Sungrass;
 import com.watabou.utils.Bundle;
 
 public enum HeroClass {
@@ -99,6 +109,19 @@ public enum HeroClass {
 		waterbag.identify().collect();
 
 		Dungeon.gold = 1200;
+
+		for(int i = 10; i > 0; i--){
+			new Firebloom.Seed().collect();
+			new Blindweed.Seed().collect();
+			new Earthroot.Seed().collect();
+			new Fadeleaf.Seed().collect();
+			new Icecap.Seed().collect();
+			new Sorrowmoss.Seed().collect();
+			new Sungrass.Seed().collect();
+			new Stormvine.Seed().collect();
+			new Dreamfoil.Seed().collect();
+			new WandOfRegrowth.Dewcatcher.Seed().collect();
+		}
 	}
 
 	public Badges.Badge masteryBadge() {

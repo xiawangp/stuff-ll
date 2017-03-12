@@ -27,11 +27,19 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Blindness;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Cripple;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingPlantBlindWeed;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfInvisibility;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
+import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Blindweed extends Plant {
 	
@@ -41,20 +49,47 @@ public class Blindweed extends Plant {
 	
 	@Override
 	public void activate() {
-		Char ch = Actor.findChar(pos);
-		
-		if (ch != null) {
-			int len = Random.Int( 5, 10 );
-			Buff.prolong( ch, Blindness.class, len );
-			Buff.prolong( ch, Cripple.class, len );
-			if (ch instanceof Mob) {
-				if (((Mob)ch).state == ((Mob)ch).HUNTING) ((Mob)ch).state = ((Mob)ch).WANDERING;
-				((Mob)ch).beckon( Dungeon.level.randomDestination() );
+		if(Randomer.randomBoolean()){
+			Char ch = Actor.findChar(pos);
+
+			if (ch != null) {
+				int len = Random.Int( 5, 10 );
+				Buff.prolong( ch, Blindness.class, len );
+				Buff.prolong( ch, Cripple.class, len );
+				if (ch instanceof Mob) {
+					if (((Mob)ch).state == ((Mob)ch).HUNTING) ((Mob)ch).state = ((Mob)ch).WANDERING;
+					((Mob)ch).beckon( Dungeon.level.randomDestination() );
+				}
 			}
-		}
-		
-		if (Dungeon.visible[pos]) {
-			CellEmitter.get( pos ).burst( Speck.factory( Speck.LIGHT ), 4 );
+
+			if (Dungeon.visible[pos]) {
+				CellEmitter.get( pos ).burst( Speck.factory( Speck.LIGHT ), 4 );
+			}
+		} else {
+			ArrayList<Integer> spawnPoints = new ArrayList<>();
+
+			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
+				int p = pos + PathFinder.NEIGHBOURS8[i];
+				if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+					spawnPoints.add( p );
+				}
+			}
+
+			if (spawnPoints.size() > 0) {
+				Mob livingPlantBlindweed;
+				livingPlantBlindweed = new LivingPlantBlindWeed();
+				livingPlantBlindweed.pos = Random.element( spawnPoints );
+
+				GameScene.add(livingPlantBlindweed);
+				Actor.addDelayed( new Pushing( livingPlantBlindweed, pos, livingPlantBlindweed.pos ), -1 );
+
+				if (Dungeon.visible[pos]) {
+					CellEmitter.get( pos ).burst( Speck.factory( Speck.LIGHT ), 4 );
+				}
+				if (Dungeon.visible[livingPlantBlindweed.pos]) {
+					CellEmitter.get( livingPlantBlindweed.pos ).burst( Speck.factory( Speck.LIGHT ), 4 );
+				}
+			}
 		}
 	}
 	

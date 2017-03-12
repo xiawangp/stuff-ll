@@ -72,7 +72,12 @@ public class Firebloom extends Plant {
 				GameScene.add(livingPlantFireBloom);
 				Actor.addDelayed( new Pushing( livingPlantFireBloom, pos, livingPlantFireBloom.pos ), -1 );
 
-				CellEmitter.get( livingPlantFireBloom.pos ).burst( FlameParticle.FACTORY, 2 );
+				if (Dungeon.visible[pos]) {
+					CellEmitter.get( pos ).burst( FlameParticle.FACTORY, 5 );
+				}
+				if (Dungeon.visible[livingPlantFireBloom.pos]) {
+					CellEmitter.get( livingPlantFireBloom.pos ).burst( FlameParticle.FACTORY, 5 );
+				}
 			}
 		}
 	}

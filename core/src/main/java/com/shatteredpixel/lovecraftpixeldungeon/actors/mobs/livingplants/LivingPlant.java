@@ -3,7 +3,10 @@ package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.watabou.utils.Random;
+
+import java.util.HashSet;
 
 public class LivingPlant extends Mob {
 
@@ -22,6 +25,20 @@ public class LivingPlant extends Mob {
                 enemyInFOV = true;
             return super.act(enemyInFOV, justAlerted);
         }
+    }
+
+    @Override
+    protected Char chooseEnemy() {
+        HashSet<Char> enemies = new HashSet<>();
+        for (Mob mob : Dungeon.level.mobs){
+            if (mob != this && Level.fieldOfView[mob.pos] && mob.hostile){
+                enemies.add(mob);
+            }
+        }
+        if (enemies.size() > 0){
+            return Random.element(enemies);
+        }
+        return Dungeon.hero;
     }
 
     @Override

@@ -25,10 +25,20 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Poison;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingPlantSorrowMoss;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.PoisonParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfToxicGas;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Sorrowmoss extends Plant {
 
@@ -38,14 +48,41 @@ public class Sorrowmoss extends Plant {
 	
 	@Override
 	public void activate() {
-		Char ch = Actor.findChar(pos);
-		
-		if (ch != null) {
-			Buff.affect( ch, Poison.class ).set( Poison.durationFactor( ch ) * (4 + Dungeon.depth / 2) );
-		}
-		
-		if (Dungeon.visible[pos]) {
-			CellEmitter.center( pos ).burst( PoisonParticle.SPLASH, 3 );
+		if(Randomer.randomBoolean()){
+			Char ch = Actor.findChar(pos);
+
+			if (ch != null) {
+				Buff.affect( ch, Poison.class ).set( Poison.durationFactor( ch ) * (4 + Dungeon.depth / 2) );
+			}
+
+			if (Dungeon.visible[pos]) {
+				CellEmitter.center( pos ).burst( PoisonParticle.SPLASH, 3 );
+			}
+		} else {
+			ArrayList<Integer> spawnPoints = new ArrayList<>();
+
+			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
+				int p = pos + PathFinder.NEIGHBOURS8[i];
+				if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+					spawnPoints.add( p );
+				}
+			}
+
+			if (spawnPoints.size() > 0) {
+				Mob livingPlantDreamfoil;
+				livingPlantDreamfoil = new LivingPlantSorrowMoss();
+				livingPlantDreamfoil.pos = Random.element( spawnPoints );
+
+				GameScene.add(livingPlantDreamfoil);
+				Actor.addDelayed( new Pushing( livingPlantDreamfoil, pos, livingPlantDreamfoil.pos ), -1 );
+
+				if (Dungeon.visible[pos]) {
+					CellEmitter.center( pos ).burst( PoisonParticle.SPLASH, 3 );
+				}
+				if (Dungeon.visible[livingPlantDreamfoil.pos]) {
+					CellEmitter.center( livingPlantDreamfoil.pos ).burst( PoisonParticle.SPLASH, 3 );
+				}
+			}
 		}
 	}
 	

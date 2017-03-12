@@ -20,12 +20,25 @@
  */
 package com.shatteredpixel.lovecraftpixeldungeon.plants;
 
+import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Vertigo;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingPlantStormVine;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLevitation;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class Stormvine extends Plant {
 
@@ -35,10 +48,40 @@ public class Stormvine extends Plant {
 
 	@Override
 	public void activate() {
-		Char ch = Actor.findChar(pos);
+		if(Randomer.randomBoolean()){
+			Char ch = Actor.findChar(pos);
 
-		if (ch != null) {
-			Buff.affect(ch, Vertigo.class, Vertigo.duration( ch ) );
+			if (ch != null) {
+				Buff.affect(ch, Vertigo.class, Vertigo.duration( ch ) );
+			}
+			if (Dungeon.visible[pos]) {
+				CellEmitter.get( pos ).burst( Speck.factory( Speck.STEAM ), 4 );
+			}
+		} else {
+			ArrayList<Integer> spawnPoints = new ArrayList<>();
+
+			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
+				int p = pos + PathFinder.NEIGHBOURS8[i];
+				if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+					spawnPoints.add( p );
+				}
+			}
+
+			if (spawnPoints.size() > 0) {
+				Mob livingPlantStormvine;
+				livingPlantStormvine = new LivingPlantStormVine();
+				livingPlantStormvine.pos = Random.element( spawnPoints );
+
+				GameScene.add(livingPlantStormvine);
+				Actor.addDelayed( new Pushing( livingPlantStormvine, pos, livingPlantStormvine.pos ), -1 );
+
+				if (Dungeon.visible[pos]) {
+					CellEmitter.get( pos ).burst( Speck.factory( Speck.STEAM ), 4 );
+				}
+				if (Dungeon.visible[livingPlantStormvine.pos]) {
+					CellEmitter.get( livingPlantStormvine.pos ).burst( Speck.factory( Speck.STEAM ), 4 );
+				}
+			}
 		}
 	}
 

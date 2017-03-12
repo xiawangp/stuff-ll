@@ -27,7 +27,12 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Regrowth;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingPlantDewCatcher;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.MagicMissile;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.ShaftParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Dewdrop;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfExperience;
@@ -43,6 +48,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.plants.Starflower;
 import com.shatteredpixel.lovecraftpixeldungeon.plants.Sungrass;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 import com.watabou.utils.ColorMath;
@@ -263,24 +269,54 @@ public class WandOfRegrowth extends Wand {
 
 		@Override
 		public void activate() {
+			if(Randomer.randomBoolean()){
+				int nDrops = Random.NormalIntRange(2, 8);
 
-			int nDrops = Random.NormalIntRange(2, 8);
-
-			ArrayList<Integer> candidates = new ArrayList<Integer>();
-			for (int i : PathFinder.NEIGHBOURS8){
-				if (Level.passable[pos+i]){
-					candidates.add(pos+i);
+				ArrayList<Integer> candidates = new ArrayList<Integer>();
+				for (int i : PathFinder.NEIGHBOURS8){
+					if (Level.passable[pos+i]){
+						candidates.add(pos+i);
+					}
 				}
-			}
 
-			for (int i = 0; i < nDrops && !candidates.isEmpty(); i++){
-				Integer c = Random.element(candidates);
-				Dungeon.level.drop(new Dewdrop(), c).sprite.drop(pos);
-				candidates.remove(c);
-			}
+				for (int i = 0; i < nDrops && !candidates.isEmpty(); i++){
+					Integer c = Random.element(candidates);
+					Dungeon.level.drop(new Dewdrop(), c).sprite.drop(pos);
+					candidates.remove(c);
+				}
 
-			if(Random.Int(0, 10) == 1){
-				Dungeon.level.drop(new Dewcatcher.Seed(), pos).sprite.drop(pos);
+				if(Random.Int(0, 10) == 1){
+					Dungeon.level.drop(new Dewcatcher.Seed(), pos).sprite.drop(pos);
+				}
+
+				if (Dungeon.visible[pos]) {
+					CellEmitter.get( pos ).start( ShaftParticle.FACTORY, 0.2f, 3 );
+				}
+			} else {
+				ArrayList<Integer> spawnPoints = new ArrayList<>();
+
+				for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
+					int p = pos + PathFinder.NEIGHBOURS8[i];
+					if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+						spawnPoints.add( p );
+					}
+				}
+
+				if (spawnPoints.size() > 0) {
+					Mob livingPlantDewcatcher;
+					livingPlantDewcatcher = new LivingPlantDewCatcher();
+					livingPlantDewcatcher.pos = Random.element( spawnPoints );
+
+					GameScene.add(livingPlantDewcatcher);
+					Actor.addDelayed( new Pushing( livingPlantDewcatcher, pos, livingPlantDewcatcher.pos ), -1 );
+
+					if (Dungeon.visible[pos]) {
+						CellEmitter.get( pos ).start( ShaftParticle.FACTORY, 0.2f, 3 );
+					}
+					if (Dungeon.visible[livingPlantDewcatcher.pos]) {
+						CellEmitter.get( pos ).start( ShaftParticle.FACTORY, 0.2f, 3 );
+					}
+				}
 			}
 
 		}

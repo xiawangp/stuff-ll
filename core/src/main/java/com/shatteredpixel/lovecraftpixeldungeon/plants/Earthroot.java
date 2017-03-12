@@ -29,7 +29,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants.LivingP
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.EarthParticle;
-import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.FlameParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
@@ -81,7 +80,13 @@ public class Earthroot extends Plant {
 				GameScene.add(livingPlantEarthroot);
 				Actor.addDelayed( new Pushing( livingPlantEarthroot, pos, livingPlantEarthroot.pos ), -1 );
 
-				CellEmitter.get( livingPlantEarthroot.pos ).burst( FlameParticle.FACTORY, 2 );
+				if (Dungeon.visible[pos]) {
+					CellEmitter.bottom( pos ).start( EarthParticle.FACTORY, 0.05f, 8 );
+					Camera.main.shake( 1, 0.4f );
+				}
+				if (Dungeon.visible[livingPlantEarthroot.pos]) {
+					CellEmitter.bottom( livingPlantEarthroot.pos ).start( EarthParticle.FACTORY, 0.05f, 8 );
+				}
 			}
 		}
 	}
