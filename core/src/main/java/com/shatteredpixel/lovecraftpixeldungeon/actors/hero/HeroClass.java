@@ -26,7 +26,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Challenges;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.items.Ancientpot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.BrokenSeal;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Waterbag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.ClothArmor;
@@ -35,7 +34,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.bags.FoodBag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.WeaponCase;
 import com.shatteredpixel.lovecraftpixeldungeon.items.food.Food;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
-import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfUpgrade;
@@ -104,9 +102,6 @@ public enum HeroClass {
 		Dungeon.quickslot.setSlot(3, waterbag);
 
 		Dungeon.gold = 1200;
-
-		new Ancientpot().collect();
-		new PotionOfLiquidFlame().identify().collect();
 	}
 
 	public Badges.Badge masteryBadge() {
