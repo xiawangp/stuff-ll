@@ -1,22 +1,24 @@
 /*
  * Pixel Dungeon
- * Copyright (C) 2012-2015  Oleg Dolya
+ * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2016 Evan Debenham
+ *
+ * Lovercaft Pixel Dungeon
+ * Copyright (C) 2016-2017 Leon Horn
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without eben the implied warranty of
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * You should have have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses>
  */
 package com.shatteredpixel.lovecraftpixeldungeon.actors.hero;
 
@@ -36,7 +38,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.lovecraftpixeldungeon.items.wands.WandOfMagicMissile;
-import com.shatteredpixel.lovecraftpixeldungeon.items.wands.WandOfRegrowth;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Dagger;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Knuckles;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.MagesStaff;
@@ -44,15 +45,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.WornShortswor
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.missiles.Boomerang;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.missiles.Dart;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
-import com.shatteredpixel.lovecraftpixeldungeon.plants.Blindweed;
-import com.shatteredpixel.lovecraftpixeldungeon.plants.Dreamfoil;
-import com.shatteredpixel.lovecraftpixeldungeon.plants.Earthroot;
-import com.shatteredpixel.lovecraftpixeldungeon.plants.Fadeleaf;
-import com.shatteredpixel.lovecraftpixeldungeon.plants.Firebloom;
-import com.shatteredpixel.lovecraftpixeldungeon.plants.Icecap;
-import com.shatteredpixel.lovecraftpixeldungeon.plants.Sorrowmoss;
-import com.shatteredpixel.lovecraftpixeldungeon.plants.Stormvine;
-import com.shatteredpixel.lovecraftpixeldungeon.plants.Sungrass;
 import com.watabou.utils.Bundle;
 
 public enum HeroClass {
@@ -110,7 +102,7 @@ public enum HeroClass {
 
 		Dungeon.gold = 1200;
 
-		for(int i = 10; i > 0; i--){
+		/*for(int i = 10; i > 0; i--){
 			new Firebloom.Seed().collect();
 			new Blindweed.Seed().collect();
 			new Earthroot.Seed().collect();
@@ -121,7 +113,7 @@ public enum HeroClass {
 			new Stormvine.Seed().collect();
 			new Dreamfoil.Seed().collect();
 			new WandOfRegrowth.Dewcatcher.Seed().collect();
-		}
+		}*/
 	}
 
 	public Badges.Badge masteryBadge() {
