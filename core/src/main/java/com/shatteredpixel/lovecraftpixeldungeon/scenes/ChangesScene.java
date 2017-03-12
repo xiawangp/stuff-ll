@@ -60,7 +60,7 @@ public class ChangesScene extends PixelScene {
 					"\t\t _-_ Mi Go Larva \n " +
 					"\t\t _-_ Young Mi Go \n " +
 					"\t\t _-_ Mi Go \n " +
-					"\t\t _-_  Mi Go Nurse \n " +
+					"\t\t _-_ Mi Go Nurse \n " +
 					"\t\t _-_ Mi Go Queen \n " +
 					"\t\t _-_ Snake God Yig \n " +
 					"\t\t _-_ Kagebunshin \n " +
@@ -76,7 +76,40 @@ public class ChangesScene extends PixelScene {
 					"\t\t _-_ You dont die but go crazy and inflict self harm \n " +
 					"_-_ new Buffs \n " +
 					"\t\t _-_ Infection \n " +
-					"_-_ Dewvial can be used to upgrade ";
+					"_-_ Dewvial can be used to upgrade \n\n\n" +
+
+			"_Plant Update I.I.II_ \n\n " +
+					"_-_ Name Generator is reworked: \n" +
+					"_-_ Dewvial new fill up graphics \n" +
+					"_-_ Gold has new Sprite according to amount\n" +
+					"_-_ Ankh and blessed Ankh have different sprites\n" +
+					"\t\t _-_ Roman, Elf, Goblin and Fantasy Names \n" +
+					"_-_ new Mobs:\n" +
+					"\t\t _-_ Living Plants\n" +
+					"\t\t _-_ Shoggoths\n" +
+					"\t\t _-_ Elements\n" +
+					"\t\t _-_ Mi Go King\n" +
+					"\t\t _-_ Mi Go Warrior\n" +
+					"\t\t _-_ Alb\n" +
+					"\t\t _-_ Facegugger\n" +
+					"\t\t _-_ Ithaqua\n" +
+					"\t\t _-_ Kek\n" +
+					"_-_ new Items:\n" +
+					"\t\t _-_ Ancient Pot\n" +
+					"\t\t _-_ Waterbag\n" +
+					"\t\t _-_ Goo\n" +
+					"\t\t _-_ Mi Go Egg\n" +
+					"\t\t _-_ Statue of Pepe\n" +
+					"\t\t _-_ Potion of Waterwave\n" +
+					"\t\t _-_ Scroll of Equivalentexchange\n" +
+					"\t\t _-_ Scroll of Sunlight\n" +
+					"\t\t _-_ Scroll of Summoning\n" +
+					"\t\t _-_ Scroll of Thunderstorm\n" +
+					"_-_ new Blobs:\n" +
+					"\t\t _-_ Icewind\n" +
+					"\t\t _-_ Corruption Gas\n" +
+					"\t\t _-_ Teleport Gas\n" +
+					"_-_ Level 2 added";
 
 	@Override
 	public void create() {

@@ -24,6 +24,8 @@ package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
+import com.shatteredpixel.lovecraftpixeldungeon.items.wands.Wand;
+import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.LightningTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.MiGoShieldSprite;
 import com.watabou.utils.Random;
 
@@ -38,6 +40,17 @@ public class MiGoShield extends Mob {
 		EXP = 2;
 		
 		maxLvl = 5;
+	}
+
+	@Override
+	public void damage( int dmg, Object src ){
+		//crab blocks all attacks originating from the hero or enemy characters or traps if it is alerted.
+		//All direct damage from these sources is negated, no exceptions. blob/debuff effects go through as normal.
+		if ((enemySeen && state != SLEEPING && paralysed == 0) && (src instanceof Wand || src instanceof LightningTrap.Electricity || src instanceof Char)){
+			super.damage( 0, src );
+		} else {
+			super.damage( dmg, src );
+		}
 	}
 
 	@Override

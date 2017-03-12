@@ -23,6 +23,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.levels.painters;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Ithaqua;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Yig;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
@@ -78,7 +79,13 @@ public class AltarPainter extends Painter {
 			pos = mobpos;
 		} while (level.heaps.get( pos ) != null);
 
-		Mob boss1= new Yig();
+		int rand = Randomer.randomInteger(1);
+		Mob boss1;
+		if(rand == 0){
+			boss1 = new Ithaqua();
+		} else {
+			boss1 = new Yig();
+		}
 		boss1.pos = pos;
 		level.mobs.add( boss1 );
 	}

@@ -27,6 +27,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Frost;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Hunger;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.BlobEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.IceWindParticle;
@@ -59,6 +60,9 @@ public class IceWind extends Blob {
 
 		Char ch = Actor.findChar( cell );
 		if (ch != null) {
+			if(ch == Dungeon.hero){
+				Dungeon.hero.buff(Hunger.class).reduceHunger(-Hunger.STARVING / 10);
+			}
 			if (Level.water[ch.pos]){
 				Buff.prolong(ch, Frost.class, Frost.duration(ch) * Random.Float(5f, 7.5f));
 			} else {

@@ -25,13 +25,21 @@ package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Blob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Fire;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Freezing;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.IceWind;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Frost;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
-import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.KindOfWeapon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Blazing;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Chilling;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.MeleeWeapon;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Spear;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
-import com.shatteredpixel.lovecraftpixeldungeon.sprites.YigSprite;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
+import com.shatteredpixel.lovecraftpixeldungeon.sprites.IthaquaSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.watabou.utils.Random;
 
@@ -40,14 +48,14 @@ import java.util.HashSet;
 public class Ithaqua extends Mob{
 
     {
-        spriteClass = YigSprite.class;
+        spriteClass = IthaquaSprite.class;
 
         HP = HT = (Dungeon.hero.MH/2)+Dungeon.depth;
         defenseSkill = (Dungeon.hero.STR/2) + Dungeon.depth;
 
         EXP = 10*Dungeon.depth;
-        baseSpeed = 2f;
-        loot = Generator.random(Generator.Category.WEP_T5).upgrade(Dungeon.hero.MH/Dungeon.hero.STR);
+
+        loot = new Spear().enchant(new Chilling()).upgrade(Dungeon.hero.STR/2);
         lootChance = 0.3f*Dungeon.depth;
 
         properties.add(Property.MINIBOSS);
@@ -59,11 +67,11 @@ public class Ithaqua extends Mob{
         super();
 
         do {
-            weapon = (Weapon)Generator.random( Generator.Category.WEAPON );
+            weapon = new Spear();
         } while (!(weapon instanceof MeleeWeapon) || weapon.cursed);
 
         weapon.identify();
-        weapon.enchant( Weapon.Enchantment.random() );
+        weapon.enchant( new Chilling() );
 
         HP = HT = 15 + Dungeon.depth * 5;
         defenseSkill = 4 + Dungeon.depth;
@@ -119,6 +127,12 @@ public class Ithaqua extends Mob{
 
     @Override
     public int defenseProc( Char enemy, int damage ) {
+        if(enemy != Dungeon.hero){
+            enemy.damage(Dungeon.hero.attackSkill(enemy), this);
+        }
+        if(Random.Int(20) == 10){
+            GameScene.add(Blob.seed(this.pos, 500, IceWind.class));
+        }
         return super.defenseProc(enemy, damage);
     }
 
@@ -129,7 +143,20 @@ public class Ithaqua extends Mob{
 
     private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
     static {
+        IMMUNITIES.add(Frost.class);
+        IMMUNITIES.add(Freezing.class);
+        IMMUNITIES.add(Chilling.class);
+    }
 
+    private static final HashSet<Class<?>> WEAKNESSES = new HashSet<>();
+    static {
+        WEAKNESSES.add(Fire.class);
+        WEAKNESSES.add(Blazing.class);
+    }
+
+    @Override
+    public HashSet<Class<?>> weaknesses() {
+        return WEAKNESSES;
     }
 
     @Override
