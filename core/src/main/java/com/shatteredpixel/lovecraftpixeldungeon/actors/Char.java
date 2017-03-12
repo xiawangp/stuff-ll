@@ -259,6 +259,8 @@ public abstract class Char extends Actor {
 			dmg = 0;
 		} else if (resistances().contains( srcClass )) {
 			dmg = Random.IntRange( 0, dmg );
+		} else if (weaknesses().contains( srcClass )) {
+			dmg = dmg*2;
 		}
 		
 		if (buff( Paralysis.class ) != null) {
@@ -463,6 +465,10 @@ public abstract class Char extends Actor {
 	}
 	
 	public HashSet<Class<?>> immunities() {
+		return EMPTY;
+	}
+
+	public HashSet<Class<?>> weaknesses() {
 		return EMPTY;
 	}
 

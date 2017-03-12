@@ -27,9 +27,13 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.AirElement;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.AirElement;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.Element;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.FireElemental;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Splash;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfFrost;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
@@ -44,6 +48,14 @@ import com.watabou.utils.Random;
 import java.util.ArrayList;
 
 public class Ancientpot extends Item {
+
+	private static ArrayList<Element> elements = new ArrayList<>();
+	static {
+		elements.add(new AirElement());
+		elements.add(new FireElemental());
+	}
+
+	private int elementId;
 	
 	public static final String AC_SHATTER	= "SHATTER";
 	
@@ -55,6 +67,10 @@ public class Ancientpot extends Item {
 
 		stackable = true;
 		weight = 7;
+	}
+
+	public void setElements(int id){
+		this.elementId = id;
 	}
 	
 	@Override
@@ -114,23 +130,42 @@ public class Ancientpot extends Item {
 		}
 		
 		if (newPos != -1) {
-			AirElement airElement = new AirElement();
-			airElement.spawn( Dungeon.depth );
-			airElement.setPotInfo( pos, owner );
-			airElement.HP = airElement.HT;
-			airElement.pos = newPos;
+			Element element;
+			if(elements.get(elementId) == null){
+				element = Random.element(elements);
+			} else {
+				element = elements.get(elementId);
+			}
+			element.spawn( Dungeon.depth );
+			element.setPotInfo( pos, owner );
+			element.HP = element.HT;
+			element.pos = newPos;
 			
-			GameScene.add( airElement );
-			Actor.addDelayed( new Pushing( airElement, pos, newPos ), -1f );
+			GameScene.add( element );
+			Actor.addDelayed( new Pushing( element, pos, newPos ), -1f );
 
-			airElement.sprite.alpha( 0 );
-			airElement.sprite.parent.add( new AlphaTweener( airElement.sprite, 1, 0.15f ) );
+			element.sprite.alpha( 0 );
+			element.sprite.parent.add( new AlphaTweener( element.sprite, 1, 0.15f ) );
 			
 			Sample.INSTANCE.play( Assets.SND_MISS );
-			return new ShatteredPot().setBee( airElement );
+			return new ShatteredPot().setBee( element );
 		} else {
 			return this;
 		}
+	}
+
+	private static final String POTIONUSED = "mybee";
+
+	@Override
+	public void storeInBundle(Bundle bundle) {
+		super.storeInBundle(bundle);
+		bundle.put( POTIONUSED, elementId );
+	}
+
+	@Override
+	public void restoreFromBundle(Bundle bundle) {
+		super.restoreFromBundle(bundle);
+		elementId = bundle.getInt( POTIONUSED );
 	}
 	
 	@Override
@@ -256,7 +291,17 @@ public class Ancientpot extends Item {
 					item.detach(curUser.belongings.backpack);
 					ShatteredPot.this.detach(curUser.belongings.backpack);
 					curUser.sprite.operate(curUser.pos);
-					new Ancientpot().collect();
+					int id = 1;
+					if(item instanceof PotionOfLiquidFlame){
+						id = 1;
+					} else if(item instanceof PotionOfFrost){
+						id = 2;
+					} else {
+						id++;
+					}
+					Ancientpot ancientpot = new Ancientpot();
+					ancientpot.setElements(id);
+					ancientpot.collect();
 				}
 			}
 		};

@@ -26,12 +26,12 @@ import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.watabou.noosa.TextureFilm;
 
-public class ElementalSprite extends MobSprite {
+public class FireElementalSprite extends MobSprite {
 	
-	public ElementalSprite() {
+	public FireElementalSprite() {
 		super();
 		
-		texture( Assets.ELEMENTAL );
+		texture( Assets.FIREELEME );
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 14 );
 		

@@ -25,7 +25,9 @@ package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Cripple;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Infected;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.MiGoTounge;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.items.MiGoEgg;
@@ -121,6 +123,14 @@ public class Facehugger extends Mob {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public int attackProc(Char enemy, int damage) {
+		if(Random.Int(1, 20) == 15){
+			Buff.affect(enemy, Infected.class);
+		}
+		return super.attackProc(enemy, damage);
 	}
 
 	@Override

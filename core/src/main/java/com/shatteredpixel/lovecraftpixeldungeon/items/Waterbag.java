@@ -25,6 +25,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.items;
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Hunger;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
@@ -100,6 +101,7 @@ public class Waterbag extends Item {
 				hero.busy();
 
 				Sample.INSTANCE.play( Assets.SND_DRINK );
+				hero.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
 				hero.sprite.operate( hero.pos );
 
 				updateQuickslot();

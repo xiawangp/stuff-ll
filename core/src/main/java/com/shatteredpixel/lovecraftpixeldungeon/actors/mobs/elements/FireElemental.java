@@ -20,64 +20,74 @@
  * You should have have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses>
  */
-package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs;
+package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements;
 
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Amok;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Burning;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Chill;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Frost;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Poison;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
-import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
-import com.shatteredpixel.lovecraftpixeldungeon.items.wands.WandOfFireblast;
-import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Blazing;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
-import com.shatteredpixel.lovecraftpixeldungeon.sprites.ElementalSprite;
+import com.shatteredpixel.lovecraftpixeldungeon.sprites.FireElementalSprite;
 import com.watabou.utils.Random;
 
 import java.util.HashSet;
 
-public class Elemental extends Mob {
+public class FireElemental extends Element {
 
 	{
-		spriteClass = ElementalSprite.class;
-		
-		HP = HT = 65;
-		defenseSkill = 20;
-		
-		EXP = 10;
-		maxLvl = 20;
-		
-		flying = true;
-		
-		loot = new PotionOfLiquidFlame();
-		lootChance = 0.1f;
+		spriteClass = FireElementalSprite.class;
 
-		properties.add(Property.DEMONIC);
+		EXP = 1;
+
+		flying = true;
+		state = WANDERING;
 	}
-	
-	@Override
-	public int damageRoll() {
-		return Random.NormalIntRange( 16, 26 );
-	}
-	
+
 	@Override
 	public int attackSkill( Char target ) {
-		return 25;
+		return defenseSkill;
 	}
-	
+
 	@Override
-	public int drRoll() {
-		return Random.NormalIntRange(0, 5);
+	public int damageRoll() {
+		return Random.NormalIntRange( HT / 10, HT / 4 );
 	}
-	
+
 	@Override
 	public int attackProc( Char enemy, int damage ) {
-		if (Random.Int( 2 ) == 0) {
-			Buff.affect( enemy, Burning.class ).reignite( enemy );
+		if (enemy instanceof Mob) {
+			((Mob)enemy).aggro( this );
 		}
-		
+		if(Random.Int(10) < 3){
+			Buff.affect(enemy, Burning.class);
+		}
 		return damage;
+	}
+
+	private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+	static {
+		IMMUNITIES.add( Poison.class );
+		IMMUNITIES.add( Amok.class );
+	}
+
+	private static final HashSet<Class<?>> WEAKNESSES = new HashSet<>();
+	static {
+		WEAKNESSES.add( Frost.class );
+	}
+
+	@Override
+	public HashSet<Class<?>> weaknesses() {
+		return WEAKNESSES;
+	}
+
+	@Override
+	public HashSet<Class<?>> immunities() {
+		return IMMUNITIES;
 	}
 	
 	@Override
@@ -95,17 +105,5 @@ public class Elemental extends Mob {
 		} else {
 			super.add( buff );
 		}
-	}
-	
-	private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
-	static {
-		IMMUNITIES.add( Burning.class );
-		IMMUNITIES.add( Blazing.class );
-		IMMUNITIES.add( WandOfFireblast.class );
-	}
-	
-	@Override
-	public HashSet<Class<?>> immunities() {
-		return IMMUNITIES;
 	}
 }

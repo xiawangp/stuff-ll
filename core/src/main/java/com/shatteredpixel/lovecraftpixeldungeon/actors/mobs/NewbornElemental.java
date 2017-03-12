@@ -26,10 +26,11 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Chill;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Frost;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.FireElemental;
 import com.shatteredpixel.lovecraftpixeldungeon.items.quest.Embers;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.NewbornElementalSprite;
 
-public class NewbornElemental extends Elemental {
+public class NewbornElemental extends FireElemental {
 
 	{
 		spriteClass = NewbornElementalSprite.class;
