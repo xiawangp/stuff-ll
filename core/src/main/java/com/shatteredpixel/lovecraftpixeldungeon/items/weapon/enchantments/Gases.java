@@ -26,9 +26,14 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.ConfusionGas;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Fire;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.IceWind;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.ParalyticGas;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Regrowth;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Smoke;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.StenchGas;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Storm;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Sunlight;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.TeleportGas;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.ToxicGas;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.VenomGas;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.WaterWave;
@@ -55,7 +60,7 @@ public class Gases extends Weapon.Enchantment {
 			
 			if (Random.Int( 2 ) == 0) {
 				Buff.prolong(attacker, GasesImmunity.class, 30f);
-				switch(Randomer.randomInteger(8)){
+				switch(Randomer.randomInteger(13)){
 					case 0:
 						GameScene.add( Blob.seed( defender.pos, 1000, ParalyticGas.class ) );
 						break;
@@ -79,6 +84,21 @@ public class Gases extends Weapon.Enchantment {
 						break;
 					case 7:
 						GameScene.add( Blob.seed( defender.pos, 1000, Fire.class ) );
+						break;
+					case 8:
+						GameScene.add( Blob.seed( defender.pos, 1000, IceWind.class ) );
+						break;
+					case 9:
+						GameScene.add( Blob.seed( defender.pos, 1000, TeleportGas.class ) );
+						break;
+					case 10:
+						GameScene.add( Blob.seed( defender.pos, 1000, Storm.class ) );
+						break;
+					case 11:
+						GameScene.add( Blob.seed( defender.pos, 1000, Sunlight.class ) );
+						break;
+					case 12:
+						GameScene.add( Blob.seed( defender.pos, 1000, Smoke.class ) );
 						break;
 				}
 			}

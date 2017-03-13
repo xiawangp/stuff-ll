@@ -38,6 +38,8 @@ import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.MiGoLarvaSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.MiGoQueenSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
+import com.shatteredpixel.lovecraftpixeldungeon.ui.BossHealthBar;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
@@ -48,7 +50,7 @@ public class MiGoQueen extends Mob {
 	{
 		spriteClass = MiGoQueenSprite.class;
 
-		HP = HT = Dungeon.hero.MH+Dungeon.hero.lvl;
+		HP = HT = Dungeon.hero.MH+Dungeon.hero.lvl+50;
 		defenseSkill = Dungeon.hero.STR + Dungeon.depth+(Dungeon.hero.lvl/2);
 
 		EXP = 10*Dungeon.depth;
@@ -76,6 +78,20 @@ public class MiGoQueen extends Mob {
 
 		HP = HT = 15 + Dungeon.depth * 5;
 		defenseSkill = 4 + Dungeon.depth;
+	}
+
+	@Override
+	public void notice() {
+		super.notice();
+		BossHealthBar.assignBoss(this);
+		if (HP <= HT/2) BossHealthBar.bleed(true);
+	}
+
+	@Override
+	public void restoreFromBundle(Bundle bundle) {
+		super.restoreFromBundle(bundle);
+		BossHealthBar.assignBoss(this);
+		if (HP <= HT/2) BossHealthBar.bleed(true);
 	}
 
 	@Override

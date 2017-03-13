@@ -40,7 +40,10 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Spear;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.IthaquaSprite;
+import com.shatteredpixel.lovecraftpixeldungeon.ui.BossHealthBar;
+import com.shatteredpixel.lovecraftpixeldungeon.ui.MiniBossHealthBar;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.HashSet;
@@ -50,7 +53,7 @@ public class Ithaqua extends Mob{
     {
         spriteClass = IthaquaSprite.class;
 
-        HP = HT = (Dungeon.hero.MH/2)+Dungeon.depth;
+        HP = HT = (Dungeon.hero.MH/2)+Dungeon.depth + 30;
         defenseSkill = (Dungeon.hero.STR/2) + Dungeon.depth;
 
         EXP = 10*Dungeon.depth;
@@ -100,6 +103,20 @@ public class Ithaqua extends Mob{
     @Override
     public int drRoll() {
         return Random.NormalIntRange(0, Dungeon.depth + weapon.defenseFactor(null));
+    }
+
+    @Override
+    public void notice() {
+        super.notice();
+        MiniBossHealthBar.assignBoss(this);
+        if (HP <= HT/2) BossHealthBar.bleed(true);
+    }
+
+    @Override
+    public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle(bundle);
+        MiniBossHealthBar.assignBoss(this);
+        if (HP <= HT/2) BossHealthBar.bleed(true);
     }
 
     @Override

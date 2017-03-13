@@ -32,7 +32,10 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.YigSprite;
+import com.shatteredpixel.lovecraftpixeldungeon.ui.BossHealthBar;
+import com.shatteredpixel.lovecraftpixeldungeon.ui.MiniBossHealthBar;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.HashSet;
@@ -42,7 +45,7 @@ public class Yig extends Mob{
     {
         spriteClass = YigSprite.class;
 
-        HP = HT = (Dungeon.hero.MH/2)+Dungeon.depth;
+        HP = HT = (Dungeon.hero.MH/2)+Dungeon.depth + 30;
         defenseSkill = (Dungeon.hero.STR/2) + Dungeon.depth;
 
         EXP = 10*Dungeon.depth;
@@ -67,6 +70,20 @@ public class Yig extends Mob{
 
         HP = HT = 15 + Dungeon.depth * 5;
         defenseSkill = 4 + Dungeon.depth;
+    }
+
+    @Override
+    public void notice() {
+        super.notice();
+        MiniBossHealthBar.assignBoss(this);
+        if (HP <= HT/2) BossHealthBar.bleed(true);
+    }
+
+    @Override
+    public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle(bundle);
+        MiniBossHealthBar.assignBoss(this);
+        if (HP <= HT/2) BossHealthBar.bleed(true);
     }
 
     @Override
