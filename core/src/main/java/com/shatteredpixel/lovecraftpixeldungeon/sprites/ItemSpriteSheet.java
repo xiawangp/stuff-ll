@@ -94,10 +94,10 @@ public class ItemSpriteSheet {
 		assignItemRect(GOO_DROP_YELLOW, 16, 12);
 		assignItemRect(GOO_DROP_RED,    16, 12);
 		assignItemRect(GOO_DROP_PURPLE, 16, 12);
-		assignItemRect(MONEY10, 		16, 16);
-		assignItemRect(MONEY50, 		16, 16);
-		assignItemRect(MONEY100, 		16, 16);
-		assignItemRect(MONEY500, 		16, 16);
+		assignItemRect(MONEY10, 		16, 8);
+		assignItemRect(MONEY50, 		16, 13);
+		assignItemRect(MONEY100, 		16, 14);
+		assignItemRect(MONEY500, 		16, 15);
 		assignItemRect(MONEY1000, 		16, 16);
 	}
 
