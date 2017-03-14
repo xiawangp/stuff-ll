@@ -26,6 +26,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGoKing;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGoQueen;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.TwoShoggoth;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
@@ -108,7 +109,7 @@ public class LevelBossPainter extends Painter {
 			boss2.pos = pos;
 			level.mobs.add( boss2 );
 		} else if(Dungeon.depth == 2){
-			Mob boss3= new MiGoKing(){
+			Mob boss3= new TwoShoggoth(){
 				@Override
 				public void die(Object cause) {
 					super.die(cause);
