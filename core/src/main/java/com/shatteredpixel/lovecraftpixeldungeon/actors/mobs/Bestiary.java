@@ -74,12 +74,12 @@ public class Bestiary {
 			classes = new Class<?>[]{ MiGo.class, YoungMiGo.class, NormalShoggoth.class };
 			break;
 		case 3:
-			chances = new float[]{ 2, 4, 1, 1 };
-			classes = new Class<?>[]{  };
+			chances = new float[]{ 2, 1, 1 };
+			classes = new Class<?>[]{ NormalShoggoth.class, DoubleShoggoth.class, MiGo.class };
 			break;
 		case 4:
-			chances = new float[]{ 1, 2, 3, 1,   0.01f, 0.01f };
-			classes = new Class<?>[]{  };
+			chances = new float[]{ 2.5f, 1.1f };
+			classes = new Class<?>[]{ NormalShoggoth.class, DoubleShoggoth.class };
 			break;
 			
 		case 5:

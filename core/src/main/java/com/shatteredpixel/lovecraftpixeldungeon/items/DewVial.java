@@ -180,7 +180,18 @@ public class DewVial extends Item {
 		}
 	}
 
-	public void empty() {volume = 0; updateQuickslot();}
+	public void empty() {volume = 0; if(isFull()){
+		image = ItemSpriteSheet.VIALF3;
+	} else if(volume == MAX_VOLUME/2){
+		image = ItemSpriteSheet.VIALF2;
+	} else if(volume >= 1){
+		image = ItemSpriteSheet.VIALF1;
+	} else {
+		image = ItemSpriteSheet.VIAL;
+	}
+
+		updateQuickslot();
+	}
 
 	@Override
 	public boolean isUpgradable() {

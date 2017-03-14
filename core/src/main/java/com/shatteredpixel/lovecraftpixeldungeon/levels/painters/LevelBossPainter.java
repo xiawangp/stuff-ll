@@ -98,15 +98,25 @@ public class LevelBossPainter extends Painter {
 			boss1.pos = pos;
 			level.mobs.add( boss1 );
 		} else if(Dungeon.depth == 2){
-			Mob boss1= new MiGoKing(){
+			Mob boss2= new MiGoKing(){
 				@Override
 				public void die(Object cause) {
 					super.die(cause);
 					Dungeon.level.drop(new GoldenKey(Dungeon.depth), this.pos);
 				}
 			};
-			boss1.pos = pos;
-			level.mobs.add( boss1 );
+			boss2.pos = pos;
+			level.mobs.add( boss2 );
+		} else if(Dungeon.depth == 2){
+			Mob boss3= new MiGoKing(){
+				@Override
+				public void die(Object cause) {
+					super.die(cause);
+					Dungeon.level.drop(new GoldenKey(Dungeon.depth), this.pos);
+				}
+			};
+			boss3.pos = pos;
+			level.mobs.add( boss3 );
 		}
 	}
 

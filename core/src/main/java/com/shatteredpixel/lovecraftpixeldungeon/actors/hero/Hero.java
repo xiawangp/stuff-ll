@@ -533,7 +533,7 @@ public class Hero extends Char {
 			if (curAction instanceof HeroAction.Descend) {
 
 				//TODO REMOVE WITH NEW UPDATES
-				if(Dungeon.depth == 2){
+				if(Dungeon.depth == 4){
 					GameScene.show( new WndMessage( Messages.get(this, "leave_2") ) );
 					ready();
 					return false;
@@ -1684,7 +1684,6 @@ public class Hero extends Char {
 		exp = 0;
 		
 		belongings.resurrect( resetLevel );
-		SpellSprite.show(this, SpellSprite.SCROLL_UPGRADE_SMALL, SpellSprite.COLOUR_HOLY);
 		live();
 	}
 	

@@ -331,16 +331,6 @@ public abstract class Level implements Bundlable {
 		locked      = bundle.getBoolean( LOCKED );
 		
 		weakFloorCreated = false;
-
-		//for pre-0.3.0c saves
-		if (version < 44){
-			map = Terrain.convertTrapsFrom43( map, traps );
-		}
-
-		//for pre-0.4.3 saves
-		if (version < 130){
-			map = Terrain.convertTilesFrom129( map );
-		}
 		
 		Collection<Bundlable> collection = bundle.getCollection( HEAPS );
 		for (Bundlable h : collection) {
