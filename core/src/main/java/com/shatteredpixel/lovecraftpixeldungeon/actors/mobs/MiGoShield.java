@@ -44,8 +44,6 @@ public class MiGoShield extends Mob {
 
 	@Override
 	public void damage( int dmg, Object src ){
-		//crab blocks all attacks originating from the hero or enemy characters or traps if it is alerted.
-		//All direct damage from these sources is negated, no exceptions. blob/debuff effects go through as normal.
 		if ((enemySeen && state != SLEEPING && paralysed == 0) && (src instanceof Wand || src instanceof LightningTrap.Electricity || src instanceof Char)){
 			super.damage( 0, src );
 		} else {

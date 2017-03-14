@@ -35,9 +35,19 @@ public class YoungMiGo extends MiGo {
 		spriteClass = YoungMiGoSprite.class;
 		
 		HP = HT = 15+ Dungeon.depth;
-		defenseSkill = 2;
-		
+		defenseSkill = 4+(Dungeon.depth/2);;
+		EXP = Random.Int(1,2);
 		maxLvl = 5;
+	}
+
+	@Override
+	public int damageRoll() {
+		return Random.NormalIntRange( 1, 6 );
+	}
+
+	@Override
+	public int attackSkill(Char target) {
+		return 10;
 	}
 
 	@Override

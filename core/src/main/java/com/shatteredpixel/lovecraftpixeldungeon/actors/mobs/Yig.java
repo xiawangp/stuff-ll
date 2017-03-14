@@ -46,7 +46,7 @@ public class Yig extends Mob{
         spriteClass = YigSprite.class;
 
         HP = HT = (Dungeon.hero.MH/2)+Dungeon.depth + 30;
-        defenseSkill = (Dungeon.hero.STR/2) + Dungeon.depth;
+        defenseSkill = (Dungeon.hero.STR/2) + Dungeon.depth + 5;
 
         EXP = 10*Dungeon.depth;
         baseSpeed = 2f;

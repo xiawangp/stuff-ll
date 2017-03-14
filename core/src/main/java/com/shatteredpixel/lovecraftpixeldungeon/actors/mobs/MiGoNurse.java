@@ -40,8 +40,8 @@ public class MiGoNurse extends Mob {
 	{
 		spriteClass = MiGoBirthHelperSprite.class;
 		
-		HP = HT = 6+ Dungeon.depth;
-		defenseSkill = 4+(Dungeon.depth/2);
+		HP = HT = 16+ Dungeon.depth;
+		defenseSkill = 5+(Dungeon.depth/2);
 
 		EXP = 2;
 		
@@ -56,12 +56,12 @@ public class MiGoNurse extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 1, 4 );
+		return Random.NormalIntRange( 2, 6 );
 	}
 	
 	@Override
 	public int attackSkill( Char target ) {
-		return 8;
+		return 11;
 	}
 	
 	@Override

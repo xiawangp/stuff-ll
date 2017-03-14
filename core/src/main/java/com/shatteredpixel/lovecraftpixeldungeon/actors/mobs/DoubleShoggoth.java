@@ -22,7 +22,6 @@
  */
 package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs;
 
-import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
@@ -31,9 +30,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.GooWarn;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.ToxicGas;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Ooze;
-import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
-import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.ElmoParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.PurpleGooDrop;
 import com.shatteredpixel.lovecraftpixeldungeon.items.RedGooDrop;
 import com.shatteredpixel.lovecraftpixeldungeon.items.YellowGooDrop;
@@ -48,7 +45,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.sprites.NormalShoogothSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.BossHealthBar;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.BArray;
 import com.watabou.noosa.Camera;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
@@ -59,36 +55,23 @@ import java.util.HashSet;
 public class DoubleShoggoth extends Mob {
 
 	{
-		HP = HT = 25+Dungeon.depth;
-		EXP = 2;
-		defenseSkill = 8+Dungeon.depth;
-		spriteClass = NormalShoogothSprite.class;
+		HP = HT = 30+Dungeon.depth;
+		EXP = Random.Int(1, 4);
+		defenseSkill = 10+Dungeon.depth;
+		spriteClass = DoubleShoogothSprite.class;
 	}
 
 	private int pumpedUp = 0;
 
 	@Override
 	public int damageRoll() {
-		int min = 1;
-		int max = (HP*2 <= HT) ? 5 : 8;
-		if (pumpedUp > 0) {
-			pumpedUp = 0;
-			PathFinder.buildDistanceMap( pos, BArray.not( Level.solid, null ), 2 );
-			for (int i = 0; i < PathFinder.distance.length; i++) {
-				if (PathFinder.distance[i] < Integer.MAX_VALUE)
-					CellEmitter.get(i).burst(ElmoParticle.FACTORY, 10);
-			}
-			Sample.INSTANCE.play( Assets.SND_BURNING );
-			return Random.NormalIntRange( min*2, max*2 );
-		} else {
-			return Random.NormalIntRange( min, max );
-		}
+		return Random.NormalIntRange( 1, 10 );
 	}
 
 	@Override
 	public int attackSkill( Char target ) {
-		int attack = 5;
-		if (HP*2 <= HT) attack = 6;
+		int attack = 16;
+		if (HP*2 <= HT) attack = 21;
 		if (pumpedUp > 0) attack *= 2;
 		return attack;
 	}

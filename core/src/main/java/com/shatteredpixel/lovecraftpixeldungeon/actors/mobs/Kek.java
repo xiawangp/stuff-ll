@@ -46,8 +46,8 @@ public class Kek extends Mob{
     {
         spriteClass = KekSprite.class;
 
-        HP = HT = (Dungeon.hero.MH/2)+Dungeon.depth+15;
-        defenseSkill = (Dungeon.hero.STR/2) + Dungeon.depth;
+        HP = HT = (Dungeon.hero.MH/2)+Dungeon.depth+50;
+        defenseSkill = (Dungeon.hero.STR/2) + Dungeon.depth + 10;
 
         EXP = 10*Dungeon.depth;
         baseSpeed = 3f;
@@ -125,7 +125,7 @@ public class Kek extends Mob{
 
     @Override
     public int attackSkill( Char target ) {
-        return 14;
+        return 20;
     }
 
     @Override

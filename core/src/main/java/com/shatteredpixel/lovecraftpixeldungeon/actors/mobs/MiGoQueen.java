@@ -51,7 +51,7 @@ public class MiGoQueen extends Mob {
 		spriteClass = MiGoQueenSprite.class;
 
 		HP = HT = Dungeon.hero.MH+Dungeon.hero.lvl+50;
-		defenseSkill = Dungeon.hero.STR + Dungeon.depth+(Dungeon.hero.lvl/2);
+		defenseSkill = Dungeon.hero.STR + Dungeon.depth+(Dungeon.hero.lvl/2)+5;
 
 		EXP = 10*Dungeon.depth;
 		
