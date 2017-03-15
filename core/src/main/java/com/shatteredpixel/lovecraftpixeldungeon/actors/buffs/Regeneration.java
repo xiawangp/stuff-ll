@@ -25,6 +25,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.actors.buffs;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.ChaliceOfBlood;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 
 public class Regeneration extends Buff {
 	
@@ -38,7 +39,9 @@ public class Regeneration extends Buff {
 				LockedFloor lock = target.buff(LockedFloor.class);
 				if (target.HP > 0 && (lock == null || lock.regenOn())) {
 					target.HP += 1;
-					target.MH += 1;
+					if(Randomer.randomInteger(5) == 3){
+						target.MH += 1;
+					}
 					if(target.MH >= target.MMH){
 						target.MH = target.MMH;
 					}

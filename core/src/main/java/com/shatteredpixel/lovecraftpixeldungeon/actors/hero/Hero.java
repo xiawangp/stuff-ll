@@ -32,6 +32,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Barkskin;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Berserk;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Bleeding;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Bless;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Combo;
@@ -55,6 +56,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.Ankh;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Dewdrop;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap.Type;
+import com.shatteredpixel.lovecraftpixeldungeon.items.HelmetSlot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.KindOfWeapon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.Armor;
@@ -70,6 +72,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.EtherealChains;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.HornOfPlenty;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.TalismanOfForesight;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.TimekeepersHourglass;
+import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.MiGoCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.keys.Key;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMight;
@@ -987,6 +990,14 @@ public class Hero extends Char {
 		default:
 		}
 
+		//TODO: HELMET BUFFS
+		HelmetSlot helmet = belongings.helmet;
+		if(helmet != null){
+			if(helmet instanceof MiGoCap && ((MiGoCap) helmet).isActive()){
+				Buff.affect(enemy, Bleeding.class);
+				Buff.affect(enemy, Vertigo.class, 10f);
+			}
+		}
 		
 		return damage;
 	}
@@ -1011,6 +1022,8 @@ public class Hero extends Char {
 		if(!isSane()){
 			Buff.affect(this, Vertigo.class, Vertigo.DURATION);
 		}
+
+		//TODO: HELMET BUFFS
 		
 		return damage;
 	}

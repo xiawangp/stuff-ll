@@ -35,6 +35,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.FoodBag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.WeaponCase;
 import com.shatteredpixel.lovecraftpixeldungeon.items.food.Food;
+import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.MiGoCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicMapping;
@@ -109,6 +110,8 @@ public enum HeroClass {
 			new MiGoPiece().collect();
 			new ShoggothPiece().collect();
 		}
+
+		new MiGoCap().collect();
 	}
 
 	public Badges.Badge masteryBadge() {

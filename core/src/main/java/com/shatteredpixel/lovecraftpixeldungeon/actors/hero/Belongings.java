@@ -23,6 +23,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.actors.hero;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Badges;
+import com.shatteredpixel.lovecraftpixeldungeon.items.HelmetSlot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.KindOfWeapon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.KindofMisc;
@@ -50,6 +51,7 @@ public class Belongings implements Iterable<Item> {
 	public Armor armor = null;
 	public KindofMisc misc1 = null;
 	public KindofMisc misc2 = null;
+	public HelmetSlot helmet = null;
 
 	public int[] ironKeys = new int[26];
 	public int[] specialKeys = new int[26]; //golden or boss keys
@@ -68,6 +70,7 @@ public class Belongings implements Iterable<Item> {
 	private static final String ARMOR		= "armor";
 	private static final String MISC1       = "misc1";
 	private static final String MISC2       = "misc2";
+	private static final String HELMET      = "helmet";
 
 	private static final String IRON_KEYS       = "ironKeys";
 	private static final String SPECIAL_KEYS    = "specialKeys";
@@ -86,6 +89,7 @@ public class Belongings implements Iterable<Item> {
 		bundle.put( ARMOR, armor );
 		bundle.put( MISC1, misc1);
 		bundle.put( MISC2, misc2);
+		bundle.put( HELMET, helmet);
 
 		bundle.put( IRON_KEYS, ironKeys);
 		bundle.put( SPECIAL_KEYS, specialKeys);
@@ -139,6 +143,11 @@ public class Belongings implements Iterable<Item> {
 		if (misc2 != null) {
 			misc2.activate( owner );
 		}
+
+		helmet = (HelmetSlot) bundle.get(HELMET);
+		if (helmet != null) {
+			helmet.activate( owner );
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -176,13 +185,17 @@ public class Belongings implements Iterable<Item> {
 			misc2.identify();
 			Badges.validateItemLevelAquired(misc2);
 		}
+		if (helmet != null) {
+			helmet.identify();
+			Badges.validateItemLevelAquired(helmet);
+		}
 		for (Item item : backpack) {
 			item.cursedKnown = true;
 		}
 	}
 	
 	public void uncurseEquipped() {
-		ScrollOfRemoveCurse.uncurse( owner, armor, weapon, misc1, misc2);
+		ScrollOfRemoveCurse.uncurse( owner, armor, weapon, misc1, misc2, helmet);
 	}
 	
 	public Item randomUnequipped() {
@@ -226,6 +239,10 @@ public class Belongings implements Iterable<Item> {
 			misc2.cursed = false;
 			misc2.activate( owner );
 		}
+		if (helmet != null) {
+			helmet.cursed = false;
+			helmet.activate( owner );
+		}
 	}
 	
 	public int charge( float charge ) {
@@ -250,7 +267,7 @@ public class Belongings implements Iterable<Item> {
 		
 		private Iterator<Item> backpackIterator = backpack.iterator();
 		
-		private Item[] equipped = {weapon, armor, misc1, misc2};
+		private Item[] equipped = {weapon, armor, misc1, misc2, helmet};
 		private int backpackIndex = equipped.length;
 		
 		@Override
@@ -293,6 +310,9 @@ public class Belongings implements Iterable<Item> {
 			case 3:
 				equipped[3] = misc2 = null;
 				break;
+				case 4:
+					equipped[4] = helmet = null;
+					break;
 			default:
 				backpackIterator.remove();
 			}

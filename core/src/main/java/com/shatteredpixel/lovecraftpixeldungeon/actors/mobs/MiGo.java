@@ -24,6 +24,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.MiGoPiece;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.MiGoSprite;
 import com.watabou.utils.Random;
 
@@ -35,6 +36,8 @@ public class MiGo extends Mob {
 		HP = HT = 10+ Dungeon.depth;
 		defenseSkill = 3+(Dungeon.depth/2);
 		EXP = 1;
+		loot = MiGoPiece.class;
+		lootChance = 0.3f;
 		maxLvl = 5;
 	}
 

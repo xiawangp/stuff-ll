@@ -43,6 +43,7 @@ public class ItemSpriteSheet {
 	public static final int ARMOR_HOLDER    = PLACEHOLDERS+2;
 	public static final int RING_HOLDER     = PLACEHOLDERS+3;
 	public static final int SOMETHING       = PLACEHOLDERS+4;
+	public static final int HELMET       	= PLACEHOLDERS+5;
 	static {
 		for (int i = PLACEHOLDERS; i < PLACEHOLDERS+8; i++)
 			assignItemRect(i, 16, 16);
@@ -242,7 +243,7 @@ public class ItemSpriteSheet {
 	public static final int ARMOR_MAGE      = ARMOR+6;
 	public static final int ARMOR_ROGUE     = ARMOR+7;
 	public static final int ARMOR_HUNTRESS  = ARMOR+8;
-	public static final int ARMOR_MIGO 		= ARMOR+9;
+	public static final int MIGOCAP  		= ARMOR+9;
 	static{
 		assignItemRect(ARMOR_CLOTH,     15, 12);
 		assignItemRect(ARMOR_LEATHER,   14, 13);
@@ -253,7 +254,7 @@ public class ItemSpriteSheet {
 		assignItemRect(ARMOR_MAGE,      15, 15);
 		assignItemRect(ARMOR_ROGUE,     14, 12);
 		assignItemRect(ARMOR_HUNTRESS,  13, 15);
-		assignItemRect(ARMOR_MIGO,  	14, 11);
+		assignItemRect(MIGOCAP,  		15, 13);
 	}
 
 	                                                                                    //32 free slots

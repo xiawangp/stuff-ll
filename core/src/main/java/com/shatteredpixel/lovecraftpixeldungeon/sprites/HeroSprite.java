@@ -67,7 +67,8 @@ public class HeroSprite extends CharSprite {
 	public void changeSkin(Mob mob) {
 
 		if(mob instanceof MiGo){
-			texture( Assets.MIGO );
+
+			texture(Assets.MIGO);
 
 			TextureFilm film = new TextureFilm( texture, 16, 16 );
 
@@ -99,6 +100,8 @@ public class HeroSprite extends CharSprite {
 	}
 	
 	public void updateArmor() {
+
+		texture( Dungeon.hero.heroClass.spritesheet() );
 
 		TextureFilm film = new TextureFilm( tiers(), ((Hero)ch).tier(), FRAME_WIDTH, FRAME_HEIGHT );
 		
