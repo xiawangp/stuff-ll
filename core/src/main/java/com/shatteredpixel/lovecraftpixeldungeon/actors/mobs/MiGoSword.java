@@ -32,7 +32,7 @@ public class MiGoSword extends Mob {
 	{
 		spriteClass = MiGoSwordSprite.class;
 		
-		HP = HT = 6+ Dungeon.depth;
+		HP = HT = 10+ Dungeon.depth;
 		defenseSkill = 0;
 
 		EXP = 2;
@@ -47,13 +47,18 @@ public class MiGoSword extends Mob {
 	}
 
 	@Override
+	public int defenseSkill(Char enemy) {
+		return 0;
+	}
+
+	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 1, 4 );
+		return Random.NormalIntRange( 4, 10 );
 	}
 	
 	@Override
 	public int attackSkill( Char target ) {
-		return 8;
+		return 20;
 	}
 	
 	@Override

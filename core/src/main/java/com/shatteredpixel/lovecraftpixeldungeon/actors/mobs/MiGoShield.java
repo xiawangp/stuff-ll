@@ -34,8 +34,8 @@ public class MiGoShield extends Mob {
 	{
 		spriteClass = MiGoShieldSprite.class;
 		
-		HP = HT = 6+ Dungeon.depth;
-		defenseSkill = 4+(Dungeon.depth/2)*2;
+		HP = HT = 10+ Dungeon.depth;
+		defenseSkill = 20+(Dungeon.depth/2)*2;
 
 		EXP = 2;
 		
@@ -58,7 +58,7 @@ public class MiGoShield extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 1, 4 );
+		return Random.NormalIntRange( 2, 4 );
 	}
 	
 	@Override
