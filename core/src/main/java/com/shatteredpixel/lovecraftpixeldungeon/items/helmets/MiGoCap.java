@@ -125,6 +125,13 @@ public class MiGoCap extends HelmetSlot{
     public void restoreFromBundle(Bundle bundle) {
         super.restoreFromBundle(bundle);
         activated = bundle.getBoolean(ACTIVE);
+        if(activated){
+            ((HeroSprite)curUser.sprite).changeSkin(new MiGo());
+            (curUser.sprite).operate(curUser.pos);
+        } else {
+            ((HeroSprite)curUser.sprite).updateArmor();
+            (curUser.sprite).operate(curUser.pos);
+        }
     }
 
     public boolean isActive(){

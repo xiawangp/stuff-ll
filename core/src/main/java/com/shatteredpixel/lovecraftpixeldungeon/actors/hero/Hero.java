@@ -1131,6 +1131,10 @@ public class Hero extends Char {
 	public Mob visibleEnemy( int index ) {
 		return visibleEnemies.get(index % visibleEnemies.size());
 	}
+
+	public boolean isVisibleEnemy( Mob mob ) {
+		return visibleEnemies.contains(mob);
+	}
 	
 	private boolean getCloser( final int target ) {
 
