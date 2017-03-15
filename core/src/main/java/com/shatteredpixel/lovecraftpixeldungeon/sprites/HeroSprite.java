@@ -28,6 +28,8 @@ import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.HeroClass;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGo;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.Camera;
@@ -60,6 +62,40 @@ public class HeroSprite extends CharSprite {
 			idle();
 		else
 			die();
+	}
+
+	public void changeSkin(Mob mob) {
+
+		if(mob instanceof MiGo){
+			texture( Assets.MIGO );
+
+			TextureFilm film = new TextureFilm( texture, 16, 16 );
+
+			idle = new Animation( 1, true );
+			idle.frames( film, 0, 1, 0, 2 );
+
+			run = new Animation( RUN_FRAMERATE, true );
+			run.frames( film, 3, 4, 5, 6 );
+
+			die = new Animation( 20, false );
+			die.frames( film, 10, 11, 12, 13 );
+
+			attack = new Animation( 15, false );
+			attack.frames( film, 7, 8, 9  );
+
+			zap = attack.clone();
+
+			operate = new Animation( 8, false );
+			operate.frames( film, 0, 1, 0, 2  );
+
+			fly = new Animation( 1, true );
+			fly.frames( film, 1 );
+
+			read = new Animation( 20, false );
+			read.frames( film, 7, 8, 9 );
+		} else {
+
+		}
 	}
 	
 	public void updateArmor() {

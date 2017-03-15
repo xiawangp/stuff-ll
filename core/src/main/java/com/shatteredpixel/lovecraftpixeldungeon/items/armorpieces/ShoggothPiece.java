@@ -20,18 +20,20 @@
  * You should have have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses>
  */
-package com.shatteredpixel.lovecraftpixeldungeon.items.armor;
+
+package com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces;
 
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
 
-public class ScaleArmor extends Armor {
+public class ShoggothPiece extends Piece {
 
-	{
-		image = ItemSpriteSheet.ARMOR_SCALE;
-		weight = 6;
-	}
-	
-	public ScaleArmor() {
-		super( 4 );
-	}
+    {
+        image = ItemSpriteSheet.SHOGGOTHSCAL;
+        weight = 1;
+    }
+
+    @Override
+    public int price() {
+        return 120;
+    }
 }

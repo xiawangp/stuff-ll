@@ -31,6 +31,10 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Gold;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Stick;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armor.MageArmor;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armor.WarriorArmor;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.MiGoPiece;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.ShoggothPiece;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Adamantium;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Cobalt;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.DarkGold;
@@ -141,7 +145,7 @@ public class WndCraft extends WndTabbed {
 			craftcode = craftcode + itemsChar.get(i-1);
 		}
 		itemsChar.clear();
-		//OldCopper = O, Iron = I, Gold = D, Adamantium = A, Uranium = U, Cobalt = C, Stick = S, nothing = n
+		//OldCopper = O, Iron = I, Gold = D, Adamantium = A, Uranium = U, Cobalt = C, Stick = S, MiGoPiece = M ShoggothPiece = s , nothing = n
 		if(craftcode.contains("IInnSnnSn")){
 			items.clear();
 			Dungeon.level.drop(new HandAxe(), Dungeon.hero.pos);
@@ -223,6 +227,12 @@ public class WndCraft extends WndTabbed {
 		} else if(craftcode.contains("nnnnDnnnn")){
 			items.clear();
 			Dungeon.level.drop(new Gold().quantity(10), Dungeon.hero.pos);
+		} else if(craftcode.contains("MnMMMMMMM")){
+			items.clear();
+			Dungeon.level.drop(new MageArmor(), Dungeon.hero.pos);
+		} else if(craftcode.contains("sasssssss")){
+			items.clear();
+			Dungeon.level.drop(new WarriorArmor(), Dungeon.hero.pos);
 		}
 	}
 
@@ -375,6 +385,14 @@ public class WndCraft extends WndTabbed {
 						item(new Stick());
 						items.set(id, new Stick());
 						itemsChar.set(id, 'S');
+					} else if(item instanceof MiGoPiece){
+						item(new MiGoPiece());
+						items.set(id, new MiGoPiece());
+						itemsChar.set(id, 'M');
+					} else if(item instanceof ShoggothPiece){
+						item(new ShoggothPiece());
+						items.set(id, new ShoggothPiece());
+						itemsChar.set(id, 's');
 					}
 
 

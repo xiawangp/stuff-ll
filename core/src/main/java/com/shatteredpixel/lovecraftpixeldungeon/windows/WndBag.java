@@ -34,6 +34,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.Gold;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Stick;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.Armor;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.Piece;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.FoodBag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.PotionBandolier;
@@ -397,7 +398,7 @@ public class WndBag extends WndTabbed {
 						mode == Mode.FOOD && (item instanceof Food) ||
 						mode == Mode.POTION && (item instanceof Potion) ||
 						mode == Mode.SCROLL && (item instanceof Scroll) ||
-								mode == Mode.CRAFTING && (item instanceof Ores || item instanceof Stick) ||
+								mode == Mode.CRAFTING && (item instanceof Ores || item instanceof Stick || item instanceof Piece) ||
 						mode == Mode.EQUIPMENT && (item instanceof EquipableItem) ||
 						mode == Mode.ALL
 					);

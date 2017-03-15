@@ -242,6 +242,7 @@ public class ItemSpriteSheet {
 	public static final int ARMOR_MAGE      = ARMOR+6;
 	public static final int ARMOR_ROGUE     = ARMOR+7;
 	public static final int ARMOR_HUNTRESS  = ARMOR+8;
+	public static final int ARMOR_MIGO 		= ARMOR+9;
 	static{
 		assignItemRect(ARMOR_CLOTH,     15, 12);
 		assignItemRect(ARMOR_LEATHER,   14, 13);
@@ -252,6 +253,7 @@ public class ItemSpriteSheet {
 		assignItemRect(ARMOR_MAGE,      15, 15);
 		assignItemRect(ARMOR_ROGUE,     14, 12);
 		assignItemRect(ARMOR_HUNTRESS,  13, 15);
+		assignItemRect(ARMOR_MIGO,  	14, 11);
 	}
 
 	                                                                                    //32 free slots
@@ -480,6 +482,8 @@ public class ItemSpriteSheet {
 	public static final int COPPERORE  	= QUEST+10;
 	public static final int COBALTORE   = QUEST+11;
 	public static final int STICK   	= QUEST+12;
+	public static final int MIGOSCALE   = QUEST+13;
+	public static final int SHOGGOTHSCAL= QUEST+14;
 	static{
 		assignItemRect(SKULL,   	16, 11);
 		assignItemRect(DUST,    	12, 11);
@@ -494,7 +498,8 @@ public class ItemSpriteSheet {
 		assignItemRect(COPPERORE,   16, 16);
 		assignItemRect(COBALTORE,   16, 16);
 		assignItemRect(STICK,   	16, 16);
-
+		assignItemRect(MIGOSCALE,   11, 13);
+		assignItemRect(SHOGGOTHSCAL,16, 12);
 	}
 
 	private static final int BAGS       =                                   xy(1, 28);  //16 slots
