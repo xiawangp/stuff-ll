@@ -31,9 +31,9 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Gold;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Stick;
-import com.shatteredpixel.lovecraftpixeldungeon.items.armor.WarriorArmor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.MiGoPiece;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.ShoggothPiece;
+import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.GooCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.MiGoCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Adamantium;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Cobalt;
@@ -227,12 +227,12 @@ public class WndCraft extends WndTabbed {
 		} else if(craftcode.contains("nnnnDnnnn")){
 			items.clear();
 			Dungeon.level.drop(new Gold().quantity(10), Dungeon.hero.pos);
-		} else if(craftcode.contains("MMMMnM")){
+		} else if(craftcode.contains("MMMMnMnnn")){
 			items.clear();
 			Dungeon.level.drop(new MiGoCap(), Dungeon.hero.pos);
-		} else if(craftcode.contains("sasssssss")){
+		} else if(craftcode.contains("ssssnsnnn")){
 			items.clear();
-			Dungeon.level.drop(new WarriorArmor(), Dungeon.hero.pos);
+			Dungeon.level.drop(new GooCap(), Dungeon.hero.pos);
 		}
 	}
 

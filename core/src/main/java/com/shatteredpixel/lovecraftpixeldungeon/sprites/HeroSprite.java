@@ -30,6 +30,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGo;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.NormalShoggoth;
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.Camera;
@@ -94,6 +95,33 @@ public class HeroSprite extends CharSprite {
 
 			read = new Animation( 20, false );
 			read.frames( film, 7, 8, 9 );
+		} else if(mob instanceof NormalShoggoth){
+			texture(Assets.NSHOOGOTH);
+
+			TextureFilm film = new TextureFilm( texture, 16, 16 );
+
+			idle = new Animation( 1, true );
+			idle.frames( film, 2, 3, 1 );
+
+			run = new Animation( RUN_FRAMERATE, true );
+			run.frames( film, 2, 8, 4, 3 );
+
+			die = new Animation( 20, false );
+			die.frames( film, 5, 6, 7 );
+
+			attack = new Animation( 15, false );
+			attack.frames( film, 2, 8, 9, 10  );
+
+			zap = attack.clone();
+
+			operate = new Animation( 8, false );
+			operate.frames( film, 2, 1, 0, 1, 2, 3, 4, 3, 2, 3, 4, 5  );
+
+			fly = new Animation( 1, true );
+			fly.frames( film, 2, 1, 0, 1, 2, 3, 4, 3, 2, 3, 4, 5 );
+
+			read = new Animation( 20, false );
+			read.frames( film, 2, 3, 4, 5, 4, 5, 4, 5, 8, 2 );
 		} else {
 
 		}

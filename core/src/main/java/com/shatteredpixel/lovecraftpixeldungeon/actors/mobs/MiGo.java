@@ -37,7 +37,7 @@ public class MiGo extends Mob {
 		defenseSkill = 3+(Dungeon.depth/2);
 		EXP = 1;
 		loot = MiGoPiece.class;
-		lootChance = 0.3f;
+		lootChance = 0.1f;
 		maxLvl = 5;
 	}
 

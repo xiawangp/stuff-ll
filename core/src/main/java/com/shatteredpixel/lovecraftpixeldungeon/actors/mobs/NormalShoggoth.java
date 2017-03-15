@@ -33,6 +33,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.items.PurpleGooDrop;
 import com.shatteredpixel.lovecraftpixeldungeon.items.RedGooDrop;
 import com.shatteredpixel.lovecraftpixeldungeon.items.YellowGooDrop;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.ShoggothPiece;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfPsionicBlast;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Grim;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
@@ -55,6 +56,8 @@ public class NormalShoggoth extends Mob {
 		HP = HT = 20+Dungeon.depth;
 		EXP = Random.Int(1, 3);
 		defenseSkill = 8+Dungeon.depth;
+		loot = ShoggothPiece.class;
+		lootChance = 0.1f;
 		spriteClass = NormalShoogothSprite.class;
 	}
 

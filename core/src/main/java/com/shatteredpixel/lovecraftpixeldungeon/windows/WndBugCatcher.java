@@ -59,7 +59,8 @@ public class WndBugCatcher extends WndTabbed {
 				"_-_ Ropuszka\n" +
 				"_-_ Buue2\n" +
 				"_-_ SariusDev\n" +
-				"_-_ trick1234";
+				"_-_ trick1234\n" +
+				"_-_ supersonic1654";
 
 		IconTitle titlebar = new IconTitle();
 		titlebar.icon( Icons.BUG.get());

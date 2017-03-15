@@ -72,6 +72,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.EtherealChains;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.HornOfPlenty;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.TalismanOfForesight;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.TimekeepersHourglass;
+import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.GooCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.MiGoCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.keys.Key;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.Potion;
@@ -88,6 +89,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicalInfusion;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.lovecraftpixeldungeon.items.wands.WandOfBlastWave;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Flail;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.missiles.MissileWeapon;
@@ -98,6 +100,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.levels.features.Chasm;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.features.CraftingBench;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.features.EnchantingTable;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.features.Sign;
+import com.shatteredpixel.lovecraftpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.plants.Earthroot;
 import com.shatteredpixel.lovecraftpixeldungeon.plants.Sungrass;
@@ -996,6 +999,11 @@ public class Hero extends Char {
 			if(helmet instanceof MiGoCap && ((MiGoCap) helmet).isActive()){
 				Buff.affect(enemy, Bleeding.class);
 				Buff.affect(enemy, Vertigo.class, 10f);
+			} else
+			if(helmet instanceof GooCap && ((GooCap) helmet).isActive()){
+				int opposite = enemy.pos + (enemy.pos - this.pos);
+				Ballistica trajectory = new Ballistica(enemy.pos, opposite, Ballistica.MAGIC_BOLT);
+				WandOfBlastWave.throwChar(enemy, trajectory, 10+Dungeon.depth);
 			}
 		}
 		
@@ -1024,6 +1032,18 @@ public class Hero extends Char {
 		}
 
 		//TODO: HELMET BUFFS
+		HelmetSlot helmet = belongings.helmet;
+		if(helmet != null){
+			if(helmet instanceof MiGoCap && ((MiGoCap) helmet).isActive()){
+				Buff.affect(enemy, Bleeding.class);
+				Buff.affect(enemy, Vertigo.class, 10f);
+			} else
+			if(helmet instanceof GooCap && ((GooCap) helmet).isActive()){
+				int opposite = enemy.pos + (enemy.pos - this.pos);
+				Ballistica trajectory = new Ballistica(enemy.pos, opposite, Ballistica.MAGIC_BOLT);
+				WandOfBlastWave.throwChar(enemy, trajectory, 10+Dungeon.depth);
+			}
+		}
 		
 		return damage;
 	}
