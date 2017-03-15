@@ -96,28 +96,29 @@ public class HeroSprite extends CharSprite {
 			read = new Animation( 20, false );
 			read.frames( film, 7, 8, 9 );
 		} else if(mob instanceof NormalShoggoth){
+
 			texture(Assets.NSHOOGOTH);
 
-			TextureFilm film = new TextureFilm( texture, 16, 16 );
+			TextureFilm film = new TextureFilm( texture, 20, 14 );
 
-			idle = new Animation( 1, true );
+			idle = new Animation( 10, true );
 			idle.frames( film, 2, 3, 1 );
 
-			run = new Animation( RUN_FRAMERATE, true );
+			run = new Animation( 15, true );
 			run.frames( film, 2, 8, 4, 3 );
 
 			die = new Animation( 20, false );
 			die.frames( film, 5, 6, 7 );
 
-			attack = new Animation( 15, false );
+			attack = new Animation( 10, false );
 			attack.frames( film, 2, 8, 9, 10  );
 
 			zap = attack.clone();
 
-			operate = new Animation( 8, false );
+			operate = new Animation( 25, false );
 			operate.frames( film, 2, 1, 0, 1, 2, 3, 4, 3, 2, 3, 4, 5  );
 
-			fly = new Animation( 1, true );
+			fly = new Animation( 25, true );
 			fly.frames( film, 2, 1, 0, 1, 2, 3, 4, 3, 2, 3, 4, 5 );
 
 			read = new Animation( 20, false );

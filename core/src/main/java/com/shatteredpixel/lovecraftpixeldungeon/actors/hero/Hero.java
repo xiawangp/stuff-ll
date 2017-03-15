@@ -39,6 +39,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Combo;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Drowsy;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Fury;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Hunger;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Infected;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Invisibility;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Paralysis;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Regeneration;
@@ -1036,7 +1037,7 @@ public class Hero extends Char {
 		if(helmet != null){
 			if(helmet instanceof MiGoCap && ((MiGoCap) helmet).isActive()){
 				Buff.affect(enemy, Bleeding.class);
-				Buff.affect(enemy, Vertigo.class, 10f);
+				Buff.affect(enemy, Infected.class);
 			} else
 			if(helmet instanceof GooCap && ((GooCap) helmet).isActive()){
 				int opposite = enemy.pos + (enemy.pos - this.pos);
