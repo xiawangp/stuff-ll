@@ -261,7 +261,7 @@ public class Ancientpot extends Item {
 			if (Dungeon.depth != beeDepth)
 				return;
 
-			AirElement bee = (AirElement)Actor.findById( myBee );
+			Element bee = (Element) Actor.findById( myBee );
 			if (bee != null)
 				bee.setPotInfo( cell, holder );
 		}
@@ -304,9 +304,9 @@ public class Ancientpot extends Item {
 					if(item instanceof PotionOfLiquidFlame){
 						id = 1;
 					} else if(item instanceof PotionOfFrost){
-						id = 2;
+						id = 0;
 					} else if(item instanceof PotionOfMindVision){
-						id = 3;
+						id = 2;
 					}
 					Ancientpot ancientpot = new Ancientpot();
 					ancientpot.setElements(id);
