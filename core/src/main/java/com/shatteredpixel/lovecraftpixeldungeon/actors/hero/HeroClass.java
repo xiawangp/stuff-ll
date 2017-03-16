@@ -26,6 +26,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Challenges;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Ancientpot;
 import com.shatteredpixel.lovecraftpixeldungeon.items.BrokenSeal;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Waterbag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.ClothArmor;
@@ -102,6 +103,9 @@ public enum HeroClass {
 		Dungeon.quickslot.setSlot(3, waterbag);
 
 		Dungeon.gold = 1200;
+
+		new Ancientpot().collect();
+		new PotionOfMindVision().collect();
 	}
 
 	public Badges.Badge masteryBadge() {

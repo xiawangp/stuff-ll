@@ -31,6 +31,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Gold;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Stick;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armor.MailArmor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.MiGoPiece;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.ShoggothPiece;
 import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.GooCap;
@@ -53,6 +54,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Knuckles;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Longsword;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Mace;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.MagesStaff;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.MiGoSword;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Quarterstaff;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.RoundShield;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.RunicBlade;
@@ -145,7 +147,7 @@ public class WndCraft extends WndTabbed {
 			craftcode = craftcode + itemsChar.get(i-1);
 		}
 		itemsChar.clear();
-		//OldCopper = O, Iron = I, Gold = D, Adamantium = A, Uranium = U, Cobalt = C, Stick = S, MiGoPiece = M ShoggothPiece = s , nothing = n
+		//OldCopper = O, Iron = I, Gold = D, Adamantium = A, Uranium = U, Cobalt = C, Stick = S, MiGoPiece = M, ShoggothPiece = s , nothing = n
 		if(craftcode.contains("IInnSnnSn")){
 			items.clear();
 			Dungeon.level.drop(new HandAxe(), Dungeon.hero.pos);
@@ -233,6 +235,12 @@ public class WndCraft extends WndTabbed {
 		} else if(craftcode.contains("ssssnsnnn")){
 			items.clear();
 			Dungeon.level.drop(new GooCap(), Dungeon.hero.pos);
+		} else if(craftcode.contains("nMnnMnnSn")){
+			items.clear();
+			Dungeon.level.drop(new MiGoSword(), Dungeon.hero.pos);
+		} else if(craftcode.contains("InIIIIIII")){
+			items.clear();
+			Dungeon.level.drop(new MailArmor(), Dungeon.hero.pos);
 		}
 	}
 
