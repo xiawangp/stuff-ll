@@ -27,6 +27,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGoKing;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGoQueen;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.TwoShoggoth;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.WalkingShoggoth;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
@@ -118,6 +119,16 @@ public class LevelBossPainter extends Painter {
 			};
 			boss3.pos = pos;
 			level.mobs.add( boss3 );
+		} else if(Dungeon.depth == 4){
+			Mob boss4= new WalkingShoggoth(){
+				@Override
+				public void die(Object cause) {
+					super.die(cause);
+					Dungeon.level.drop(new GoldenKey(Dungeon.depth), this.pos);
+				}
+			};
+			boss4.pos = pos;
+			level.mobs.add( boss4 );
 		}
 	}
 
