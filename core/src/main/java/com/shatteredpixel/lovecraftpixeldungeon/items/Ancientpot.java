@@ -69,7 +69,7 @@ public class Ancientpot extends Item {
 		defaultAction = AC_THROW;
 		usesTargeting = true;
 
-		stackable = true;
+		stackable = false;
 		weight = 7;
 	}
 
