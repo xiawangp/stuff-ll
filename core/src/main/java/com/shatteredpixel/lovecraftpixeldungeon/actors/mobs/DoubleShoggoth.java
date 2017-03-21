@@ -41,8 +41,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.DoubleShoogothSprite;
-import com.shatteredpixel.lovecraftpixeldungeon.sprites.NormalShoogothSprite;
-import com.shatteredpixel.lovecraftpixeldungeon.ui.BossHealthBar;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.BArray;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.tweeners.AlphaTweener;
@@ -92,8 +90,7 @@ public class DoubleShoggoth extends Mob {
 		if (Level.water[pos] && HP < HT) {
 			sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
 			if (HP*2 == HT) {
-				BossHealthBar.bleed(false);
-				((NormalShoogothSprite)sprite).spray(false);
+				((DoubleShoogothSprite)sprite).spray(false);
 			}
 			HP++;
 		}
@@ -105,7 +102,7 @@ public class DoubleShoggoth extends Mob {
 	public int defenseProc(Char enemy, int damage) {
 		for (int n : PathFinder.NEIGHBOURS4) {
 			int cell = this.pos + n;
-			if (Level.passable[cell] && Actor.findChar( cell ) == null) {
+			if (Level.passable[cell] && Actor.findChar( cell ) == null && Random.Int(4) == 2) {
 				if(enemy == Dungeon.hero){
 					Dungeon.hero.decreaseMentalHealth(2);
 				}
@@ -166,7 +163,7 @@ public class DoubleShoggoth extends Mob {
 	@Override
 	protected boolean doAttack( Char enemy ) {
 		if (pumpedUp == 1) {
-			((NormalShoogothSprite)sprite).pumpUp();
+			((DoubleShoogothSprite)sprite).pumpUp();
 			PathFinder.buildDistanceMap( pos, BArray.not( Level.solid, null ), 2 );
 			for (int i = 0; i < PathFinder.distance.length; i++) {
 				if (PathFinder.distance[i] < Integer.MAX_VALUE)
@@ -183,7 +180,7 @@ public class DoubleShoggoth extends Mob {
 
 			if (visible) {
 				if (pumpedUp >= 2) {
-					((NormalShoogothSprite) sprite).pumpAttack();
+					((DoubleShoogothSprite) sprite).pumpAttack();
 				}
 				else
 					sprite.attack( enemy.pos );
@@ -199,7 +196,7 @@ public class DoubleShoggoth extends Mob {
 
 			pumpedUp++;
 
-			((NormalShoogothSprite)sprite).pumpUp();
+			((DoubleShoogothSprite)sprite).pumpUp();
 
 			for (int i=0; i < PathFinder.NEIGHBOURS9.length; i++) {
 				int j = pos + PathFinder.NEIGHBOURS9[i];
@@ -271,8 +268,6 @@ public class DoubleShoggoth extends Mob {
 		super.restoreFromBundle( bundle );
 
 		pumpedUp = bundle.getInt( PUMPEDUP );
-		if (state != SLEEPING) BossHealthBar.assignBoss(this);
-		if ((HP*2 <= HT)) BossHealthBar.bleed(true);
 
 	}
 	

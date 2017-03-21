@@ -120,6 +120,7 @@ public class Assets {
 	public static final String LPLANTS  = "plantspiders.png";
 	public static final String ITHAQUA  = "ithaqua.png";
 	public static final String EARTHELEM= "worm.png";
+	public static final String WSHOGGOTH= "walkingshoggoth.png";
 
 	public static final String ITEMS	        = "items.png";
 	public static final String TERRAIN_FEATURES	= "terrain_features.png";

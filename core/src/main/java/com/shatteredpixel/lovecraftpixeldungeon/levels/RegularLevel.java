@@ -44,6 +44,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.ExplosiveTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.FireTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.Trap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.WornTrap;
+import com.shatteredpixel.lovecraftpixeldungeon.plants.Plant;
 import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Graph;
@@ -782,6 +783,13 @@ public abstract class RegularLevel extends Level {
 		for(int i = shroomsDrops; i > 0; i--){
 			drop(Generator.random(Generator.Category.SHROOMS), randomShroomDropCell());
 		}
+
+		//TODO: PLANT GENERATION
+		int plants = Random.Int(6, 8);
+		for(int i = plants; i > 0; i--){
+			Plant.Seed seed = (Plant.Seed) Generator.random(Generator.Category.SEED);
+			plant(seed, randomPlant());
+		}
 	}
 	
 	protected Room randomRoom( Room.Type type, int tries ) {
@@ -820,6 +828,15 @@ public abstract class RegularLevel extends Level {
 		while (true) {
 			int pos = randomDestination();
 			if (passable[pos] && flamable[pos] && losBlocking[pos] && !solid[pos]) {
+				return pos;
+			}
+		}
+	}
+
+	protected int randomPlant() {
+		while (true) {
+			int pos = randomDestination();
+			if (map[pos] == Terrain.EMPTY_DECO) {
 				return pos;
 			}
 		}

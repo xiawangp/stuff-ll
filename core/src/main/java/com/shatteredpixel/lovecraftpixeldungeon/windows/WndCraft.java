@@ -30,6 +30,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.Bomb;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Gold;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
+import com.shatteredpixel.lovecraftpixeldungeon.items.MiGoEgg;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Stick;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.MailArmor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.MiGoPiece;
@@ -241,6 +242,9 @@ public class WndCraft extends WndTabbed {
 		} else if(craftcode.contains("InIIIIIII")){
 			items.clear();
 			Dungeon.level.drop(new MailArmor(), Dungeon.hero.pos);
+		} else if(craftcode.contains("nMnMsMnMn")){
+			items.clear();
+			Dungeon.level.drop(new MiGoEgg(), Dungeon.hero.pos);
 		}
 	}
 

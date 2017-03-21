@@ -24,7 +24,6 @@ package com.shatteredpixel.lovecraftpixeldungeon.levels;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.npcs.Ghost;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Ripple;
 import com.shatteredpixel.lovecraftpixeldungeon.items.DewVial;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.AlarmTrap;
@@ -144,7 +143,7 @@ public class SewerLevel extends RegularLevel {
 			Dungeon.limitedDrops.dewVial.drop();
 		}
 
-		Ghost.Quest.spawn( this );
+		//Ghost.Quest.spawn( this );
 		
 		super.createItems();
 	}

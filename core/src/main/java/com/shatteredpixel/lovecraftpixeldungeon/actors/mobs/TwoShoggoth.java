@@ -44,8 +44,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.CharSprite;
-import com.shatteredpixel.lovecraftpixeldungeon.sprites.DoubleShoogothSprite;
-import com.shatteredpixel.lovecraftpixeldungeon.sprites.NormalShoogothSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.TwoShoggothBossSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.BossHealthBar;
@@ -66,6 +64,8 @@ public class TwoShoggoth extends Mob {
 		EXP = 10;
 		defenseSkill = 12+Dungeon.depth;
 		spriteClass = TwoShoggothBossSprite.class;
+		properties.add(Property.BOSS);
+		properties.add(Property.DEMONIC);
 	}
 
 	private int pumpedUp = 0;
@@ -113,7 +113,7 @@ public class TwoShoggoth extends Mob {
 			sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
 			if (HP*2 == HT) {
 				BossHealthBar.bleed(false);
-				((NormalShoogothSprite)sprite).spray(false);
+				((TwoShoggothBossSprite)sprite).spray(false);
 			}
 			HP++;
 		}
@@ -150,7 +150,7 @@ public class TwoShoggoth extends Mob {
 			shoggoth.sprite.alpha( 0 );
 			shoggoth.sprite.parent.add( new AlphaTweener( shoggoth.sprite, 1, 0.5f ) );
 
-			shoggoth.sprite.emitter().burst(DoubleShoogothSprite.GooParticle.FACTORY, 5 );
+			shoggoth.sprite.emitter().burst(TwoShoggothBossSprite.GooParticle.FACTORY, 5 );
 
 			return shoggoth;
 		} else {
@@ -169,7 +169,7 @@ public class TwoShoggoth extends Mob {
 			shoggoth.sprite.alpha( 0 );
 			shoggoth.sprite.parent.add( new AlphaTweener( shoggoth.sprite, 1, 0.5f ) );
 
-			shoggoth.sprite.emitter().burst(DoubleShoogothSprite.GooParticle.FACTORY, 5 );
+			shoggoth.sprite.emitter().burst(TwoShoggothBossSprite.GooParticle.FACTORY, 5 );
 
 			return shoggoth;
 		} else {
@@ -210,7 +210,7 @@ public class TwoShoggoth extends Mob {
 	@Override
 	protected boolean doAttack( Char enemy ) {
 		if (pumpedUp == 1) {
-			((NormalShoogothSprite)sprite).pumpUp();
+			((TwoShoggothBossSprite)sprite).pumpUp();
 			PathFinder.buildDistanceMap( pos, BArray.not( Level.solid, null ), 2 );
 			for (int i = 0; i < PathFinder.distance.length; i++) {
 				if (PathFinder.distance[i] < Integer.MAX_VALUE)
@@ -227,7 +227,7 @@ public class TwoShoggoth extends Mob {
 
 			if (visible) {
 				if (pumpedUp >= 2) {
-					((NormalShoogothSprite) sprite).pumpAttack();
+					((TwoShoggothBossSprite) sprite).pumpAttack();
 				}
 				else
 					sprite.attack( enemy.pos );
@@ -243,7 +243,7 @@ public class TwoShoggoth extends Mob {
 
 			pumpedUp++;
 
-			((NormalShoogothSprite)sprite).pumpUp();
+			((TwoShoggothBossSprite)sprite).pumpUp();
 
 			for (int i=0; i < PathFinder.NEIGHBOURS9.length; i++) {
 				int j = pos + PathFinder.NEIGHBOURS9[i];

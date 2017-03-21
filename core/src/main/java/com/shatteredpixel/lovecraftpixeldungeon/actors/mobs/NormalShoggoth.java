@@ -41,7 +41,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.NormalShoogothSprite;
-import com.shatteredpixel.lovecraftpixeldungeon.ui.BossHealthBar;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.BArray;
 import com.watabou.noosa.Camera;
 import com.watabou.utils.Bundle;
@@ -92,7 +91,6 @@ public class NormalShoggoth extends Mob {
 		if (Level.water[pos] && HP < HT) {
 			sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
 			if (HP*2 == HT) {
-				BossHealthBar.bleed(false);
 				((NormalShoogothSprite)sprite).spray(false);
 			}
 			HP++;
@@ -229,8 +227,6 @@ public class NormalShoggoth extends Mob {
 		super.restoreFromBundle( bundle );
 
 		pumpedUp = bundle.getInt( PUMPEDUP );
-		if (state != SLEEPING) BossHealthBar.assignBoss(this);
-		if ((HP*2 <= HT)) BossHealthBar.bleed(true);
 
 	}
 	

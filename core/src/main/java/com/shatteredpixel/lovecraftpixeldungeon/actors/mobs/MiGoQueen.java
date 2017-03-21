@@ -57,6 +57,7 @@ public class MiGoQueen extends Mob {
 		
 		maxLvl = 5;
 		properties.add(Property.IMMOVABLE);
+		properties.add(Property.BOSS);
 
 		loot = MiGoEgg.class;
 		lootChance = 0.8f;

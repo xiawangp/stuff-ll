@@ -108,7 +108,7 @@ public class LevelBossPainter extends Painter {
 			};
 			boss2.pos = pos;
 			level.mobs.add( boss2 );
-		} else if(Dungeon.depth == 2){
+		} else if(Dungeon.depth == 3){
 			Mob boss3= new TwoShoggoth(){
 				@Override
 				public void die(Object cause) {

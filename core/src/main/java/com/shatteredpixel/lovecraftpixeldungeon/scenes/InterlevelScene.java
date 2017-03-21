@@ -34,14 +34,20 @@ import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.GameLog;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndError;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndStory;
+import com.watabou.input.Touchscreen;
+import com.watabou.noosa.BitmapText;
+import com.watabou.noosa.BitmapTextMultiline;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.RenderedText;
+import com.watabou.noosa.TouchArea;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Random;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class InterlevelScene extends PixelScene {
 
@@ -62,6 +68,36 @@ public class InterlevelScene extends PixelScene {
 	private enum Phase {
 		FADE_IN, STATIC, FADE_OUT
 	}
+
+	private final String[] TIPS = {
+			Messages.get(this, "leviticus"),
+			Messages.get(this, "exodus"),
+			Messages.get(this, "slenderman1"),
+			Messages.get(this, "slenderman2"),
+			Messages.get(this, "nyarlathotep"),
+			Messages.get(this, "nietzsche"),
+			Messages.get(this, "poe1"),
+			Messages.get(this, "poe2"),
+			Messages.get(this, "chinesecurse"),
+			Messages.get(this, "wikipediacurse"),
+			Messages.get(this, "chinesesaying"),
+			Messages.get(this, "peterkurten"),
+			Messages.get(this, "johnwayne"),
+			Messages.get(this, "jigsaw"),
+			Messages.get(this, "bloch"),
+			Messages.get(this, "3deadkings"),
+			Messages.get(this, "oppenheimer"),
+			Messages.get(this, "vegetius"),
+			Messages.get(this, "tannhauser"),
+			Messages.get(this, "gita"),
+			Messages.get(this, "alice1"),
+			Messages.get(this, "alice2"),
+			Messages.get(this, "irulan"),
+			Messages.get(this, "henley"),
+			Messages.get(this, "henley2"),
+			Messages.get(this, "gameofthrones"),
+	};
+
 	private Phase phase;
 	private float timeLeft;
 	
@@ -70,7 +106,9 @@ public class InterlevelScene extends PixelScene {
 	private Thread thread;
 	private Exception error = null;
 	private float waitingTime;
-	
+
+	private ArrayList<BitmapText> tipBox;
+
 	@Override
 	public void create() {
 		super.create();
@@ -79,9 +117,23 @@ public class InterlevelScene extends PixelScene {
 		
 		message = PixelScene.renderText( text, 9 );
 		message.x = (Camera.main.width - message.width()) / 2;
-		message.y = (Camera.main.height - message.height()) / 2;
+		message.y = (Camera.main.height - message.height()) / 6;
 		align(message);
 		add( message );
+
+		tipBox = new ArrayList<>();
+
+		BitmapTextMultiline tip = PixelScene.createMultiline(TIPS[Random.Int(TIPS.length)], 6);
+		tip.maxWidth = Camera.main.width * 9 / 10;
+		tip.measure();
+
+		for (BitmapText line : tip.new LineSplitter().split()) {
+			line.measure();
+			line.x = PixelScene.align(Camera.main.width / 2 - line.width() / 2);
+			line.y = PixelScene.align(Camera.main.height * 3 / 4 - tip.height() * 3 / 4 + tipBox.size() * line.height());
+			tipBox.add(line);
+			add(line);
+		}
 		
 		phase = Phase.FADE_IN;
 		timeLeft = TIME_TO_FADE;
@@ -128,10 +180,16 @@ public class InterlevelScene extends PixelScene {
 
 				}
 
-				if (phase == Phase.STATIC && error == null) {
-					phase = Phase.FADE_OUT;
-					timeLeft = TIME_TO_FADE;
-				}
+				add(new TouchArea(Camera.main.x, Camera.main.y, Camera.main.width, Camera.main.height){
+					@Override
+					protected void onClick(Touchscreen.Touch touch) {
+						super.onClick(touch);
+						if (phase == Phase.STATIC && error == null) {
+							phase = Phase.FADE_OUT;
+							timeLeft = TIME_TO_FADE;
+						}
+					}
+				});
 			}
 		};
 		thread.start();
@@ -187,7 +245,7 @@ public class InterlevelScene extends PixelScene {
 				} );
 				error = null;
 			} else if ((int)waitingTime == 10){
-				waitingTime = 11f;
+				waitingTime = 60f;
 				LovecraftPixelDungeon.reportException(
 						new RuntimeException("waited more than 10 seconds on levelgen. Seed:" + Dungeon.seed + " depth:" + Dungeon.depth)
 				);
@@ -295,9 +353,9 @@ public class InterlevelScene extends PixelScene {
 		RegularLevel.weakFloorCreated = false;
 		Dungeon.switchLevel( level, level.entrance );
 	}
-	
+
 	@Override
 	protected void onBackPressed() {
-		//Do nothing
+
 	}
 }
