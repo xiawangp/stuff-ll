@@ -27,6 +27,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.DoubleShoggoth;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Kek;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.TenguGuardVercingetorix;
 import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.SpearTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.Trap;
@@ -50,6 +51,7 @@ public class SewerBossLevel extends Level {
 	private DoubleShoggoth shogg1;
 	private DoubleShoggoth shogg2;
 	private DoubleShoggoth shogg3;
+	private TenguGuardVercingetorix vercingetorix;
 	
 	@Override
 	public String tilesTex() {
@@ -140,8 +142,24 @@ public class SewerBossLevel extends Level {
 					GameScene.updateMap(2+11*32);
 					GameScene.updateMap(1+23*32);
 				}
-			} else if(((Room)new Room().set(0, 11, 6, 23)).inside(cellToPoint(cell))){
-
+			} else if(((Room)new Room().set(0, 25, 6, 31)).inside(cellToPoint(cell))){
+				if(vercingetorix.isAlive() ){
+					seal();
+					set(1+25*32, Terrain.WALL);
+					set(5+25*32, Terrain.WALL);
+					set(6+26*32, Terrain.WALL);
+					GameScene.updateMap(1+25*32);
+					GameScene.updateMap(5+25*32);
+					GameScene.updateMap(6+26*32);
+				} else {
+					unseal();
+					set(1+25*32, Terrain.BARRICADE);
+					set(5+25*32, Terrain.DOOR);
+					set(6+26*32, Terrain.LOCKED_DOOR);
+					GameScene.updateMap(1+25*32);
+					GameScene.updateMap(5+25*32);
+					GameScene.updateMap(6+26*32);
+				}
 			}
 		}
 	}
@@ -169,6 +187,10 @@ public class SewerBossLevel extends Level {
 		shogg3 = new DoubleShoggoth();
 		shogg3.pos = 2+21*32;
 		mobs.add(shogg3);
+
+		vercingetorix = new TenguGuardVercingetorix();
+		vercingetorix.pos = 3+28*32;
+		mobs.add(vercingetorix);
 	}
 	
 	@Override
@@ -183,6 +205,7 @@ public class SewerBossLevel extends Level {
 	private static final String SHOGG1	= "shogg1";
 	private static final String SHOGG2	= "shogg2";
 	private static final String SHOGG3	= "shogg3";
+	private static final String VERC	= "verc";
 
 	@Override
 	public void storeInBundle( Bundle bundle ) {
@@ -192,6 +215,7 @@ public class SewerBossLevel extends Level {
 		bundle.put( SHOGG1, shogg1 );
 		bundle.put( SHOGG2, shogg2 );
 		bundle.put( SHOGG3, shogg3 );
+		bundle.put( VERC, vercingetorix );
 	}
 
 	@Override
@@ -202,6 +226,7 @@ public class SewerBossLevel extends Level {
 		shogg1 = (DoubleShoggoth) bundle.get(SHOGG1);
 		shogg2 = (DoubleShoggoth)bundle.get(SHOGG2);
 		shogg3 = (DoubleShoggoth)bundle.get(SHOGG3);
+		vercingetorix = (TenguGuardVercingetorix)bundle.get(VERC);
 	}
 
 	@Override
@@ -243,7 +268,7 @@ public class SewerBossLevel extends Level {
 	private static final int A = Terrain.SECRET_TRAP;
 
 	private static final int E = Terrain.ENTRANCE;
-	private static final int X = Terrain.EXIT;
+	private static final int X = Terrain.LOCKED_EXIT;
 
 	private static final int M = Terrain.WALL_DECO;
 	private static final int P = Terrain.PEDESTAL;

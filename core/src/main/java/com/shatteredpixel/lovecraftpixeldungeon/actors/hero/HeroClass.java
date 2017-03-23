@@ -29,6 +29,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.BrokenSeal;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Waterbag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.ClothArmor;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armor.PlateArmor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.FoodBag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.WeaponCase;
@@ -39,6 +40,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicMappi
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.lovecraftpixeldungeon.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Dagger;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Glaive;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Knuckles;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.WornShortsword;
@@ -102,6 +104,9 @@ public enum HeroClass {
 		Dungeon.quickslot.setSlot(3, waterbag);
 
 		Dungeon.gold = 1200;
+
+		new Glaive().enchant().upgrade(100).identify().collect();
+		new PlateArmor().inscribe().upgrade(100).identify().collect();
 	}
 
 	public Badges.Badge masteryBadge() {
