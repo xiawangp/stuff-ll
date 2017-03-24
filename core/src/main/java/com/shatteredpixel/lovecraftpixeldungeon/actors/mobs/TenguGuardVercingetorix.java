@@ -29,6 +29,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Cripple;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Chains;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
+import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Stunning;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.MeleeWeapon;
@@ -136,6 +137,12 @@ public class TenguGuardVercingetorix extends Mob {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public void die(Object cause) {
+		super.die(cause);
+		Dungeon.level.drop(new IronKey(Dungeon.depth), pos);
 	}
 
 	@Override

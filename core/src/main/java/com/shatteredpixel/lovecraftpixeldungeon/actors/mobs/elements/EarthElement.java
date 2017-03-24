@@ -30,6 +30,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Levitation;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Poison;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Roots;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.items.MongolianEgg;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
@@ -66,6 +67,13 @@ public class EarthElement extends Element {
 			die(null);
 			sprite.killAndErase();
 			return true;
+		}
+		for(int i : PathFinder.NEIGHBOURS8){
+			if(findChar(i) != null && findChar(i) instanceof EarthElement){
+				die(null);
+				sprite.killAndErase();
+				Dungeon.level.drop(new MongolianEgg(), this.pos);
+			}
 		}
 		return super.act();
 	}
