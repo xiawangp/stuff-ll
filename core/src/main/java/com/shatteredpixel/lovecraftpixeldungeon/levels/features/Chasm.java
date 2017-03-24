@@ -58,8 +58,12 @@ public class Chasm {
 				@Override
 				protected void onSelect( int index ) {
 					if (index == 0) {
-						jumpConfirmed = true;
-						hero.resume();
+						if(Dungeon.depth % 5 != 0){
+							jumpConfirmed = true;
+							hero.resume();
+						}
+					} else {
+						GLog.n(Messages.get(Chasm.class, "stonefall"));
 					}
 				}
 			}

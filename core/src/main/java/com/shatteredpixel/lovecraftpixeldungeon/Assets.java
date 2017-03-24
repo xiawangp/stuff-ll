@@ -110,6 +110,7 @@ public class Assets {
 	public static final String ROT_HEART= "rot_heart.png";
 	public static final String GUARD    = "guard.png";
 	public static final String GUARDS   = "guards.png";
+	public static final String TOOTHFAE = "toothfaerie.png";
 	public static final String YIG    	= "yig.png";
 	public static final String LARVAINFC= "larva_infected.png";
 	public static final String KAGEBUN  = "kagebunshin.png";
