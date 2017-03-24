@@ -41,8 +41,10 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Fury;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Hunger;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Infected;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Invisibility;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Levitation;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Paralysis;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Regeneration;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.SmoothFlying;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.SnipersMark;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Vertigo;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
@@ -75,6 +77,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.TalismanOfForesi
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.GooCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.MiGoCap;
+import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.ToothCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.keys.Key;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMight;
@@ -477,6 +480,15 @@ public class Hero extends Char {
 	public boolean act() {
 		
 		super.act();
+
+		//TODO: TOOTHCAP
+
+		if(!this.buffs().contains(Levitation.class)){
+			HelmetSlot helmet = belongings.helmet;
+			if(helmet != null && helmet instanceof ToothCap) {
+				Buff.affect(this, SmoothFlying.class);
+			}
+		}
 		
 		if (paralysed > 0) {
 			

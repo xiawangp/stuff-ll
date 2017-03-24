@@ -25,7 +25,10 @@ package com.shatteredpixel.lovecraftpixeldungeon.actors.blobs;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.Journal;
 import com.shatteredpixel.lovecraftpixeldungeon.Journal.Feature;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.ToothFaierie;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
@@ -75,9 +78,32 @@ public class WellWater extends Blob {
 		if (pos == Dungeon.hero.pos && affectHero( Dungeon.hero )) {
 			
 			volume = off[pos] = cur[pos] = 0;
+
+			ToothFaierie toothFaierie = new ToothFaierie();
+			int newPlace;
+			do {
+				newPlace = pos + PathFinder.NEIGHBOURS8[Random.Int( 8 )];
+			} while (!Level.passable[newPlace] && !Level.avoid[newPlace]);
+			toothFaierie.pos = newPlace;
+			GameScene.add( toothFaierie, 1f );
+			Actor.addDelayed( new Pushing( toothFaierie, pos, toothFaierie.pos ), -1 );
+
 			return true;
 			
 		} else if ((heap = Dungeon.level.heaps.get( pos )) != null) {
+
+			ToothFaierie toothFaierie = new ToothFaierie();
+			if(Dungeon.hero.pos != pos){
+				toothFaierie.pos = pos;
+			} else {
+				int newPlace;
+				do {
+					newPlace = pos + PathFinder.NEIGHBOURS8[Random.Int( 8 )];
+				} while (!Level.passable[newPlace] && !Level.avoid[newPlace]);
+				toothFaierie.pos = newPlace;
+			}
+			GameScene.add( toothFaierie, 1f );
+			Actor.addDelayed( new Pushing( toothFaierie, pos, toothFaierie.pos ), -1 );
 			
 			Item oldItem = heap.peek();
 			Item newItem = affectItem( oldItem );

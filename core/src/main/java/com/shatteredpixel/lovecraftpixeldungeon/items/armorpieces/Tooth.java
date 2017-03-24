@@ -20,37 +20,20 @@
  * You should have have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses>
  */
-package com.shatteredpixel.lovecraftpixeldungeon.sprites;
 
-import com.shatteredpixel.lovecraftpixeldungeon.Assets;
-import com.watabou.noosa.TextureFilm;
+package com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces;
 
-public class SwarmSprite extends MobSprite {
-	
-	public SwarmSprite() {
-		super();
-		
-		texture( Assets.TOOTHFAE );
-		
-		TextureFilm frames = new TextureFilm( texture, 16, 16 );
-		
-		idle = new Animation( 15, true );
-		idle.frames( frames, 0, 1, 2, 3 );
-		
-		run = new Animation( 10, true );
-		run.frames( frames, 0, 1, 2, 3);
-		
-		attack = new Animation( 20, false );
-		attack.frames( frames, 4, 0, 5, 1, 6, 2, 3, 7 );
-		
-		die = new Animation( 15, false );
-		die.frames( frames, 8, 9, 10 );
-		
-		play( idle );
-	}
-	
-	@Override
-	public int blood() {
-		return 0xEC7190;
-	}
+import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
+
+public class Tooth extends Piece {
+
+    {
+        image = ItemSpriteSheet.TOOTH;
+        weight = 0;
+    }
+
+    @Override
+    public int price() {
+        return 1000;
+    }
 }

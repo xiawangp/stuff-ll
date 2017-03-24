@@ -35,8 +35,10 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.Stick;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.MailArmor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.MiGoPiece;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.ShoggothPiece;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.Tooth;
 import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.GooCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.MiGoCap;
+import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.ToothCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Adamantium;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Cobalt;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.DarkGold;
@@ -245,6 +247,9 @@ public class WndCraft extends WndTabbed {
 		} else if(craftcode.contains("nMnMsMnMn")){
 			items.clear();
 			Dungeon.level.drop(new MiGoEgg(), Dungeon.hero.pos);
+		} else if(craftcode.contains("ttttntnnn")){
+			items.clear();
+			Dungeon.level.drop(new ToothCap(), Dungeon.hero.pos);
 		}
 	}
 
@@ -405,6 +410,10 @@ public class WndCraft extends WndTabbed {
 						item(new ShoggothPiece());
 						items.set(id, new ShoggothPiece());
 						itemsChar.set(id, 's');
+					} else if(item instanceof Tooth){
+						item(new Tooth());
+						items.set(id, new Tooth());
+						itemsChar.set(id, 't');
 					}
 
 

@@ -245,6 +245,7 @@ public class ItemSpriteSheet {
 	public static final int ARMOR_HUNTRESS  = ARMOR+8;
 	public static final int MIGOCAP  		= ARMOR+9;
 	public static final int GOOCAP  		= ARMOR+10;
+	public static final int TOOTHCAP  		= ARMOR+11;
 	static{
 		assignItemRect(ARMOR_CLOTH,     15, 12);
 		assignItemRect(ARMOR_LEATHER,   14, 13);
@@ -257,6 +258,7 @@ public class ItemSpriteSheet {
 		assignItemRect(ARMOR_HUNTRESS,  13, 15);
 		assignItemRect(MIGOCAP,  		15, 13);
 		assignItemRect(GOOCAP,  		15, 13);
+		assignItemRect(TOOTHCAP,  		15, 13);
 	}
 
 	                                                                                    //32 free slots
@@ -457,6 +459,7 @@ public class ItemSpriteSheet {
 	public static final int CANDY_CANE  = FOOD+8;
 	public static final int MIGOEGG     = FOOD+9;
 	public static final int ROTTEN_FLESH= FOOD+10;
+	public static final int TOOTH		= FOOD+11;
 	static{
 		assignItemRect(MEAT,        15, 11);
 		assignItemRect(STEAK,       15, 11);
@@ -469,6 +472,7 @@ public class ItemSpriteSheet {
 		assignItemRect(CANDY_CANE,  13, 16);
 		assignItemRect(MIGOEGG,     16, 14);
 		assignItemRect(ROTTEN_FLESH,15, 11);
+		assignItemRect(TOOTH,		16, 12);
 	}
 
 	private static final int QUEST  	=                                       xy(1, 26);  //32 slots

@@ -31,6 +31,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGo;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.NormalShoggoth;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.ToothFaierie;
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.Camera;
@@ -95,6 +96,7 @@ public class HeroSprite extends CharSprite {
 
 			read = new Animation( 20, false );
 			read.frames( film, 7, 8, 9 );
+
 		} else if(mob instanceof NormalShoggoth){
 
 			texture(Assets.NSHOOGOTH);
@@ -123,6 +125,33 @@ public class HeroSprite extends CharSprite {
 
 			read = new Animation( 20, false );
 			read.frames( film, 2, 3, 4, 5, 4, 5, 4, 5, 8, 2 );
+
+		} else if(mob instanceof ToothFaierie){
+
+			texture(Assets.TOOTHFAE);
+
+			TextureFilm frames = new TextureFilm( texture, 16, 16 );
+
+			idle = new Animation( 15, true );
+			idle.frames( frames, 0, 1, 2, 3 );
+
+			run = new Animation( 10, true );
+			run.frames( frames, 0, 1, 2, 3);
+
+			attack = new Animation( 20, false );
+			attack.frames( frames, 4, 0, 5, 1, 6, 2, 3, 7 );
+
+			die = new Animation( 15, false );
+			die.frames( frames, 8, 9, 10 );
+
+			zap = attack.clone();
+
+			operate = run.clone();
+
+			fly = idle.clone();
+
+			read = attack.clone();
+
 		} else {
 
 		}

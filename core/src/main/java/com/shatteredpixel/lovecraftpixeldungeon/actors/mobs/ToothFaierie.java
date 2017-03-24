@@ -31,7 +31,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Corruption;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Poison;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
-import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.Tooth;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Terrain;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.features.Door;
@@ -42,21 +42,21 @@ import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class Swarm extends Mob {
+public class ToothFaierie extends Mob {
 
 	{
 		spriteClass = SwarmSprite.class;
 		
-		HP = HT = 50;
-		defenseSkill = 5;
+		HP = HT = Dungeon.hero.STR*Dungeon.depth;
+		defenseSkill = Dungeon.hero.STR;
 
 		EXP = 3;
 		maxLvl = 9;
 		
 		flying = true;
 
-		loot = new PotionOfHealing();
-		lootChance = 0.1667f; //by default, see die()
+		loot = new Tooth();
+		lootChance = 0.1667f;
 	}
 	
 	private static final float SPLIT_DELAY	= 1f;
@@ -99,7 +99,7 @@ public class Swarm extends Mob {
 	
 			if (candidates.size() > 0) {
 				
-				Swarm clone = split();
+				ToothFaierie clone = split();
 				clone.HP = (HP - damage) / 2;
 				clone.pos = Random.element( candidates );
 				clone.state = clone.HUNTING;
@@ -123,8 +123,8 @@ public class Swarm extends Mob {
 		return 10;
 	}
 	
-	private Swarm split() {
-		Swarm clone = new Swarm();
+	private ToothFaierie split() {
+		ToothFaierie clone = new ToothFaierie();
 		clone.generation = generation + 1;
 		clone.EXP = 0;
 		if (buff( Burning.class ) != null) {
@@ -141,7 +141,6 @@ public class Swarm extends Mob {
 	
 	@Override
 	public void die( Object cause ){
-		//sets drop chance
 		lootChance = 1f/((6 + 2*Dungeon.limitedDrops.swarmHP.count ) * (generation+1) );
 		super.die( cause );
 	}
