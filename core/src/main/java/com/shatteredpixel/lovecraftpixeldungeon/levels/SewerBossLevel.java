@@ -27,6 +27,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.DoubleShoggoth;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Kek;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.TenguGuardSpartacus;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.TenguGuardVercingetorix;
 import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.SpearTrap;
@@ -52,6 +53,7 @@ public class SewerBossLevel extends Level {
 	private DoubleShoggoth shogg2;
 	private DoubleShoggoth shogg3;
 	private TenguGuardVercingetorix vercingetorix;
+	private TenguGuardSpartacus spartacus;
 	
 	@Override
 	public String tilesTex() {
@@ -97,14 +99,6 @@ public class SewerBossLevel extends Level {
 				map[i] = Terrain.SECRET_TRAP;
 			}
 		}
-	}
-		
-	protected boolean[] water() {
-		return Patch.generate( this, 0.5f, 5 );
-	}
-	
-	protected boolean[] grass() {
-		return Patch.generate( this, 0.40f, 4 );
 	}
 	
 	@Override
@@ -191,6 +185,10 @@ public class SewerBossLevel extends Level {
 		vercingetorix = new TenguGuardVercingetorix();
 		vercingetorix.pos = 3+28*32;
 		mobs.add(vercingetorix);
+
+		spartacus = new TenguGuardSpartacus();
+		spartacus.pos = 8+25*32;
+		mobs.add(spartacus);
 	}
 	
 	@Override
