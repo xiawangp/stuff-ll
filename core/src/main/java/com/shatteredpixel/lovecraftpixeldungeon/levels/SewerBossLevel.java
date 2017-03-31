@@ -115,7 +115,7 @@ public class SewerBossLevel extends Level {
 
 		if (ch == Dungeon.hero){
 			if (((Room)new Room().set(0, 11, 6, 23)).inside(cellToPoint(cell))){
-				if(shogg1.isAlive() && shogg2.isAlive() && shogg3.isAlive()){
+				if(shogg1.isAlive() || shogg2.isAlive() || shogg3.isAlive()){
 					seal();
 					set(2+11*32, Terrain.WALL);
 					set(4+11*32, Terrain.WALL);
@@ -149,7 +149,7 @@ public class SewerBossLevel extends Level {
 					unseal();
 					set(1+25*32, Terrain.BARRICADE);
 					set(5+25*32, Terrain.DOOR);
-					set(6+26*32, Terrain.LOCKED_DOOR);
+					set(6+26*32, Terrain.DOOR);
 					GameScene.updateMap(1+25*32);
 					GameScene.updateMap(5+25*32);
 					GameScene.updateMap(6+26*32);

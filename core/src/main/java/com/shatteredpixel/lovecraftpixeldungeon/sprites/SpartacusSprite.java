@@ -33,19 +33,23 @@ public class SpartacusSprite extends MobSprite {
 
 		texture( Assets.GUARDS );
 
+		int rowlenght = 21;
+		int row = 1;
+		int newrow = row*rowlenght;
+
 		TextureFilm frames = new TextureFilm( texture, 12, 16 );
 
 		idle = new Animation( 2, true );
-		idle.frames( frames, 0+(1*15), 0+(1*15), 0+(1*15), 1+(1*15), 0+(1*15), 0+(1*15), 1+(1*15), 1+(1*15) );
+		idle.frames( frames, 0+newrow, 0+newrow, 0+newrow, 1+newrow, 0+newrow, 0+newrow, 1+newrow, 1+newrow );
 
 		run = new Animation( 15, true );
-		run.frames( frames, 2+(1*15), 3+(1*15), 4+(1*15), 5+(1*15), 6+(1*15), 7+(1*15) );
+		run.frames( frames, 2+newrow, 3+newrow, 4+newrow, 5+newrow, 6+newrow, 7+newrow );
 
 		attack = new Animation( 12, false );
-		attack.frames( frames, 8+(1*15), 9+(1*15), 10+(1*15) );
+		attack.frames( frames, 8+newrow, 9+newrow, 10+newrow );
 
 		die = new Animation( 8, false );
-		die.frames( frames, 11+(1*15), 12+(1*15), 13+(1*15), 14+(1*15) );
+		die.frames( frames, 11+newrow, 12+newrow, 13+newrow, 14+newrow );
 
 		play( idle );
 	}

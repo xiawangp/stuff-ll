@@ -41,7 +41,17 @@ public class SmoothFlying extends FlavourBuff {
 			return false;
 		}
 	}
-	
+
+	@Override
+	public float cooldown() {
+		return 0;
+	}
+
+	@Override
+	protected String dispTurns(float input) {
+		return super.dispTurns(2);
+	}
+
 	@Override
 	public void detach() {
 		target.flying = false;
