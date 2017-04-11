@@ -71,6 +71,8 @@ public class Assets {
 	public static final String SKELETON	= "skeleton.png";
 	public static final String SHAMAN	= "shaman.png";
 	public static final String THIEF	= "thief.png";
+	public static final String IMPRTHIEF= "imprisonedthieves.png";
+	public static final String POORTHIEF= "poorthief.png";
 	public static final String TENGU	= "tengu.png";
 	public static final String SHEEP	= "sheep.png";
 	public static final String KEEPER	= "shopkeeper.png";

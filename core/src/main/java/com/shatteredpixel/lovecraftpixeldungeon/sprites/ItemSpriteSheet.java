@@ -493,6 +493,7 @@ public class ItemSpriteSheet {
 	public static final int STICK   	= QUEST+12;
 	public static final int MIGOSCALE   = QUEST+13;
 	public static final int SHOGGOTHSCAL= QUEST+14;
+	public static final int IRONBAR		= QUEST+15;
 	static{
 		assignItemRect(SKULL,   	16, 11);
 		assignItemRect(DUST,    	12, 11);
@@ -509,6 +510,7 @@ public class ItemSpriteSheet {
 		assignItemRect(STICK,   	16, 16);
 		assignItemRect(MIGOSCALE,   11, 13);
 		assignItemRect(SHOGGOTHSCAL,16, 12);
+		assignItemRect(IRONBAR,   	16, 16);
 	}
 
 	private static final int BAGS       =                                   xy(1, 28);  //16 slots

@@ -37,6 +37,7 @@ public class Journal {
 		ALCHEMY,
 		GARDEN,
 		STATUE,
+		CAGE,
 		
 		GHOST,
 		WANDMAKER,
