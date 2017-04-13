@@ -5,7 +5,7 @@
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2016 Evan Debenham
  *
- * Lovercaft Pixel Dungeon
+ * Lovecraft Pixel Dungeon
  * Copyright (C) 2016-2017 Leon Horn
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.DoubleShoggoth;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Kek;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.TenguGuardSpartacus;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.TenguGuardVercingetorix;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.npcs.ImprisonedThieves;
 import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.SpearTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.Trap;
@@ -54,6 +55,12 @@ public class SewerBossLevel extends Level {
 	private DoubleShoggoth shogg3;
 	private TenguGuardVercingetorix vercingetorix;
 	private TenguGuardSpartacus spartacus;
+	private ImprisonedThieves imprisonedThieve1;
+	private ImprisonedThieves imprisonedThieve2;
+	private ImprisonedThieves imprisonedThieve3;
+	private ImprisonedThieves imprisonedThieve4;
+	private ImprisonedThieves imprisonedThieve5;
+	private ImprisonedThieves imprisonedThieve6;
 	
 	@Override
 	public String tilesTex() {
@@ -189,6 +196,30 @@ public class SewerBossLevel extends Level {
 		spartacus = new TenguGuardSpartacus();
 		spartacus.pos = 8+25*32;
 		mobs.add(spartacus);
+
+		imprisonedThieve1 = new ImprisonedThieves();
+		imprisonedThieve1.pos = 11+20*32;
+		mobs.add(imprisonedThieve1);
+
+		imprisonedThieve2 = new ImprisonedThieves();
+		imprisonedThieve2.pos = 11+22*32;
+		mobs.add(imprisonedThieve2);
+
+		imprisonedThieve3 = new ImprisonedThieves();
+		imprisonedThieve3.pos = 11+24*32;
+		mobs.add(imprisonedThieve3);
+
+		imprisonedThieve4 = new ImprisonedThieves();
+		imprisonedThieve4.pos = 17+20*32;
+		mobs.add(imprisonedThieve4);
+
+		imprisonedThieve5 = new ImprisonedThieves();
+		imprisonedThieve5.pos = 17+22*32;
+		mobs.add(imprisonedThieve5);
+
+		imprisonedThieve6 = new ImprisonedThieves();
+		imprisonedThieve6.pos = 17+24*32;
+		mobs.add(imprisonedThieve6);
 	}
 	
 	@Override

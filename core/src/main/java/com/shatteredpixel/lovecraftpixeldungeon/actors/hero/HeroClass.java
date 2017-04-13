@@ -5,7 +5,7 @@
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2016 Evan Debenham
  *
- * Lovercaft Pixel Dungeon
+ * Lovecraft Pixel Dungeon
  * Copyright (C) 2016-2017 Leon Horn
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,8 +27,10 @@ import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Challenges;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.BrokenSeal;
+import com.shatteredpixel.lovecraftpixeldungeon.items.MongolianEgg;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Waterbag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.ClothArmor;
+import com.shatteredpixel.lovecraftpixeldungeon.items.armor.PlateArmor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.FoodBag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.WeaponCase;
@@ -39,6 +41,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfMagicMappi
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.lovecraftpixeldungeon.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Dagger;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Greataxe;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Knuckles;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.WornShortsword;
@@ -100,6 +103,11 @@ public enum HeroClass {
 		waterbag.fill();
 		waterbag.identify().collect();
 		Dungeon.quickslot.setSlot(3, waterbag);
+
+		new Greataxe().upgrade(100).collect();
+		new PlateArmor().upgrade(100).collect();
+		new MongolianEgg().collect();
+		new MongolianEgg().collect();
 
 		Dungeon.gold = 1200;
 	}

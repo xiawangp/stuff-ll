@@ -5,7 +5,7 @@
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2016 Evan Debenham
  *
- * Lovercaft Pixel Dungeon
+ * Lovecraft Pixel Dungeon
  * Copyright (C) 2016-2017 Leon Horn
  *
  * This program is free software: you can redistribute it and/or modify

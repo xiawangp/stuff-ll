@@ -5,7 +5,7 @@
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2016 Evan Debenham
  *
- * Lovercaft Pixel Dungeon
+ * Lovecraft Pixel Dungeon
  * Copyright (C) 2016-2017 Leon Horn
  *
  * This program is free software: you can redistribute it and/or modify
@@ -65,7 +65,12 @@ public class Hunger extends Buff implements Hero.Doom {
 	@Override
 	public boolean act() {
 
-		float stepf = (float) Dungeon.hero.beloningsweight/Dungeon.hero.STR;
+		float stepf;
+		try{
+			stepf = (float) Dungeon.hero.beloningsweight/Dungeon.hero.STR;
+		} catch (NullPointerException e){
+			stepf = 0f;
+		}
 
 		if(stepf < 0f){
 			stepf = 1f;

@@ -5,7 +5,7 @@
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2016 Evan Debenham
  *
- * Lovercaft Pixel Dungeon
+ * Lovecraft Pixel Dungeon
  * Copyright (C) 2016-2017 Leon Horn
  *
  * This program is free software: you can redistribute it and/or modify
@@ -94,14 +94,14 @@ public class ImprisonedThieves extends NPC {
 		if (spawnPoints.size() > 0) {
 			PoorThief poor = new PoorThief();
 			poor.pos = Random.element( spawnPoints );
-
+			poor.state = poor.WANDERING;
 			GameScene.add( poor );
 			Buff.affect(poor, Corruption.class);
 			Actor.addDelayed( new Pushing( poor, pos, poor.pos ), -1 );
 		} else {
 			PoorThief poor = new PoorThief();
 			poor.pos = pos;
-
+			poor.state = poor.WANDERING;
 			GameScene.add( poor );
 			Buff.affect(poor, Corruption.class);
 			Actor.addDelayed( new Pushing( poor, pos, poor.pos ), -1 );

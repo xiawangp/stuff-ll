@@ -5,7 +5,7 @@
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2016 Evan Debenham
  *
- * Lovercaft Pixel Dungeon
+ * Lovecraft Pixel Dungeon
  * Copyright (C) 2016-2017 Leon Horn
  *
  * This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ public class ImprisonedThiefSprite extends MobSprite {
 		super();
 		
 		texture( Assets.IMPRTHIEF );
-		TextureFilm film = new TextureFilm( texture, 16, 16 );
+		TextureFilm film = new TextureFilm( texture, 16, 17 );
 		
 		idle = new Animation( 1, true );
 		idle.frames( film, 0, 0, 0, 1, 0, 0, 0, 0, 1 );
