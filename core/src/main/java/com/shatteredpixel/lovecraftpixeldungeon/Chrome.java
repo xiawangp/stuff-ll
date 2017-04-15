@@ -26,6 +26,8 @@ import com.watabou.noosa.NinePatch;
 
 public class Chrome {
 
+	public static String assets;
+
 	public enum  Type {
 		TOAST,
 		TOAST_TR,
@@ -36,34 +38,68 @@ public class Chrome {
 		SCROLL,
 		TAB_SET,
 		TAB_SELECTED,
-		TAB_UNSELECTED
+		TAB_UNSELECTED,
+		SMOOTHWINDOW
 	};
 	
 	public static NinePatch get( Type type ) {
-		String Asset = Assets.CHROME;
+		if(assets == null){
+			assets = Assets.CHROME1;
+		}
 		switch (type) {
 		case WINDOW:
-			return new NinePatch( Asset, 0, 0, 20, 20, 6 );
+			return new NinePatch( assets, 0, 0, 20, 20, 6 );
 		case TOAST:
-			return new NinePatch( Asset, 22, 0, 18, 18, 5 );
+			return new NinePatch( assets, 22, 0, 18, 18, 5 );
 		case TOAST_TR:
-			return new NinePatch( Asset, 40, 0, 18, 18, 5 );
+			return new NinePatch( assets, 40, 0, 18, 18, 5 );
 		case BUTTON:
-			return new NinePatch( Asset, 58, 0, 6, 6, 2 );
+			return new NinePatch( assets, 58, 0, 6, 6, 2 );
 		case TAG:
-			return new NinePatch( Asset, 22, 18, 16, 14, 3 );
+			return new NinePatch( assets, 22, 18, 16, 14, 3 );
 		case GEM:
-			return new NinePatch( Asset, 0, 32, 32, 32, 13 );
+			return new NinePatch( assets, 0, 32, 32, 32, 13 );
 		case SCROLL:
-			return new NinePatch( Asset, 32, 32, 32, 32, 5, 11, 5, 11 );
+			return new NinePatch( assets, 32, 32, 32, 32, 5, 11, 5, 11 );
 		case TAB_SET:
-			return new NinePatch( Asset, 64, 0, 20, 20, 6 );
+			return new NinePatch( assets, 64, 0, 20, 20, 6 );
 		case TAB_SELECTED:
-			return new NinePatch( Asset, 65, 22, 8, 13, 3, 7, 3, 5 );
+			return new NinePatch( assets, 65, 22, 8, 13, 3, 7, 3, 5 );
 		case TAB_UNSELECTED:
-			return new NinePatch( Asset, 75, 22, 8, 13, 3, 7, 3, 5 );
+			return new NinePatch( assets, 75, 22, 8, 13, 3, 7, 3, 5 );
+			case SMOOTHWINDOW:
+				return new NinePatch( assets, 88, 25, 19, 19, 5 );
 		default:
 			return null;
+		}
+	}
+
+	public static NinePatch get( Type type, String setasset ) {
+		switch (type) {
+			case WINDOW:
+				return new NinePatch( setasset, 0, 0, 20, 20, 6 );
+			case TOAST:
+				return new NinePatch( setasset, 22, 0, 18, 18, 5 );
+			case TOAST_TR:
+				return new NinePatch( setasset, 40, 0, 18, 18, 5 );
+			case BUTTON:
+				return new NinePatch( setasset, 58, 0, 6, 6, 2 );
+			case TAG:
+				return new NinePatch( setasset, 22, 18, 16, 14, 3 );
+			case GEM:
+				return new NinePatch( setasset, 0, 32, 32, 32, 13 );
+			case SCROLL:
+				return new NinePatch( setasset, 32, 32, 32, 32, 5, 11, 5, 11 );
+			case TAB_SET:
+				return new NinePatch( setasset, 64, 0, 20, 20, 6 );
+			case TAB_SELECTED:
+				return new NinePatch( setasset, 65, 22, 8, 13, 3, 7, 3, 5 );
+			case TAB_UNSELECTED:
+				return new NinePatch( setasset, 75, 22, 8, 13, 3, 7, 3, 5 );
+			case SMOOTHWINDOW:
+				return new NinePatch( setasset, 88, 25, 19, 19, 5 );
+			default:
+				return null;
 		}
 	}
 }

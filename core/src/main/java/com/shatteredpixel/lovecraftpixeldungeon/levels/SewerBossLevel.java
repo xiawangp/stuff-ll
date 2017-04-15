@@ -334,6 +334,7 @@ public class SewerBossLevel extends Level {
 					W, e, w, w, m, e, W, e, m, e, W, T, T, T, m, T, T, T, W, m, W, e, e, c, c, e, e, c, c, m, m, W,
 					W, e, w, e, e, m, W, W, W, W, W, s, e, s, c, s, m, s, W, e, W, m, m, C, C, e, m, C, C, e, m, W,
 					W, w, w, m, e, e, W, s, P, s, W, C, C, C, c, C, C, C, W, e, W, w, w, C, C, C, C, C, C, w, w, W,
-					W, w, m, m, e, e, W, e, e, e, e, C, C, C, c, C, C, C, e, m, W, w, w, C, C, C, C, C, C, w, w, W,
-					W, W, W, W, W, W, W, W, W, W, W, C, C, C, C, C, C, C, W, W, W, C, C, C, C, C, C, C, C, C, C, W};
+					W, w, m, m, e, e, W, e, e, e, H, C, C, C, c, C, C, C, e, m, W, w, w, C, C, C, C, C, C, w, w, W,
+					W, W, W, W, W, W, W, W, W, W, W, C, C, C, C, C, C, C, W, W, W, C, C, C, C, C, C, C, C, C, C, W
+			};
 }

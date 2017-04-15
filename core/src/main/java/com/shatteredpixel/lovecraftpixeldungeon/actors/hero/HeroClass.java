@@ -27,7 +27,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Challenges;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.BrokenSeal;
-import com.shatteredpixel.lovecraftpixeldungeon.items.MongolianEgg;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Waterbag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.ClothArmor;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.PlateArmor;
@@ -106,8 +105,6 @@ public enum HeroClass {
 
 		new Greataxe().upgrade(100).collect();
 		new PlateArmor().upgrade(100).collect();
-		new MongolianEgg().collect();
-		new MongolianEgg().collect();
 
 		Dungeon.gold = 1200;
 	}

@@ -28,6 +28,7 @@ import com.watabou.noosa.Image;
 
 public enum Icons {
 
+	FRAME,
 	BUG,
 	DEBUG,
 	TYPEDSCROLL,
@@ -71,6 +72,8 @@ public enum Icons {
 	KEY_CHAIN,
 	SUMMONING1,
 	RESUME,
+	PLAYERNAME,
+	BUGCATCHER,
 	MONEY;
 
 	public Image get() {
@@ -80,6 +83,15 @@ public enum Icons {
 	public static Image get( Icons type ) {
 		Image icon = new Image( Assets.ICONS );
 		switch (type) {
+			case FRAME:
+				icon.frame( icon.texture.uvRect( 13, 70, 24, 81 ) );
+				break;
+			case BUGCATCHER:
+				icon.frame( icon.texture.uvRect( 1, 70, 12, 81 ) );
+				break;
+			case PLAYERNAME:
+				icon.frame( icon.texture.uvRect( 1, 80, 52, 91 ) );
+				break;
 			case DEBUG:
 				icon.frame( icon.texture.uvRect( 87, 84, 93, 91 ) );
 				break;

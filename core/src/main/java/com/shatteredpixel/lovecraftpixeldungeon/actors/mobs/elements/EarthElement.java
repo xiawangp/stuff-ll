@@ -106,7 +106,7 @@ public class EarthElement extends Element {
 	static {
 		IMMUNITIES.add( Poison.class );
 		IMMUNITIES.add( Amok.class );
-		IMMUNITIES.add(Levitation.class);
+		IMMUNITIES.add(	Levitation.class);
 	}
 	
 	@Override

@@ -37,20 +37,15 @@ import com.watabou.noosa.TouchArea;
 
 public class WndBugCatcher extends WndTabbed {
 
-	private static final int WIDTH    = Camera.main.width/2;
-	private static final int WIDTH_P  = Camera.main.width-(Camera.main.width/4);
+	private static final int WIDTH    = LovecraftPixelDungeon.landscape() ? Camera.main.width/3 : Camera.main.width/2;
 	private static final int HEIGHT   = Camera.main.height/2;
 
 	public WndBugCatcher() {
 		super();
 		resize(WIDTH, HEIGHT);
 		String title = Messages.get(this, "title");
-		if (!LovecraftPixelDungeon.landscape() == true) {
-			resize(WIDTH, 60);
-			offset(0);
-		}
 
-		int width = LovecraftPixelDungeon.landscape() ? WIDTH : WIDTH_P;
+		int width = WIDTH;
 
 		String info = Messages.get(this, "txt")+"\n" +
 				"_-_ whiplasher69\n" +

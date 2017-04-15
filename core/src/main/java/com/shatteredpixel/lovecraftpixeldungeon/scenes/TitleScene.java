@@ -37,9 +37,10 @@ import com.shatteredpixel.lovecraftpixeldungeon.ui.ChangesButton;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.ExitButton;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.Icons;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.LanguageButton;
+import com.shatteredpixel.lovecraftpixeldungeon.ui.PlayNameButton;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.PrefsButton;
-import com.shatteredpixel.lovecraftpixeldungeon.ui.RedButton;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndBugCatcher;
+import com.shatteredpixel.lovecraftpixeldungeon.windows.WndFrameChange;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndHardNotification;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndTextInput;
 import com.watabou.noosa.BitmapText;
@@ -180,8 +181,12 @@ public class TitleScene extends PixelScene {
 		add( btnExit );
 
 		BugCatcher bug = new BugCatcher();
-		bug.setPos(1, h - 25);
+		bug.setPos(32, 2);
 		add(bug);
+
+		FrameChanger frame = new FrameChanger();
+		frame.setPos(48, 2);
+		add(frame);
 
 		if (Dungeon.hero.playername == null) {
 			yourname = Messages.get(this, "playernameplaceholder");
@@ -191,15 +196,14 @@ public class TitleScene extends PixelScene {
 			yourname = Dungeon.hero.playername;
 		}
 
-
-		RedButton heronamebtn = new RedButton(yourname) {
+		PlayNameButton heronamebtn = new PlayNameButton(yourname) {
 			@Override
 			protected void onClick() {
 				placeWndtTxtInput(yourname);
 			}
 		};
 		heronamebtn.textColor(0xFBE363);
-		heronamebtn.setRect(0, h - 15, heronamebtn.reqWidth(), 15);
+		heronamebtn.setRect(1, h - 20, heronamebtn.reqWidth(), 20);
 		add(heronamebtn);
 
 		fadeIn();
@@ -219,7 +223,7 @@ public class TitleScene extends PixelScene {
 	}
 
 	private void placeWndtTxtInput(final String yourname2){
-		WndTextInput wndTextInput = new WndTextInput(Messages.get(this, "playernametitle"), yourname2, 20, false, Messages.get(this, "playernameagree"), Messages.get(this, "playernamerandomname")){
+		WndTextInput wndTextInput = new WndTextInput(Messages.get(this, "playernametitle"), yourname2, 12, false, Messages.get(this, "playernameagree"), Messages.get(this, "playernamerandomname")){
 			@Override
 			protected void onSelect(boolean positive) {
 				super.onSelect(positive);
@@ -259,7 +263,54 @@ public class TitleScene extends PixelScene {
 		protected void createChildren() {
 			super.createChildren();
 
-			image = Icons.DEBUG.get();
+			image = Icons.BUGCATCHER.get();
+			add( image );
+		}
+
+		@Override
+		protected void layout() {
+			super.layout();
+
+			image.x = x;
+			image.y = y;
+		}
+
+		@Override
+		protected void onTouchDown() {
+			image.brightness( 1.5f );
+			Sample.INSTANCE.play( Assets.SND_CLICK, 1, 1, 0.8f );
+		}
+
+		@Override
+		protected void onTouchUp() {
+			image.resetColor();
+		}
+	}
+
+	private static class FrameChanger extends Button {
+
+		public static final float SIZE	= 48;
+
+		private Image image;
+
+		public FrameChanger() {
+			super();
+
+			width = image.width;
+			height = image.height;
+		}
+
+		@Override
+		protected void onClick() {
+			WndFrameChange framechange = new WndFrameChange();
+			add(framechange);
+		}
+
+		@Override
+		protected void createChildren() {
+			super.createChildren();
+
+			image = Icons.FRAME.get();
 			add( image );
 		}
 
@@ -382,4 +433,5 @@ public class TitleScene extends PixelScene {
 			image.resetColor();
 		}
 	}
+
 }

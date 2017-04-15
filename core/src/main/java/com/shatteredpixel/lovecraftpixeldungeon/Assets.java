@@ -33,7 +33,10 @@ public class Assets {
 	public static final String LOCKED	= "locked_badge.png";
 	public static final String AMULET	= "amulet.png";
 	
-	public static final String CHROME	= "chrome.png";
+	public static final String CHROME1	= "chrome1.png";
+	public static final String CHROME2	= "chrome2.png";
+	public static final String CHROME3	= "chrome3.png";
+	public static final String CHROME4	= "chrome4.png";
 	public static final String ICONS	= "icons.png";
 	public static final String STATUS	= "status_pane.png";
 	public static final String MENU		= "menu_button.png";
@@ -44,6 +47,7 @@ public class Assets {
 	public static final String TOOLBAR	= "toolbar.png";
 	public static final String SHADOW   = "shadow.png";
 	public static final String BOSSHP   = "boss_hp.png";
+
 
 	public static final String WARRIOR	= "warrior.png";
 	public static final String MAGE		= "mage.png";
