@@ -159,6 +159,7 @@ public class DungeonTileSheet {
 	public static final int FLAT_WALL           = FLAT_WALLS+0;
 	public static final int FLAT_WALL_DECO      = FLAT_WALLS+1;
 	public static final int FLAT_BOOKSHELF      = FLAT_WALLS+2;
+	public static final int FLAT_EMPTY_BOOKSHELF= FLAT_WALLS+3;
 
 	public static final int FLAT_WALL_ALT       = FLAT_WALLS+4;
 	public static final int FLAT_WALL_DECO_ALT  = FLAT_WALLS+5;
@@ -195,7 +196,7 @@ public class DungeonTileSheet {
 
 	public static final int RAISED_WALL_ALT             = RAISED_WALLS+16;
 	public static final int RAISED_WALL_DECO_ALT        = RAISED_WALLS+20;
-	public static final int RAISED_WALL_BOOKSHELF_ALT   = RAISED_WALLS+28;
+	public static final int RAISED_WALL_EMPTY_BOOKSHELF = RAISED_WALLS+28;
 
 	//we use an array instead of a collection because the small element count
 	// makes array traversal much faster than something like HashSet.contains.
@@ -203,7 +204,8 @@ public class DungeonTileSheet {
 	//These tiles count as wall for the purposes of wall stitching
 	private static int[] wallStitcheable = new int[]{
 			Terrain.WALL, Terrain.WALL_DECO, Terrain.SECRET_DOOR,
-			Terrain.LOCKED_EXIT, Terrain.UNLOCKED_EXIT, Terrain.BOOKSHELF, NULL_TILE
+			Terrain.LOCKED_EXIT, Terrain.UNLOCKED_EXIT, Terrain.BOOKSHELF,
+			Terrain.EMPTY_BOOKSHELF, NULL_TILE
 	};
 
 	public static boolean wallStitcheable(int tile){
@@ -219,6 +221,7 @@ public class DungeonTileSheet {
 		else if (tile == Terrain.WALL || tile == Terrain.SECRET_DOOR)   result = RAISED_WALL;
 		else if (tile == Terrain.WALL_DECO)                             result = RAISED_WALL_DECO;
 		else if (tile == Terrain.BOOKSHELF)                             result = RAISED_WALL_BOOKSHELF;
+		else if (tile == Terrain.EMPTY_BOOKSHELF)                       result = RAISED_WALL_EMPTY_BOOKSHELF;
 		else                                                            return -1;
 
 		result = getVisualWithAlts(result, pos);
@@ -279,6 +282,7 @@ public class DungeonTileSheet {
 		int result;
 
 		if (tile == Terrain.BOOKSHELF)  result = WALL_INTERNAL_WOODEN;
+		else if (tile == Terrain.EMPTY_BOOKSHELF)  result = WALL_INTERNAL_WOODEN;
 		else                            result = WALL_INTERNAL;
 
 		if (!wallStitcheable(right))        result += 1;
@@ -302,6 +306,7 @@ public class DungeonTileSheet {
 		else if (tile == Terrain.OPEN_DOOR)                         visual = DOOR_SIDEWAYS_OVERHANG_OPEN;
 		else if (tile == Terrain.LOCKED_DOOR)                       visual = DOOR_SIDEWAYS_OVERHANG_LOCKED;
 		else if (below == Terrain.BOOKSHELF)                        visual = WALL_OVERHANG_WOODEN;
+		else if (below == Terrain.EMPTY_BOOKSHELF)                  visual = WALL_OVERHANG_WOODEN;
 		else                                                        visual = WALL_OVERHANG;
 
 		if (!wallStitcheable(rightBelow))  visual += 1;
@@ -361,6 +366,7 @@ public class DungeonTileSheet {
 		directFlatVisuals.put(Terrain.LOCKED_DOOR,      FLAT_DOOR_LOCKED);
 		directFlatVisuals.put(Terrain.WALL_DECO,        FLAT_WALL_DECO);
 		directFlatVisuals.put(Terrain.BOOKSHELF,        FLAT_BOOKSHELF);
+		directFlatVisuals.put(Terrain.EMPTY_BOOKSHELF,  FLAT_EMPTY_BOOKSHELF);
 		directFlatVisuals.put(Terrain.SIGN,             FLAT_SIGN);
 		directFlatVisuals.put(Terrain.STATUE,           FLAT_STATUE);
 		directFlatVisuals.put(Terrain.STATUE_SP,        FLAT_STATUE_SP);
@@ -401,7 +407,6 @@ public class DungeonTileSheet {
 
 		commonAltVisuals.put(RAISED_WALL,           RAISED_WALL_ALT);
 		commonAltVisuals.put(RAISED_WALL_DECO,      RAISED_WALL_DECO_ALT);
-		commonAltVisuals.put(RAISED_WALL_BOOKSHELF, RAISED_WALL_BOOKSHELF_ALT);
 
 		commonAltVisuals.put(RAISED_HIGH_GRASS,     RAISED_HIGH_GRASS_ALT);
 		commonAltVisuals.put(HIGH_GRASS_OVERHANG,   HIGH_GRASS_OVERHANG_ALT);

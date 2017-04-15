@@ -963,6 +963,8 @@ public abstract class Level implements Bundlable {
 				return Messages.get(Level.class, "ench_name");
 			case Terrain.CRAFTING:
 				return Messages.get(Level.class, "craft_name");
+			case Terrain.EMPTY_BOOKSHELF:
+				return Messages.get(Level.class, "empty_bookshelf_name");
 			case Terrain.CHASM:
 				return Messages.get(Level.class, "chasm_name");
 			case Terrain.EMPTY:
@@ -1025,6 +1027,8 @@ public abstract class Level implements Bundlable {
 		switch (tile) {
 			case Terrain.ENCHANTING:
 				return Messages.get(Level.class, "ench_desc");
+			case Terrain.EMPTY_BOOKSHELF:
+				return Messages.get(Level.class, "empty_bookshelf_desc");
 			case Terrain.CRAFTING:
 				return Messages.get(Level.class, "craft_desc");
 			case Terrain.CHASM:
