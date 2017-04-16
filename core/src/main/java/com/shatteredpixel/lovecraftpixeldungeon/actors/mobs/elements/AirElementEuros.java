@@ -26,7 +26,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Amok;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Frost;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Paralysis;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Poison;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.items.wands.WandOfBlastWave;
@@ -36,7 +36,7 @@ import com.watabou.utils.Random;
 
 import java.util.HashSet;
 
-public class AirElement extends Element {
+public class AirElementEuros extends Element {
 	
 	{
 		spriteClass = AirElementSprite.class;
@@ -68,7 +68,7 @@ public class AirElement extends Element {
 			WandOfBlastWave.throwChar(enemy, trajectory, 10+Dungeon.depth);
 		}
 		if(Random.Int(10) < 3){
-			Buff.affect(enemy, Frost.class, 2f);
+			Buff.affect(enemy, Paralysis.class, 2f);
 		}
 		return damage;
 	}

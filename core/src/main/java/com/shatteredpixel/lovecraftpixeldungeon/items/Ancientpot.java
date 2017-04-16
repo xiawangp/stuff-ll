@@ -27,17 +27,27 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.AirElement;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.AirElementBoreas;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.AirElementEuros;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.AirElementNotos;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.AirElementZephyros;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.EarthElement;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.Element;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.ExpElement;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.FairyElement;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.FireElemental;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.GolemElement;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Splash;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfFrost;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLevitation;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMight;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfParalyticGas;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfPurity;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
@@ -55,10 +65,15 @@ public class Ancientpot extends Item {
 
 	private static ArrayList<Element> elements = new ArrayList<>();
 	static {
-		elements.add(new AirElement());
+		elements.add(new AirElementBoreas());
 		elements.add(new FireElemental());
 		elements.add(new EarthElement());
 		elements.add(new ExpElement());
+		elements.add(new AirElementEuros());
+		elements.add(new AirElementNotos());
+		elements.add(new AirElementZephyros());
+		elements.add(new FairyElement());
+		elements.add(new GolemElement());
 	}
 
 	private int elementId;
@@ -306,6 +321,16 @@ public class Ancientpot extends Item {
 						id = 2;
 					} else if(item instanceof PotionOfExperience){
 						id = 3;
+					} else if(item instanceof PotionOfParalyticGas){
+						id = 4;
+					} else if(item instanceof PotionOfLevitation){
+						id = 6;
+					} else if(item instanceof PotionOfPurity){
+						id = 5;
+					} else if(item instanceof PotionOfHealing){
+						id = 7;
+					} else if(item instanceof PotionOfMight){
+						id = 8;
 					}
 					Ancientpot ancientpot = new Ancientpot();
 					ancientpot.setElements(id);
