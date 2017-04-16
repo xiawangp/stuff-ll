@@ -53,6 +53,7 @@ public class Kek extends Mob{
         baseSpeed = 3f;
 
         properties.add(Property.MINIBOSS);
+        properties.add(Property.IMMOVABLE);
     }
 
     @Override

@@ -61,9 +61,9 @@ public class Chasm {
 						if(Dungeon.depth % 5 != 0){
 							jumpConfirmed = true;
 							hero.resume();
+						} else {
+							GLog.n(Messages.get(Chasm.class, "stonefall"));
 						}
-					} else {
-						GLog.n(Messages.get(Chasm.class, "stonefall"));
 					}
 				}
 			}

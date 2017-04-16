@@ -23,10 +23,9 @@
 package com.shatteredpixel.lovecraftpixeldungeon.levels;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
-import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Kek;
-import com.shatteredpixel.lovecraftpixeldungeon.items.keys.IronKey;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.ShoggothBirthChamber;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.SpearTrap;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.traps.Trap;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
@@ -45,6 +44,7 @@ public class SewerBossLevel extends Level {
 	private int stairs = 0;
 
 	private Kek kek;
+	private ShoggothBirthChamber boss;
 	
 	@Override
 	public String tilesTex() {
@@ -118,23 +118,28 @@ public class SewerBossLevel extends Level {
 			mobs.add(kek);
 			RegularLevel.pepespanwed = true;
 		}
+
+		boss = new ShoggothBirthChamber();
+		boss.pos = 4+2*20;
+		mobs.add(boss);
+		RegularLevel.pepespanwed = true;
 	}
 	
 	@Override
 	protected void createItems() {
-		for(int i = 20; i > 0; i--){
-			drop(new IronKey(Dungeon.depth), entrance);
-		}
+
 	}
 
 	private static final String STAIRS	= "stairs";
 	private static final String KEK		= "kek";
+	private static final String BOSS	= "boss";
 
 	@Override
 	public void storeInBundle( Bundle bundle ) {
 		super.storeInBundle( bundle );
 		bundle.put( STAIRS, stairs );
 		bundle.put( KEK, kek );
+		bundle.put( BOSS, boss );
 	}
 
 	@Override
@@ -142,6 +147,7 @@ public class SewerBossLevel extends Level {
 		super.restoreFromBundle( bundle );
 		stairs = bundle.getInt( STAIRS );
 		kek = (Kek)bundle.get(KEK);
+		boss = (ShoggothBirthChamber)bundle.get(BOSS);
 	}
 
 	@Override
@@ -181,24 +187,24 @@ public class SewerBossLevel extends Level {
 	private static final int[] MAP_START =
 			{		//  0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19
 				/*0*/	W, M, W, M, W, M, W, M, X, W, W, W, W, M, W, W, W, M, W, W,
-				/*1*/	W, w, m, w, e, w, e, w, e, C, C, C, w, w, e, C, e, w, e, W,
-				/*2*/	W, w, e, w, m, w, m, w, m, C, C, C, e, w, e, c, w, w, e, W,
-				/*3*/	W, w, m, w, m, w, e, w, w, C, C, C, e, w, w, C, w, w, e, W,
-				/*4*/	W, w, e, w, w, w, w, w, w, c, c, c, C, c, C, C, C, c, C, W,
+				/*1*/	W, w, m, w, e, w, e, w, e, C, C, C, w, w, m, C, m, w, e, W,
+				/*2*/	W, w, e, w, m, w, m, w, m, C, C, C, m, w, e, c, w, w, m, W,
+				/*3*/	W, w, m, w, m, w, e, w, w, C, c, c, e, w, w, C, w, w, m, W,
+				/*4*/	W, w, e, w, w, w, w, w, w, c, c, C, C, c, C, C, C, c, C, W,
 				/*5*/	W, w, w, w, w, e, w, w, w, C, C, C, C, c, C, C, C, c, C, W,
 				/*6*/	W, C, C, C, C, C, C, c, C, C, C, C, C, c, C, C, C, c, C, W,
 				/*7*/	W, C, C, C, C, C, C, c, C, C, C, C, C, c, C, C, C, c, C, W,
-				/*8*/	W, C, C, C, C, C, C, c, C, C, C, C, w, e, e, w, w, w, C, W,
-				/*9*/	W, C, w, w, m, C, e, w, e, C, C, C, w, w, w, w, e, w, C, W,
-				/*10*/	W, C, m, w, e, c, e, w, w, c, c, c, e, e, w, w, e, e, C, W,
+				/*8*/	W, C, C, C, C, C, C, c, C, C, C, C, w, m, e, w, w, w, C, W,
+				/*9*/	W, C, w, w, m, C, e, w, e, C, C, C, w, w, w, w, m, w, C, W,
+				/*10*/	W, C, m, w, e, c, e, w, w, c, c, c, e, e, w, w, m, e, C, W,
 				/*11*/	W, C, e, m, e, C, w, w, e, C, C, C, c, C, C, C, C, c, C, W,
 				/*12*/	W, C, C, c, C, C, C, C, C, C, C, C, c, C, C, C, C, c, C, W,
 				/*13*/	W, C, C, c, C, C, C, C, C, C, C, C, c, C, C, C, C, c, C, W,
 				/*14*/	W, C, C, c, C, C, C, C, C, C, C, C, c, C, C, C, C, c, C, W,
-				/*15*/	W, C, C, c, C, C, C, C, C, C, C, C, w, w, e, C, w, w, e, W,
-				/*16*/	W, w, m, e, m, C, m, w, e, C, C, C, e, w, w, c, e, w, e, W,
-				/*17*/	W, w, w, e, w, C, w, w, w, c, c, c, e, w, e, C, w, w, e, W,
+				/*15*/	W, C, C, c, C, C, C, C, C, C, C, C, w, w, m, C, w, w, e, W,
+				/*16*/	W, w, m, e, m, C, m, w, e, C, C, C, m, w, w, c, m, w, m, W,
+				/*17*/	W, w, w, e, w, c, w, w, w, c, c, c, e, w, e, C, w, w, m, W,
 				/*18*/	W, E, w, m, w, C, e, m, m, C, C, C, C, C, C, C, C, C, C, W,
-				/*19*/	W, W, M, W, M, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
+				/*19*/	W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W, W,
 			};
 }

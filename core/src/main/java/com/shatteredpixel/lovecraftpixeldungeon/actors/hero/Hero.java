@@ -57,6 +57,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Amulet;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Ankh;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Dewdrop;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Heap.Type;
 import com.shatteredpixel.lovecraftpixeldungeon.items.HelmetSlot;
@@ -1259,6 +1260,10 @@ public class Hero extends Char {
 			
 			curAction = new HeroAction.Cook( cell );
 			
+		} else if(Dungeon.level.map[cell] == Terrain.BOOKSHELF && cell != pos){
+			Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), Dungeon.hero.pos);
+			Level.set(cell, Terrain.EMPTY_BOOKSHELF);
+			GameScene.updateMap( cell );
 		} else if (Level.fieldOfView[cell] && (ch = Actor.findChar( cell )) instanceof Mob) {
 
 			if (ch instanceof NPC) {
