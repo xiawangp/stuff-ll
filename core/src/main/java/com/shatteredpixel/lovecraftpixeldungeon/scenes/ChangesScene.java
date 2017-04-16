@@ -39,7 +39,7 @@ import com.watabou.noosa.ui.Component;
 public class ChangesScene extends PixelScene {
 
 	private static final String TXT_Update =
-			"_Initial Update I.I.I_ \n\n " +
+					"_Initial Update I.I.I_ \n\n " +
 					"_-_ Player is nameable \n " +
 					"_-_ new Items: \n " +
 					"\t\t _-_ Mushrooms \n " +
@@ -78,7 +78,7 @@ public class ChangesScene extends PixelScene {
 					"\t\t _-_ Infection \n " +
 					"_-_ Dewvial can be used to upgrade \n\n\n" +
 
-			"_Plant Update I.I.II_ \n\n " +
+					"_Plant Update I.I.II_ \n\n " +
 					"_-_ Name Generator is reworked: \n" +
 					"_-_ Dewvial new fill up graphics \n" +
 					"_-_ Gold has new Sprite according to amount\n" +
@@ -109,7 +109,24 @@ public class ChangesScene extends PixelScene {
 					"\t\t _-_ Icewind\n" +
 					"\t\t _-_ Corruption Gas\n" +
 					"\t\t _-_ Teleport Gas\n" +
-					"_-_ Level 2 added";
+					"_-_ Level 2 added \n\n\n" +
+
+					"_Update I.I.III_ \n\n " +
+					"_-_ New _Inventoryslot_ for hats \n" +
+					"\t\t _-_ MiGo Cap \n" +
+					"\t\t _-_ Toothfarie Cap \n" +
+					"\t\t _-_ Shoggoth Cap \n" +
+					"_-_ New Mobs:\n" +
+					"\t\t _-_ Elements \n" +
+					"\t\t _-_ Shoggoths \n" +
+					"\t\t _-_ Shoggoth Birthchamber \n" +
+					"\t\t _-_ Toothfaries \n" +
+					"\t\t _-_ Mongolian Sandworms \n" +
+					"_-_ New Items:\n" +
+					"\t\t _-_ Baby Thooth \n" +
+					"\t\t _-_ Hard Slime \n" +
+					"\t\t _-_ MiGo Scales \n" +
+					"_-_ Level 5 Boss Fight added\n\n\n";
 
 	@Override
 	public void create() {

@@ -473,7 +473,7 @@ public class ItemSpriteSheet {
 		assignItemRect(CANDY_CANE,  13, 16);
 		assignItemRect(MIGOEGG,     16, 14);
 		assignItemRect(ROTTEN_FLESH,15, 11);
-		assignItemRect(TOOTH,		16, 12);
+		assignItemRect(TOOTH,		16, 16);
 		assignItemRect(MONGOEGG,    16, 14);
 	}
 

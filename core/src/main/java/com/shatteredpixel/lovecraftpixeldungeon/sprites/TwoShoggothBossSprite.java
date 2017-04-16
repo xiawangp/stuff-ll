@@ -43,7 +43,7 @@ public class TwoShoggothBossSprite extends MobSprite {
 
 		texture( Assets.TSHOOGOTH );
 
-		TextureFilm frames = new TextureFilm( texture, 20, 14 );
+		TextureFilm frames = new TextureFilm( texture, 20, 20 );
 
 		idle = new Animation( 10, true );
 		idle.frames( frames, 1, 2, 0 );

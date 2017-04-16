@@ -245,10 +245,19 @@ public class InterlevelScene extends PixelScene {
 				} );
 				error = null;
 			} else if ((int)waitingTime == 10){
-				waitingTime = 60f;
 				LovecraftPixelDungeon.reportException(
 						new RuntimeException("waited more than 10 seconds on levelgen. Seed:" + Dungeon.seed + " depth:" + Dungeon.depth)
 				);
+			} else if ((int)waitingTime == 60){
+				waitingTime = 60f;
+				String errorMsg;
+				errorMsg = Messages.get(this, "file_corrupted");
+				add( new WndError( errorMsg ) {
+					public void onBackPressed() {
+						super.onBackPressed();
+						Game.switchScene( StartScene.class );
+					}
+				} );
 			}
 			break;
 		}
