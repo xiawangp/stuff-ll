@@ -126,6 +126,7 @@ public class ChangesScene extends PixelScene {
 					"\t\t _-_ Baby Thooth \n" +
 					"\t\t _-_ Hard Slime \n" +
 					"\t\t _-_ MiGo Scales \n" +
+					"_-_ Loading Quotes \n" +
 					"_-_ Level 5 Boss Fight added\n\n\n";
 
 	@Override
