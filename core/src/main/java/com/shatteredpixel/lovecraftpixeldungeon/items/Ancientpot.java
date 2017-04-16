@@ -30,9 +30,11 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.AirElement;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.EarthElement;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.Element;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.ExpElement;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.FireElemental;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Splash;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfFrost;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision;
@@ -40,7 +42,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
-import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndBag;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.tweeners.AlphaTweener;
@@ -57,6 +58,7 @@ public class Ancientpot extends Item {
 		elements.add(new AirElement());
 		elements.add(new FireElemental());
 		elements.add(new EarthElement());
+		elements.add(new ExpElement());
 	}
 
 	private int elementId;
@@ -112,11 +114,6 @@ public class Ancientpot extends Item {
 	}
 	
 	public Item shatter( Char owner, int pos ) {
-
-		GLog.p(elementId+"");
-		GLog.p(elements.get(0).name+"");
-		GLog.p(elements.get(1).name+"");
-		GLog.p(elements.get(2).name+"");
 		
 		if (Dungeon.visible[pos]) {
 			Sample.INSTANCE.play( Assets.SND_SHATTER );
@@ -307,6 +304,8 @@ public class Ancientpot extends Item {
 						id = 0;
 					} else if(item instanceof PotionOfMindVision){
 						id = 2;
+					} else if(item instanceof PotionOfExperience){
+						id = 3;
 					}
 					Ancientpot ancientpot = new Ancientpot();
 					ancientpot.setElements(id);

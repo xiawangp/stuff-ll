@@ -29,7 +29,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.items.BrokenSeal;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Waterbag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.armor.ClothArmor;
-import com.shatteredpixel.lovecraftpixeldungeon.items.armorpieces.Tooth;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.FoodBag;
 import com.shatteredpixel.lovecraftpixeldungeon.items.bags.WeaponCase;
@@ -103,8 +102,6 @@ public enum HeroClass {
 		Dungeon.quickslot.setSlot(3, waterbag);
 
 		Dungeon.gold = 1200;
-
-		new Tooth().collect();
 	}
 
 	public Badges.Badge masteryBadge() {

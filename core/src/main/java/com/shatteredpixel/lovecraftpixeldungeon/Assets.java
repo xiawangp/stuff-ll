@@ -110,6 +110,7 @@ public class Assets {
 	public static final String IMP		= "demon.png";
 	public static final String RATKING	= "ratking.png";
 	public static final String AIRELEMEN= "air_elemental.png";
+	public static final String RAVEN	= "raven.png";
 	public static final String BEE      = "bee.png";
 	public static final String MIMIC    = "mimic.png";
 	public static final String ROT_LASH = "rot_lasher.png";

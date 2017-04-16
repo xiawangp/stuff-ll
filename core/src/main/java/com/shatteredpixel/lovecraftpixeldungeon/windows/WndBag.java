@@ -45,9 +45,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.bags.WeaponCase;
 import com.shatteredpixel.lovecraftpixeldungeon.items.food.Food;
 import com.shatteredpixel.lovecraftpixeldungeon.items.ores.Ores;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.Potion;
-import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfFrost;
-import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
-import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.lovecraftpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.Weapon;
@@ -396,7 +393,7 @@ public class WndBag extends WndTabbed {
 						mode == Mode.ENCHANTABLE && (item instanceof MeleeWeapon || item instanceof Boomerang || item instanceof Armor) ||
 						mode == Mode.WAND && (item instanceof Wand) ||
 						mode == Mode.SEED && (item instanceof Seed) ||
-								mode == Mode.ANCIENTPOT && (item instanceof PotionOfFrost || item instanceof PotionOfLiquidFlame || item instanceof PotionOfMindVision) ||
+								mode == Mode.ANCIENTPOT && (item instanceof Potion) ||
 						mode == Mode.FOOD && (item instanceof Food) ||
 						mode == Mode.POTION && (item instanceof Potion) ||
 						mode == Mode.SCROLL && (item instanceof Scroll) ||
