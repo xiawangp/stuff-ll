@@ -24,7 +24,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.items.helmets;
 
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.FairyElement;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.HadesElemental;
 import com.shatteredpixel.lovecraftpixeldungeon.items.HelmetSlot;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.HeroSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.ItemSpriteSheet;
@@ -32,11 +32,11 @@ import com.watabou.utils.Bundle;
 
 import java.util.ArrayList;
 
-public class ToothCap extends HelmetSlot{
+public class HadesCap extends HelmetSlot{
 
     {
-        image = ItemSpriteSheet.TOOTHCAP;
-        weight = 2;
+        image = ItemSpriteSheet.HADESHELMET;
+        weight = 4;
         identify();
     }
 
@@ -53,7 +53,7 @@ public class ToothCap extends HelmetSlot{
 
     @Override
     public boolean doEquip(Hero hero) {
-        ((HeroSprite)hero.sprite).changeSkin(new FairyElement());
+        ((HeroSprite)hero.sprite).changeSkin(new HadesElemental());
         (hero.sprite).operate(hero.pos);
         activated = true;
         return super.doEquip(hero);
@@ -100,7 +100,7 @@ public class ToothCap extends HelmetSlot{
     public void execute(Hero hero, String action) {
         super.execute(hero, action);
         if(action.equals(AC_ON)){
-            ((HeroSprite)hero.sprite).changeSkin(new FairyElement());
+            ((HeroSprite)hero.sprite).changeSkin(new HadesElemental());
             (hero.sprite).operate(hero.pos);
             activated = true;
         } else if(action.equals(AC_OFF)){
@@ -126,7 +126,7 @@ public class ToothCap extends HelmetSlot{
         super.restoreFromBundle(bundle);
         activated = bundle.getBoolean(ACTIVE);
         if(activated){
-            ((HeroSprite)curUser.sprite).changeSkin(new FairyElement());
+            ((HeroSprite)curUser.sprite).changeSkin(new HadesElemental());
             (curUser.sprite).operate(curUser.pos);
         } else {
             ((HeroSprite)curUser.sprite).updateArmor();

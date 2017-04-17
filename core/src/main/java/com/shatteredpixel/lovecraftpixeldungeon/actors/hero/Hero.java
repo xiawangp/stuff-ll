@@ -77,6 +77,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.HornOfPlenty;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.TalismanOfForesight;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.GooCap;
+import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.HadesCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.MiGoCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.helmets.ToothCap;
 import com.shatteredpixel.lovecraftpixeldungeon.items.keys.Key;
@@ -484,10 +485,19 @@ public class Hero extends Char {
 
 		//TODO: TOOTHCAP
 
-		if(!this.buffs().contains(Levitation.class)){
-			HelmetSlot helmet = belongings.helmet;
-			if(helmet != null && helmet instanceof ToothCap) {
-				Buff.affect(this, SmoothFlying.class);
+		HelmetSlot helmet = belongings.helmet;
+		if(helmet != null){
+			if(!this.buffs().contains(Levitation.class)){
+				if(helmet instanceof ToothCap) {
+					Buff.affect(this, SmoothFlying.class);
+				}
+			}
+			if(helmet instanceof HadesCap) {
+				this.sprite.add(CharSprite.State.INVISIBLE);
+			} else {
+				if(!this.buffs().contains(Invisibility.class)){
+					this.sprite.remove(CharSprite.State.INVISIBLE);
+				}
 			}
 		}
 		

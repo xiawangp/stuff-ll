@@ -246,6 +246,7 @@ public class ItemSpriteSheet {
 	public static final int MIGOCAP  		= ARMOR+9;
 	public static final int GOOCAP  		= ARMOR+10;
 	public static final int TOOTHCAP  		= ARMOR+11;
+	public static final int HADESHELMET  	= ARMOR+12;
 	static{
 		assignItemRect(ARMOR_CLOTH,     15, 12);
 		assignItemRect(ARMOR_LEATHER,   14, 13);
@@ -259,6 +260,7 @@ public class ItemSpriteSheet {
 		assignItemRect(MIGOCAP,  		15, 13);
 		assignItemRect(GOOCAP,  		15, 13);
 		assignItemRect(TOOTHCAP,  		15, 13);
+		assignItemRect(HADESHELMET,  	16, 16);
 	}
 
 	                                                                                    //32 free slots

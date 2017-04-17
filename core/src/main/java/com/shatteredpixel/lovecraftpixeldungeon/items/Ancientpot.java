@@ -37,17 +37,21 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.ExpElement;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.FairyElement;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.FireElemental;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.GolemElement;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.HadesElemental;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.ToxicElemental;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Splash;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfFrost;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLevitation;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMight;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfPurity;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfToxicGas;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
@@ -74,6 +78,8 @@ public class Ancientpot extends Item {
 		elements.add(new AirElementZephyros());
 		elements.add(new FairyElement());
 		elements.add(new GolemElement());
+		elements.add(new ToxicElemental());
+		elements.add(new HadesElemental());
 	}
 
 	private int elementId;
@@ -331,6 +337,10 @@ public class Ancientpot extends Item {
 						id = 7;
 					} else if(item instanceof PotionOfMight){
 						id = 8;
+					} else if(item instanceof PotionOfToxicGas){
+						id = 9;
+					}  else if(item instanceof PotionOfInvisibility){
+						id = 10;
 					}
 					Ancientpot ancientpot = new Ancientpot();
 					ancientpot.setElements(id);
