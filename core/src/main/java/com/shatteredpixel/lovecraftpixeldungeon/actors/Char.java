@@ -76,6 +76,7 @@ public abstract class Char extends Actor {
 	public int paralysed	    = 0;
 	public boolean rooted		= false;
 	public boolean flying		= false;
+	public boolean magicshield  = false;
 	public int invisible		= 0;
 	
 	public int viewDistance	= 8;

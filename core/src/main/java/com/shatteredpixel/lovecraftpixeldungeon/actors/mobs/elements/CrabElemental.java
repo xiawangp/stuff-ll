@@ -26,45 +26,69 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Amok;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Burning;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Corruption;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Poison;
-import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
-import com.shatteredpixel.lovecraftpixeldungeon.sprites.ExpElementSprite;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
+import com.shatteredpixel.lovecraftpixeldungeon.items.food.MysteryMeat;
+import com.shatteredpixel.lovecraftpixeldungeon.sprites.CrabSprite;
 import com.watabou.utils.Random;
 
 import java.util.HashSet;
 
-public class ExpElement extends Element {
-	
+public class CrabElemental extends Element {
+
 	{
-		spriteClass = ExpElementSprite.class;
+		spriteClass = CrabSprite.class;
 
 		EXP = 1;
-		
-		flying = true;
+
+		HP = HT = 15+Dungeon.depth;
+		defenseSkill = 5+(Dungeon.depth/2);
+		baseSpeed = 2f;
+
+		flying = false;
 		state = WANDERING;
+
+		loot = new MysteryMeat();
+		lootChance = 0.167f;
 	}
-	
-	@Override
-	public int attackSkill( Char target ) {
-		return defenseSkill;
-	}
-	
+
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( HT / 10, HT / 4 );
+		return Random.NormalIntRange( 1, 8 );
 	}
-	
+
 	@Override
-	public int attackProc( Char enemy, int damage ) {
-		return 1;
+	public int attackSkill( Char target ) {
+		return 12;
+	}
+
+	@Override
+	public int drRoll() {
+		return Random.NormalIntRange(0, 4);
 	}
 
 	@Override
 	public int defenseProc(Char enemy, int damage) {
-		Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), enemy.pos);
-		Buff.affect(enemy, Burning.class);
+		if(enemy == Dungeon.hero){
+			Dungeon.hero.decreaseMentalHealth(damage);
+		}
+		this.aggro(Char.findChar(Dungeon.level.randomDestination()));
 		return super.defenseProc(enemy, damage);
+	}
+
+	@Override
+	public int attackProc( Char enemy, int damage ) {
+		if (enemy instanceof Mob) {
+			((Mob)enemy).aggro( this );
+		}
+		if(Random.Int(10) < 3){
+			if(enemy instanceof Mob){
+				enemy.die(null);
+			}
+		}
+		return damage;
 	}
 
 	private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
@@ -72,9 +96,21 @@ public class ExpElement extends Element {
 		IMMUNITIES.add( Poison.class );
 		IMMUNITIES.add( Amok.class );
 	}
-	
+
 	@Override
 	public HashSet<Class<?>> immunities() {
 		return IMMUNITIES;
+	}
+	
+	@Override
+	public void add( Buff buff ) {
+		if (buff instanceof Corruption) {
+			if (HP < HT) {
+				HP++;
+				sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
+			}
+		} else {
+			super.add( buff );
+		}
 	}
 }

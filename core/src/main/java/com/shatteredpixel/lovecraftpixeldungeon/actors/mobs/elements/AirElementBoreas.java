@@ -77,6 +77,7 @@ public class AirElementBoreas extends Element {
 	static {
 		IMMUNITIES.add( Poison.class );
 		IMMUNITIES.add( Amok.class );
+		IMMUNITIES.add( Frost.class );
 	}
 	
 	@Override

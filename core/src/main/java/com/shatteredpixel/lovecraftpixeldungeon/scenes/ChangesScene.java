@@ -97,7 +97,7 @@ public class ChangesScene extends PixelScene {
 					"_-_ new Items:\n" +
 					"\t\t _-_ Ancient Pot\n" +
 					"\t\t _-_ Waterbag\n" +
-					"\t\t _-_ Goo\n" +
+					"\t\t _-_ GooElement\n" +
 					"\t\t _-_ Mi Go Egg\n" +
 					"\t\t _-_ Statue of Pepe\n" +
 					"\t\t _-_ Potion of Waterwave\n" +

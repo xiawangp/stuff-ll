@@ -22,24 +22,26 @@
  */
 package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements;
 
+import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Amok;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Burning;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Poison;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
-import com.shatteredpixel.lovecraftpixeldungeon.sprites.GolemSprite;
-import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
+import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
+import com.shatteredpixel.lovecraftpixeldungeon.sprites.ExpElementSprite;
 import com.watabou.utils.Random;
 
 import java.util.HashSet;
 
-public class GolemElement extends Element {
+public class ExpElemental extends Element {
 	
 	{
-		spriteClass = GolemSprite.class;
+		spriteClass = ExpElementSprite.class;
 
 		EXP = 1;
 		
-		flying = false;
+		flying = true;
 		state = WANDERING;
 	}
 	
@@ -55,18 +57,14 @@ public class GolemElement extends Element {
 	
 	@Override
 	public int attackProc( Char enemy, int damage ) {
-		if (enemy instanceof Mob) {
-			((Mob)enemy).aggro( this );
-		}
-		return Random.Int(50);
+		return 1;
 	}
 
 	@Override
 	public int defenseProc(Char enemy, int damage) {
-		if(Randomer.randomInteger(20) == 17){
-			this.damage(100, enemy);
-		}
-		return 0;
+		Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), enemy.pos);
+		Buff.affect(enemy, Burning.class);
+		return super.defenseProc(enemy, damage);
 	}
 
 	private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();

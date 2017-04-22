@@ -32,7 +32,7 @@ import com.watabou.utils.Random;
 
 import java.util.HashSet;
 
-public class FairyElement extends Element {
+public class FairyElemental extends Element {
 	
 	{
 		spriteClass = FairyElementSprite.class;
@@ -64,10 +64,10 @@ public class FairyElement extends Element {
 			if(Randomer.randomBoolean()){
 				Dungeon.hero.decreaseMentalHealth(Dungeon.hero.MH/2);
 			} else {
-				Dungeon.hero.damage(Dungeon.hero.HP/2, FairyElement.class);
+				Dungeon.hero.damage(Dungeon.hero.HP/2, FairyElemental.class);
 			}
 		} else {
-			enemy.damage(10, FairyElement.class);
+			enemy.damage(10, FairyElemental.class);
 		}
 		return super.defenseProc(enemy, damage);
 	}

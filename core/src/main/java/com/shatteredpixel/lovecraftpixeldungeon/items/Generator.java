@@ -56,12 +56,14 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLevitation;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMagicShield;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMight;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfPurity;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfToxicGas;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfWaterWave;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.Ring;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfAccuracy;
 import com.shatteredpixel.lovecraftpixeldungeon.items.rings.RingOfElements;
@@ -260,8 +262,10 @@ public class Generator {
 			PotionOfPurity.class,
 			PotionOfInvisibility.class,
 			PotionOfMight.class,
-			PotionOfFrost.class };
-		Category.POTION.probs = new float[]{ 45, 4, 15, 10, 15, 10, 0, 20, 12, 10, 0, 10 };
+			PotionOfFrost.class,
+				PotionOfWaterWave.class,
+				PotionOfMagicShield.class};
+		Category.POTION.probs = new float[]{ 45, 4, 15, 10, 15, 10, 0, 20, 12, 10, 0, 10, 10, 15 };
 
 		//TODO: add last ones when implemented
 		Category.WAND.classes = new Class<?>[]{

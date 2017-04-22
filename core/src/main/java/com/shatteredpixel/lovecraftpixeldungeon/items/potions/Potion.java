@@ -72,6 +72,7 @@ public class Potion extends Item {
 			PotionOfMight.class,
 			PotionOfFrost.class,
 			PotionOfWaterWave.class,
+			PotionOfMagicShield.class,
 	};
 
 	private static final HashMap<String, Integer> colors = new HashMap<String, Integer>() {
@@ -89,6 +90,7 @@ public class Potion extends Item {
 			put("silver",ItemSpriteSheet.POTION_SILVER);
 			put("ivory",ItemSpriteSheet.POTION_IVORY);
 			put("aqua",ItemSpriteSheet.POTION_AQUA);
+			put("pus",ItemSpriteSheet.POTION_SICKGREEN);
 		}
 	};
 	
@@ -182,7 +184,8 @@ public class Potion extends Item {
 			this instanceof PotionOfMindVision ||
 			this instanceof PotionOfStrength ||
 			this instanceof PotionOfInvisibility ||
-			this instanceof PotionOfMight)) {
+			this instanceof PotionOfMight ||
+			this instanceof PotionOfMagicShield)) {
 		
 			GameScene.show(
 				new WndOptions( Messages.get(Potion.class, "beneficial"),

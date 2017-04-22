@@ -173,7 +173,7 @@ public class AboutScene extends PixelScene {
 		TouchArea wikitab = new TouchArea( wiki.x, wiki.y, wiki.width, wiki.height ) {
 			@Override
 			protected void onClick( Touch touch ) {
-				Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse("http://pixeldungeon.wikia.com/wiki/Category:Mods") );
+				Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse("http://pixeldungeon.wikia.com/wiki/Mod-LovecraftPixelDungeon") );
 				Game.instance.startActivity( intent );
 			}
 		};

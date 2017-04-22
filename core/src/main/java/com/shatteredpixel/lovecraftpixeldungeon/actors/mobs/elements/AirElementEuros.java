@@ -26,6 +26,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Amok;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Frost;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Paralysis;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Poison;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
@@ -77,6 +78,7 @@ public class AirElementEuros extends Element {
 	static {
 		IMMUNITIES.add( Poison.class );
 		IMMUNITIES.add( Amok.class );
+		IMMUNITIES.add( Frost.class );
 	}
 	
 	@Override

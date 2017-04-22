@@ -483,7 +483,7 @@ public class DriedRose extends Artifact {
 					"If the guards couldn't defeat them, perhaps we can...",
 					"These crabs are extremely annoying..."
 				},{
-					"Beware Goo!...",
+					"Beware GooElement!...",
 					"Many of my friends died to this thing, time for vengeance...",
 					"Such an abomination cannot be allowed to live..."
 				}

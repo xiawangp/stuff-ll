@@ -20,10 +20,9 @@
  * You should have have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses>
  */
-package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs;
+package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Assets;
-import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.blobs.Blob;
@@ -36,7 +35,6 @@ import com.shatteredpixel.lovecraftpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Speck;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.particles.ElmoParticle;
 import com.shatteredpixel.lovecraftpixeldungeon.items.artifacts.LloydsBeacon;
-import com.shatteredpixel.lovecraftpixeldungeon.items.keys.SkeletonKey;
 import com.shatteredpixel.lovecraftpixeldungeon.items.scrolls.ScrollOfPsionicBlast;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.enchantments.Grim;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
@@ -55,7 +53,7 @@ import com.watabou.utils.Random;
 
 import java.util.HashSet;
 
-public class Goo extends Mob {
+public class GooElement extends Element {
 
 	{
 		HP = HT = 100;
@@ -207,6 +205,7 @@ public class Goo extends Mob {
 
 	@Override
 	protected boolean getCloser( int target ) {
+		super.getCloser(target);
 		pumpedUp = 0;
 		return super.getCloser( target );
 	}
@@ -236,13 +235,8 @@ public class Goo extends Mob {
 	public void die( Object cause ) {
 		
 		super.die( cause );
-		
-		Dungeon.level.unseal();
-		
-		GameScene.bossSlain();
-		Dungeon.level.drop( new SkeletonKey( Dungeon.depth ), pos ).sprite.drop();
-		
-		Badges.validateBossSlain();
+
+		Dungeon.hero.STR++;
 		
 		yell( Messages.get(this, "defeated") );
 	}

@@ -31,12 +31,14 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.AirElementB
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.AirElementEuros;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.AirElementNotos;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.AirElementZephyros;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.CrabElemental;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.EarthElement;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.Element;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.ExpElement;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.FairyElement;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.ExpElemental;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.FairyElemental;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.FireElemental;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.GolemElement;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.GooElement;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.HadesElemental;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.ToxicElemental;
 import com.shatteredpixel.lovecraftpixeldungeon.effects.Pushing;
@@ -47,11 +49,14 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLevitation;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfLiquidFlame;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMagicShield;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMight;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfPurity;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfToxicGas;
+import com.shatteredpixel.lovecraftpixeldungeon.items.potions.PotionOfWaterWave;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
@@ -72,14 +77,16 @@ public class Ancientpot extends Item {
 		elements.add(new AirElementBoreas());
 		elements.add(new FireElemental());
 		elements.add(new EarthElement());
-		elements.add(new ExpElement());
+		elements.add(new ExpElemental());
 		elements.add(new AirElementEuros());
 		elements.add(new AirElementNotos());
 		elements.add(new AirElementZephyros());
-		elements.add(new FairyElement());
+		elements.add(new FairyElemental());
 		elements.add(new GolemElement());
 		elements.add(new ToxicElemental());
 		elements.add(new HadesElemental());
+		elements.add(new CrabElemental());
+		elements.add(new GooElement());
 	}
 
 	private int elementId;
@@ -159,9 +166,9 @@ public class Ancientpot extends Item {
 		if (newPos != -1) {
 			Element element;
 			if(elements.get(elementId) == null){
-				element = Random.element(elements);
+				element = (Element)Random.element(elements);
 			} else {
-				element = elements.get(elementId);
+				element = (Element)elements.get(elementId);
 			}
 			element.spawn( Dungeon.depth );
 			element.setPotInfo( pos, owner );
@@ -341,6 +348,12 @@ public class Ancientpot extends Item {
 						id = 9;
 					}  else if(item instanceof PotionOfInvisibility){
 						id = 10;
+					} else if(item instanceof PotionOfWaterWave){
+						id = 11;
+					} else if(item instanceof PotionOfStrength){
+						id = 12;
+					} else if(item instanceof PotionOfMagicShield){
+						id = Random.Int(0, 12);
 					}
 					Ancientpot ancientpot = new Ancientpot();
 					ancientpot.setElements(id);

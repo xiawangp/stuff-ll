@@ -34,7 +34,7 @@ public class GooWarn extends Blob {
 	//cosmetic blob, used to warn noobs that goo's pump up should, infact, be avoided.
 
 	{
-		//this one needs to act after the Goo
+		//this one needs to act after the GooElement
 		actPriority = 3;
 	}
 

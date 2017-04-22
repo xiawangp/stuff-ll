@@ -88,6 +88,7 @@ public class BuffIndicator extends Component {
 	public static final int MOONFURY    = 43;
 	public static final int INFECTED    = 44;
 	public static final int OVERFED     = 45;
+	public static final int SHIELD     	= 46;
 
 	public static final int SIZE	= 7;
 	

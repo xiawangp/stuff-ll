@@ -500,6 +500,12 @@ public class Hero extends Char {
 				}
 			}
 		}
+
+		if(magicshield){
+			if(this.SHLD < this.HT){
+				this.SHLD = this.HT;
+			}
+		}
 		
 		if (paralysed > 0) {
 			

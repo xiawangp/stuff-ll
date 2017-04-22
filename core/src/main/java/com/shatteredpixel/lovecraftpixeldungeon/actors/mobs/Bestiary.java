@@ -23,6 +23,7 @@
 package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs;
 
 import com.shatteredpixel.lovecraftpixeldungeon.LovecraftPixelDungeon;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.GooElement;
 import com.watabou.utils.Random;
 
 public class Bestiary {
@@ -84,7 +85,7 @@ public class Bestiary {
 			
 		case 5:
 			chances = new float[]{ 1 };
-			classes = new Class<?>[]{ Goo.class };
+			classes = new Class<?>[]{ GooElement.class };
 			break;
 			
 		case 6:

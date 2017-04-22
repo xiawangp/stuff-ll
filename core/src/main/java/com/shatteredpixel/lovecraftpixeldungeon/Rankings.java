@@ -32,10 +32,10 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Belongings;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.DM300;
-import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Goo;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.King;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Tengu;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Yog;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.elements.GooElement;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Amulet;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Generator;
 import com.shatteredpixel.lovecraftpixeldungeon.items.Item;
@@ -314,7 +314,7 @@ public enum Rankings {
 			if (bundle.contains( REASON )){
 				String info = bundle.getString( REASON ).toLowerCase(Locale.ENGLISH);
 				if (info.equals("obtained the amulet of yendor"))   cause = Amulet.class;
-				else if (info.contains("goo"))                      cause = Goo.class;
+				else if (info.contains("goo"))                      cause = GooElement.class;
 				else if (info.contains("tengu"))                    cause = Tengu.class;
 				else if (info.contains("dm-300"))                   cause = DM300.class;
 				else if (info.contains("king"))                     cause = King.class;

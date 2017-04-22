@@ -85,13 +85,14 @@ public class EarthElement extends Element {
 		}
 		if(Random.Int(10) >= 8){
 			for(int i : PathFinder.NEIGHBOURS8){
-				if(Level.water[i]){
-					int oldTile = Dungeon.level.map[i];
-					Dungeon.level.set(i, Terrain.EMPTY_DECO);
+				int posi = pos+i;
+				if(Level.water[posi]){
+					int oldTile = Dungeon.level.map[posi];
+					Dungeon.level.set(posi, Terrain.EMPTY_DECO);
 
-					if (Dungeon.visible[i]) {
-						GameScene.updateMap( i );
-						GameScene.discoverTile( i, oldTile );
+					if (Dungeon.visible[posi]) {
+						GameScene.updateMap( posi );
+						GameScene.discoverTile( posi, oldTile );
 					}
 				}
 			}
