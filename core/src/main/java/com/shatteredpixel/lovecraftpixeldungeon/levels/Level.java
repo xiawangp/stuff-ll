@@ -719,6 +719,11 @@ public abstract class Level implements Bundlable {
 		GameScene.updateMap( pos );
 	}
 
+	public Plant getPlant( int pos ) {
+		Plant plant = plants.get(pos);
+		return plant;
+	}
+
 	public Trap setTrap( Trap trap, int pos ){
 		Trap existingTrap = traps.get(pos);
 		if (existingTrap != null){

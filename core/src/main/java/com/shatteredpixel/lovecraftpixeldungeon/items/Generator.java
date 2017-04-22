@@ -138,6 +138,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.RoundShield;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.RunicBlade;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Sai;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Scimitar;
+import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Scythe;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Spear;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.Sword;
 import com.shatteredpixel.lovecraftpixeldungeon.items.weapon.melee.WarHammer;
@@ -316,9 +317,10 @@ public class Generator {
 			Sai.class,
 			Whip.class,
 			Shuriken.class,
-			CurareDart.class
+			CurareDart.class,
+				Scythe.class,
 		};
-		Category.WEP_T3.probs = new float[]{ 6, 5, 5, 4, 4, 4, 6, 6 };
+		Category.WEP_T3.probs = new float[]{ 6, 5, 5, 4, 4, 4, 6, 6, 1 };
 
 		Category.WEP_T4.classes = new Class<?>[]{
 			Longsword.class,

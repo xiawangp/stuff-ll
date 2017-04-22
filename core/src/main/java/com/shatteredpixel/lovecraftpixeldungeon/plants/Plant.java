@@ -99,20 +99,6 @@ public abstract class Plant implements Bundlable {
 			}
 		}
 	}
-
-	public static Plant[] plantmap = {
-			new Firebloom(),
-			new Icecap(),
-			new Sorrowmoss(),
-			new Starflower(),
-			new Stormvine(),
-			new Sungrass(),
-			new Fadeleaf(),
-			new Earthroot(),
-			new Dreamfoil(),
-			new Blindweed(),
-			new BlandfruitBush(),
-	};
 	
 	private static final String POS	= "pos";
 
