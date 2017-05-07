@@ -286,8 +286,15 @@ public abstract class Level implements Bundlable {
 
 	protected void setupSize(){
 		if (width == 0 || height == 0)
-			width = height = Random.IntRange(30, 60);
+			width = height = (generateEvenNumber(30, 60));
 		length = width * height;
+	}
+
+	private static int generateEvenNumber(int min, int max) {
+		min = min % 2 == 1 ? min + 1 : min; // If min is odd, add one to make sure the integer division can´t create a number smaller min;
+		max = max % 2 == 1 ? max - 1 : max; // If max is odd, subtract one to make sure the integer division can´t create a number greater max;
+		int randomNum = ((Random.Int((max-min))+min)+1)/2; // Divide both by 2 to ensure the range
+		return randomNum *2; // multiply by 2 to make the number even
 	}
 	
 	public void reset() {

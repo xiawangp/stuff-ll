@@ -41,24 +41,28 @@ public class Sunlight extends Blob {
 
 		for (int i = area.left; i < area.right; i++) {
 			for (int j = area.top; j < area.bottom; j++) {
-				cell = i + j * Dungeon.level.width();
-				if(Dungeon.level.map[cell] == Terrain.EMBERS){
-					Dungeon.level.map[cell] = Terrain.GRASS;
-				} else if(Dungeon.level.map[cell] == Terrain.GRASS){
-					Dungeon.level.map[cell] = Terrain.HIGH_GRASS;
-				} else if(Dungeon.level.map[cell] == Terrain.EMPTY_DECO){
-					Dungeon.level.map[cell] = Terrain.GRASS;
-				} else if(Dungeon.level.map[cell] == Terrain.EMPTY){
-					Dungeon.level.map[cell] = Terrain.EMPTY_DECO;
-				} else if(Dungeon.level.map[cell] == Terrain.HIGH_GRASS){
-					int rand = Random.Int(0, 2);
-					if(rand == 0){
-						Dungeon.level.plant((Plant.Seed)Generator.random(Generator.Category.SEED), cell);
+				if(Random.Int(3) == 2){
+					cell = i + j * Dungeon.level.width();
+					if(Dungeon.level.map[cell] == Terrain.EMBERS){
+						Dungeon.level.map[cell] = Terrain.GRASS;
+					} else if(Dungeon.level.map[cell] == Terrain.GRASS){
+						Dungeon.level.map[cell] = Terrain.HIGH_GRASS;
+					} else if(Dungeon.level.map[cell] == Terrain.EMPTY_DECO){
+						Dungeon.level.map[cell] = Terrain.GRASS;
+					} else if(Dungeon.level.map[cell] == Terrain.EMPTY){
 						Dungeon.level.map[cell] = Terrain.EMPTY_DECO;
-					} else if(rand == 1){
-						Dungeon.level.drop(Generator.random(Generator.Category.SHROOMS), cell);
-					} else {
-						Dungeon.level.drop(Generator.random(Generator.Category.SEED), cell);
+					} else if(Dungeon.level.map[cell] == Terrain.HIGH_GRASS){
+						int rand = Random.Int(0, 2);
+						if(rand == 0){
+							Dungeon.level.plant((Plant.Seed)Generator.random(Generator.Category.SEED), cell);
+							Dungeon.level.map[cell] = Terrain.EMPTY_DECO;
+						} else if(rand == 1){
+							Dungeon.level.drop(Generator.random(Generator.Category.SHROOMS), cell);
+							Dungeon.level.map[cell] = Terrain.EMPTY_DECO;
+						} else {
+							Dungeon.level.drop(Generator.random(Generator.Category.SEED), cell);
+							Dungeon.level.map[cell] = Terrain.EMPTY_DECO;
+						}
 					}
 				}
 			}

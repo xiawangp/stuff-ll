@@ -52,6 +52,8 @@ enum Preferences {
 	public static final String KEY_BRIGHTNESS	= "brightness";
 	public static final String KEY_GRID 	    = "visual_grid";
 	public static final String KEY_VERSION      = "version";
+	public static final String KEY_FRAMECOLOR   = "framecolor";
+	public static final String KEY_PLAYERNAME   = "playername";
 	
 	private SharedPreferences prefs;
 	

@@ -26,6 +26,7 @@ import com.watabou.noosa.NinePatch;
 
 public class Chrome {
 
+	public static int assetid;
 	public static String assets;
 
 	public enum  Type {
@@ -43,8 +44,20 @@ public class Chrome {
 	};
 	
 	public static NinePatch get( Type type ) {
-		if(assets == null){
-			assets = Assets.CHROME1;
+		assetid = LovecraftPixelDungeon.frameColor();
+		switch (assetid){
+			case 0:
+				assets = Assets.CHROME1;
+				break;
+			case 1:
+				assets = Assets.CHROME2;
+				break;
+			case 2:
+				assets = Assets.CHROME3;
+				break;
+			case 3:
+				assets = Assets.CHROME4;
+				break;
 		}
 		switch (type) {
 		case WINDOW:

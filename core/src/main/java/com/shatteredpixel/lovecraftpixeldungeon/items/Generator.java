@@ -249,7 +249,7 @@ public class Generator {
 				ScrollOfThunderstorm.class,
 				ScrollOfEquivalentExchange.class,
 				ScrollOfSummoning.class};
-		Category.SCROLL.probs = new float[]{ 30, 10, 20, 0, 15, 15, 12, 8, 8, 0, 4, 10, 7, 8, 4, 4};
+		Category.SCROLL.probs = new float[]{ 30, 10, 20, 0, 15, 15, 12, 8, 8, 0, 4, 10, 7, 8, 4, 2};
 		
 		Category.POTION.classes = new Class<?>[]{
 			PotionOfHealing.class,

@@ -25,6 +25,7 @@ package com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.livingplants;
 
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
+import com.shatteredpixel.lovecraftpixeldungeon.actors.buffs.Corruption;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.levels.Level;
 import com.watabou.utils.Random;
@@ -62,6 +63,16 @@ public class LivingPlant extends Mob {
             return Random.element(enemies);
         }
         return Dungeon.hero;
+    }
+
+    private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+    static {
+        IMMUNITIES.add(Corruption.class);
+    }
+
+    @Override
+    public HashSet<Class<?>> immunities() {
+        return IMMUNITIES;
     }
 
     @Override

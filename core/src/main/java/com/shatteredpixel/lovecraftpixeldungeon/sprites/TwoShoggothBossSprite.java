@@ -67,7 +67,7 @@ public class TwoShoggothBossSprite extends MobSprite {
 
 		spray = centerEmitter();
 		spray.autoKill = false;
-		spray.pour( GooParticle.FACTORY, 0.04f );
+		spray.pour( GooParticle.FACTORY, 1f );
 		spray.on = false;
 	}
 
@@ -113,7 +113,7 @@ public class TwoShoggothBossSprite extends MobSprite {
 			super();
 
 			color( 0xF0A0C8 );
-			lifespan = 0.3f;
+			lifespan = 0.1f;
 
 			acc.set( 0, +50 );
 		}

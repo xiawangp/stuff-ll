@@ -51,6 +51,7 @@ public class WndFrameChange extends WndTabbed {
 			@Override
 			protected void onClick() {
 				super.onClick();
+				LovecraftPixelDungeon.frameColor(0);
 				Chrome.assets = Assets.CHROME1;
 				LovecraftPixelDungeon.switchNoFade(TitleScene.class);
 			}
@@ -62,6 +63,7 @@ public class WndFrameChange extends WndTabbed {
 			@Override
 			protected void onClick() {
 				super.onClick();
+				LovecraftPixelDungeon.frameColor(1);
 				Chrome.assets = Assets.CHROME2;
 				LovecraftPixelDungeon.switchNoFade(TitleScene.class);
 			}
@@ -73,6 +75,7 @@ public class WndFrameChange extends WndTabbed {
 			@Override
 			protected void onClick() {
 				super.onClick();
+				LovecraftPixelDungeon.frameColor(2);
 				Chrome.assets = Assets.CHROME3;
 				LovecraftPixelDungeon.switchNoFade(TitleScene.class);
 			}
@@ -84,6 +87,7 @@ public class WndFrameChange extends WndTabbed {
 			@Override
 			protected void onClick() {
 				super.onClick();
+				LovecraftPixelDungeon.frameColor(3);
 				Chrome.assets = Assets.CHROME4;
 				LovecraftPixelDungeon.switchNoFade(TitleScene.class);
 			}

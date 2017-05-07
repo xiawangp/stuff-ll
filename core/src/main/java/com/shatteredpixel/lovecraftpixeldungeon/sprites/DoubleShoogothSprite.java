@@ -67,7 +67,7 @@ public class DoubleShoogothSprite extends MobSprite {
 
 		spray = centerEmitter();
 		spray.autoKill = false;
-		spray.pour( GooParticle.FACTORY, 0.04f );
+		spray.pour( GooParticle.FACTORY, 1f );
 		spray.on = false;
 	}
 
@@ -113,7 +113,7 @@ public class DoubleShoogothSprite extends MobSprite {
 			super();
 
 			color( 0xA3F0A0 );
-			lifespan = 0.3f;
+			lifespan = 0.1f;
 
 			acc.set( 0, +50 );
 		}

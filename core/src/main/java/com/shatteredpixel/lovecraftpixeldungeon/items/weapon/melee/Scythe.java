@@ -65,7 +65,6 @@ public class Scythe extends MeleeWeapon {
 
 			for(int i : PathFinder.NEIGHBOURS9){
 				int posi = curUser.pos + i;
-				Dungeon.level.getPlant(posi).activate();
 				if(Dungeon.level.map[posi] == Terrain.HIGH_GRASS){
 					HighGrass.trample(Dungeon.level, posi, curUser );
 				}

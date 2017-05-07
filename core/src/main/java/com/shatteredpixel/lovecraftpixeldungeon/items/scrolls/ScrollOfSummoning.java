@@ -55,6 +55,7 @@ public class ScrollOfSummoning extends Scroll {
 			if (Level.passable[cell] && Actor.findChar( cell ) == null) {
 				curUser.decreaseMentalHealth(2);
 				spawnAt( cell );
+				Buff.affect(curUser, Invisibility.class, 10f);
 			}
 		}
 		

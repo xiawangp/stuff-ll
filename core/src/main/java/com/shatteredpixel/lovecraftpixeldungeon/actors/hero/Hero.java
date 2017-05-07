@@ -27,6 +27,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.Badges;
 import com.shatteredpixel.lovecraftpixeldungeon.Bones;
 import com.shatteredpixel.lovecraftpixeldungeon.Dungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.GamesInProgress;
+import com.shatteredpixel.lovecraftpixeldungeon.LovecraftPixelDungeon;
 import com.shatteredpixel.lovecraftpixeldungeon.Statistics;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Actor;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.Char;
@@ -115,6 +116,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.scenes.InterlevelScene;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.SurfaceScene;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.lovecraftpixeldungeon.sprites.HeroSprite;
+import com.shatteredpixel.lovecraftpixeldungeon.typedscroll.randomer.Randomer;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.AttackIndicator;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.BuffIndicator;
 import com.shatteredpixel.lovecraftpixeldungeon.ui.QuickSlotButton;
@@ -122,6 +124,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.ui.StatusPane;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.BArray;
 import com.shatteredpixel.lovecraftpixeldungeon.utils.GLog;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndMessage;
+import com.shatteredpixel.lovecraftpixeldungeon.windows.WndOptions;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndResurrect;
 import com.shatteredpixel.lovecraftpixeldungeon.windows.WndTradeItem;
 import com.watabou.noosa.Camera;
@@ -166,7 +169,7 @@ public class Hero extends Char {
 	
 	public boolean resting = false;
 
-	public static String playername = null;
+	public static String playername = LovecraftPixelDungeon.playerName();
 
 	public MissileWeapon rangedWeapon = null;
 	public Belongings belongings;
@@ -882,7 +885,25 @@ public class Hero extends Char {
 				
 			} else {
 				GLog.w( Messages.get(this, "locked_door") );
+				final int doorCellPos = doorCell;
+				GameScene.show( new WndOptions( Messages.get(this, "kick_door_title"), Messages.get(this, "kick_door_text"), Messages.get(this, "yes_kick_door"), Messages.get(this, "dont_kick_door")){
+					@Override
+					protected void onSelect(int index) {
+						if(index == 0){
+							Dungeon.hero.HP = Dungeon.hero.HP - Dungeon.hero.HT/3;
+							if(Randomer.randomInteger(3) == 1){
+								GLog.i( Messages.get(Hero.class, "kick_door_success") );
+								spend( Key.TIME_TO_UNLOCK );
+								sprite.operate( doorCellPos );
+								Level.set( doorCellPos, Terrain.DOOR );
+								GameScene.updateMap(doorCellPos);
+								Sample.INSTANCE.play( Assets.SND_ROCKS );
+							}
+						}
+					}
+				});
 				ready();
+
 			}
 
 			return false;

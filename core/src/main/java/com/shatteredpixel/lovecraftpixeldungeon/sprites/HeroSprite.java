@@ -32,6 +32,7 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.MiGo;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.NormalShoggoth;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.ToothFaierie;
+import com.shatteredpixel.lovecraftpixeldungeon.effects.Splash;
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.Camera;
@@ -39,6 +40,7 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
+import com.watabou.utils.Random;
 
 public class HeroSprite extends CharSprite {
 	
@@ -221,14 +223,10 @@ public class HeroSprite extends CharSprite {
 
 	@Override
 	public void bloodBurstA(PointF from, int damage) {
-		//Does nothing.
-
-		/*
-		 * This is both for visual clarity, and also for content ratings regarding violence
-		 * towards human characters. The heroes are the only human or human-like characters which
-		 * participate in combat, so removing all blood associated with them is a simple way to
-		 * reduce the violence rating of the game.
-		 */
+		if (visible) {
+			PointF c = center();
+			Splash.at( c, PointF.angle( from, c ), 3.1415926f / 2, blood(), Random.NormalIntRange(10, 100));
+		}
 	}
 
 	@Override

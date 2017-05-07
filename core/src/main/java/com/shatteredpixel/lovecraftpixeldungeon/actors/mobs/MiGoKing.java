@@ -146,7 +146,7 @@ public class MiGoKing extends Mob {
 			ArrayList<Integer> spawnPoints = new ArrayList<>();
 			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
 				int p = pos + PathFinder.NEIGHBOURS8[i];
-				if (Actor.findChar(p) == null && (Level.passable[p] || Level.avoid[p])) {
+				if (Actor.findChar(p) == null && (Level.passable[p] || Level.avoid[p]) && !Level.pit[p]) {
 					spawnPoints.add(p);
 				}
 			}

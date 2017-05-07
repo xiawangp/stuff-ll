@@ -77,7 +77,7 @@ public class WndBugCatcher extends WndTabbed {
 		TouchArea hotArea = new TouchArea( bugLink.left(), bugLink.top(), bugLink.width(), bugLink.height() ) {
 			@Override
 			protected void onClick( Touchscreen.Touch touch ) {
-				Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "https://www.reddit.com/r/PixelDungeon/5rffh1" ) );
+				Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "https://www.reddit.com/user/TypedScroll/" ) );
 				Game.instance.startActivity( intent );
 			}
 		};

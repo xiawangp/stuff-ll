@@ -33,8 +33,10 @@ import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.TheGreenGod;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.TheKingInYellow;
 import com.shatteredpixel.lovecraftpixeldungeon.actors.mobs.Turua;
 import com.shatteredpixel.lovecraftpixeldungeon.messages.Languages;
+import com.shatteredpixel.lovecraftpixeldungeon.messages.Messages;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.PixelScene;
+import com.shatteredpixel.lovecraftpixeldungeon.scenes.TitleScene;
 import com.shatteredpixel.lovecraftpixeldungeon.scenes.WelcomeScene;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.RenderedText;
@@ -494,6 +496,23 @@ public class LovecraftPixelDungeon extends Game {
 
 	public static int visualGrid() {
 		return Preferences.INSTANCE.getInt( Preferences.KEY_GRID, 0, -1, 3 );
+	}
+
+	public static void frameColor( int value ){
+		Preferences.INSTANCE.put( Preferences.KEY_FRAMECOLOR, value );
+		GameScene.updateMap();
+	}
+
+	public static int frameColor( ){
+		return Preferences.INSTANCE.getInt( Preferences.KEY_FRAMECOLOR, 0, 0, 3 );
+	}
+
+	public static void playerName( String name ){
+		Preferences.INSTANCE.put( Preferences.KEY_PLAYERNAME, name );
+	}
+
+	public static String playerName( ){
+		return Preferences.INSTANCE.getString( Preferences.KEY_PLAYERNAME, Messages.get(TitleScene.class, "playernameplaceholder" ));
 	}
 
 	public static void language(Languages lang) {

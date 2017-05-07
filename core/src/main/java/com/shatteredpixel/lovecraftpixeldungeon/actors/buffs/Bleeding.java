@@ -72,12 +72,12 @@ public class Bleeding extends Buff {
 	public boolean act() {
 		if (target.isAlive()) {
 			
-			if ((level = Random.NormalIntRange( level / 2, level )) > 0) {
+			if ((level = Random.NormalIntRange( level / 4, level / 2 )) > 0) {
 				
 				target.damage( level, this );
 				if (target.sprite.visible) {
 					Splash.at( target.sprite.center(), -PointF.PI / 2, PointF.PI / 6,
-							target.sprite.blood(), Math.min( 10 * level / target.HT, 10 ) );
+							target.sprite.blood(), Math.min( 10 * level / target.HT, Random.NormalIntRange(10, 100) ) );
 				}
 				
 				if (target == Dungeon.hero && !target.isAlive()) {

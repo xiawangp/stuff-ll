@@ -102,7 +102,7 @@ public class DoubleShoggoth extends Mob {
 	public int defenseProc(Char enemy, int damage) {
 		for (int n : PathFinder.NEIGHBOURS4) {
 			int cell = this.pos + n;
-			if (Level.passable[cell] && Actor.findChar( cell ) == null && Random.Int(4) == 2) {
+			if (Level.passable[cell] && Actor.findChar( cell ) == null && !Level.pit[cell] && Random.Int(4) == 2) {
 				if(enemy == Dungeon.hero){
 					Dungeon.hero.decreaseMentalHealth(2);
 				}

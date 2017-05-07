@@ -129,7 +129,7 @@ public class ChangesScene extends PixelScene {
 					"_-_ Loading Quotes \n" +
 							"_-_ New Weapon:\n" +
 							"\t\t _-_ Scythe\n" +
-					"_-_ Level 5 Boss Fight added\n\n\n";
+							"_-_ Level 5 Boss Fight added\n\n\n";
 
 	@Override
 	public void create() {

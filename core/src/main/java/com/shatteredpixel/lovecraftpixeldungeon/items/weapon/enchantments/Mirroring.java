@@ -55,7 +55,7 @@ public class Mirroring extends Weapon.Enchantment {
 
 		for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
 			int p = attacker.pos + PathFinder.NEIGHBOURS8[i];
-			if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+			if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p]) && !Level.pit[p]) {
 				respawnPoints.add( p );
 			}
 		}

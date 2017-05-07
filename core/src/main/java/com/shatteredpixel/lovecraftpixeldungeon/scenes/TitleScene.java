@@ -190,10 +190,13 @@ public class TitleScene extends PixelScene {
 
 		if (Dungeon.hero.playername == null) {
 			yourname = Messages.get(this, "playernameplaceholder");
+			LovecraftPixelDungeon.playerName(yourname);
 		} else if(Dungeon.hero.playername == "?"){
 			yourname = Messages.get(this, "playernamerandomname");
+			LovecraftPixelDungeon.playerName(yourname);
 		} else {
-			yourname = Dungeon.hero.playername;
+			yourname = LovecraftPixelDungeon.playerName();
+			LovecraftPixelDungeon.playerName(yourname);
 		}
 
 		PlayNameButton heronamebtn = new PlayNameButton(yourname) {
@@ -229,9 +232,11 @@ public class TitleScene extends PixelScene {
 				super.onSelect(positive);
 				if(positive){
 					yourname = getText();
+					LovecraftPixelDungeon.playerName(yourname);
 					Dungeon.hero.playername = yourname;
 				} else {
 					yourname = "?";
+					LovecraftPixelDungeon.playerName(yourname);
 					Dungeon.hero.playername = yourname;
 				}
 				LovecraftPixelDungeon.switchNoFade(TitleScene.class);
