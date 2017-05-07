@@ -286,7 +286,7 @@ public abstract class Level implements Bundlable {
 
 	protected void setupSize(){
 		if (width == 0 || height == 0)
-			width = height = (generateEvenNumber(30, 60));
+			width = height = (generateEvenNumber(30, 50));
 		length = width * height;
 	}
 

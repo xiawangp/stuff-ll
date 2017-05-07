@@ -629,13 +629,13 @@ public abstract class RegularLevel extends Level {
 			case 1:
 				return 0;
 			default:
-				return Dungeon.depth % 5 + Random.IntRange(1, 4)*(width/4);
+				return Dungeon.depth % 5 + Random.IntRange(1, 4)*(width/Random.IntRange(6, 8));
 		}
 	}
 	
 	@Override
 	protected void createMobs() {
-		int mobsToSpawn = Dungeon.depth % 5 + Random.IntRange(2, 3)*(width/4);
+		int mobsToSpawn = Dungeon.depth % 5 + Random.IntRange(2, 3)*(width/Random.IntRange(6, 8));
 
 		ArrayList<Room> stdRooms = new ArrayList<>();
 		for (Room room : rooms) {
